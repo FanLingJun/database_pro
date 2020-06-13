@@ -7,7 +7,13 @@ urlpatterns = [
     path('student_index/', views.student_index),
     path('teacher_index/', views.teacher_index),
     path('admin_index/', views.admin_index),
-
+    # 学生端的跳转页面
+    path('check_my_score/', views.check_my_score),
+    path('check_my_table/', views.check_my_table),
+    path('select_course/', views.select_course),
+    path('delete_course/', views.delete_course),
+    # 教师端的跳转页面
+    # 管理员端的跳转页面
 
 
 

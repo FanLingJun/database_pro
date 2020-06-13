@@ -60,3 +60,33 @@ def admin_index(request):
   admin = models.admin.objects.filter(gh=number)
   return render(request, 'admin_index.html', context={'gh': number, 'xm': admin[0].xm, 'xb': admin[0].xb
                                                         })
+
+def check_my_score(request):
+  number = request.session.get('number')
+  student = models.student.objects.filter(xh=number)
+  elect_course_data = models.e_table.objects.filter(xh=number)
+  return render(request, 'check_my_score.html', context={'xm': student[0].xm, 'xh': number,
+                                                           'xq': elect_course_data[0].xq,
+                                                         'kh':elect_course_data[0].kh,
+                                                         'zpcj':elect_course_data[0].zpcj
+                                                         })
+def check_my_table(request):
+  # 判断逻辑，根据e表，如果匹配到学号且总评成绩为null则为这个学期选的课
+  number = request.session.get('number')
+  print(number,"-------------")
+  elect_course = models.e_table.objects.filter(xh=number).filter(zpcj__isnull=True)
+  print(elect_course)
+  all_course = []
+  for i in elect_course:
+    c = models.course.objects.filter(kh=i.kh)
+    all_course.append(c)
+  print(all_course)
+  return render(request, 'check_my_table.html', context={'elect_course': elect_course,
+                                                         })
+
+def select_course(request):
+  return
+
+def delete_course(request):
+  return
+
