@@ -85,8 +85,28 @@ def check_my_table(request):
                                                          })
 
 def select_course(request):
-  return
+  return render(request, 'select_course.html')
 
 def delete_course(request):
-  return
+  return render(request, 'delete_course.html')
 
+def check_my_course(request):
+  return render(request, 'check_my_course.html')
+
+def edit_score(request):
+  return render(request,'edit_score.html')
+
+def submit_score(request):
+  return render(request,'submit_score.html')
+
+def edit_student(request):
+  return render(request,'edit_student.html')
+
+def submit_student(request):
+  return render(request,'submit_student.html')
+
+def edit_course(request):
+  return render(request,'edit_course.html')
+
+def submit_course(request):
+  return render(request,'submit_course.html')
