@@ -7,6 +7,9 @@ urlpatterns = [
     path('student_index/', views.student_index),
     path('teacher_index/', views.teacher_index),
     path('admin_index/', views.admin_index),
+    path('student_coursetable/', views.student_coursetable),
+    path('student_choose/', views.student_choose),
+    path('student_drop/', views.student_drop),
 
 
 

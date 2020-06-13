@@ -60,3 +60,12 @@ def admin_index(request):
   admin = models.admin.objects.filter(gh=number)
   return render(request, 'admin_index.html', context={'gh': number, 'xm': admin[0].xm, 'xb': admin[0].xb
                                                         })
+
+def student_coursetable(request):  #课表
+    return render(request, 'student_coursetable.html')
+
+def student_choose(request):  #选课
+    return render(request, 'student_choose.html')
+
+def student_drop(request):  #退课
+    return render(request, 'student_drop.html')

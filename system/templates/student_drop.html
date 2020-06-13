@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta name="description" content="Vali is a responsive and free admin theme built with Bootstrap 4, SASS and PUG.js. It's fully customizable and modular.">
+    <!-- Twitter meta-->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:site" content="@pratikborsadiya">
+    <meta property="twitter:creator" content="@pratikborsadiya">
+    <!-- Open Graph Meta-->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Vali Admin">
+    <meta property="og:title" content="Vali - Free Bootstrap 4 admin theme">
+    <meta property="og:url" content="http://pratikborsadiya.in/blog/vali-admin">
+    <meta property="og:image" content="http://pratikborsadiya.in/blog/vali-admin/hero-social.png">
+    <meta property="og:description" content="Vali is a responsive and free admin theme built with Bootstrap 4, SASS and PUG.js. It's fully customizable and modular.">
+    <title>教务处学生端</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Main CSS-->
+    <link rel="stylesheet" type="text/css" href="{% static "css/main.css" %}">
+    <!-- Font-icon css-->
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+  <body class="app sidebar-mini" style="background-color: #E5E5E5">
+    <!-- Navbar顶部导航-->
+    <header class="app-header">
+        <p class="nav-title">学生选课系统</p>
+    </header>
+    <!-- Sidebar menu侧面导航-->
+    <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
+    <aside class="app-sidebar">
+      <div class="app-sidebar__user">
+        <img style="height:45px;margin-right:30px;" src="{% static "images/student.jpg" %}" alt="User Image">
+        <div>
+          <p class="app-sidebar__user-name">{{xm}}</p>
+          <p class="app-sidebar__user-designation">{{xh}}</p>
+        </div>
+      </div>
+<!--      跳转到不同功能页面-->
+      <ul class="app-menu">
+        <li><a class="app-menu__item" href="/student_index/"><i class="app-menu__icon fa fa-home"></i><span class="app-menu__label">学生首页</span></a></li>
+        <li><a class="app-menu__item" href="/student_coursetable/"><i class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">课表查询</span></a></li>
+        <li><a class="app-menu__item" href="/student_choose/"><i class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">选课管理</span></a></li>
+        <li><a class="app-menu__item active" href="/student_drop/"><i class="app-menu__icon fa fa-pie-chart"></i><span class="app-menu__label">退课管理</span></a></li>
+        <li><a class="app-menu__item" href="/student_grade/"><i class="app-menu__icon fa fa-pie-chart"></i><span class="app-menu__label">成绩查询</span></a></li>
+      </ul>
+    </aside>
+
+    <main class="app-content">
+        <div class="row">
+
+        <div class="col-md-12">
+          <div class="tile">
+          <h3 class="tile-tile">已选课程</h3>
+            <div class="tile-body">
+              <div class="table-responsive">
+                <table class="table table-hover table-bordered" id="sampleTable2">
+                  <thead>
+                    <tr>
+                      <th>课号</th>
+                      <th>课名</th>
+                      <th>工号</th>
+                      <th>教师名</th>
+                      <th>学分</th>
+                      <th>上课时间</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for item in xxxxxx %}
+                    <tr>
+                      <td>{{xxxxxx}}</td>
+                      <td>{{xxxxxx}}</td>
+                      <td>{{xxxxxx}}</td>
+                      <td>{{xxxxxx}}</td>
+                      <td>{{xxxxxx}}</td>
+                      <td>{{xxxxxx}}</td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-12">
+          <div class="tile">
+            <h3 class="tile-title">退课</h3>
+            <div class="tile-body">
+              <form class="row" method="POST">
+                <div class="form-group col-md-3">
+                  <label class="control-label">课号</label>
+                  <input class="form-control" type="text" placeholder="请输入课程号" name="id">
+                </div>
+                <div class="form-group col-md-4 align-self-end">
+                  <button class="btn btn-primary">退课</button>
+                </div>
+<!--                这是啥意思？-->
+                {% if messages %}
+                  <script>
+                    {% for msg in messages %}
+                        alert('{{msg.message}}');
+                     {% endfor %}
+                  </script>
+                {% endif %}
+
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12">
+        <div class="table-responsive">
+<table class="table table-striped jambo_table bulk_action">
+<thead>
+<tr class="headings">
+<th>
+<div class="icheckbox_flat-green" style="position: relative;"><input class="flat" id="check-all" style="position: absolute; opacity: 0;" type="checkbox"><ins class="iCheck-helper" style="background: rgb(255, 255, 255); margin: 0px; padding: 0px; border: 0px; border-image: none; left: 0%; top: 0%; width: 100%; height: 100%; display: block; position: absolute; opacity: 0;"></ins></div>
+</th>
+<th class="column-title" style="display: table-cell;">Invoice </th>
+<th class="column-title" style="display: table-cell;">Invoice Date </th>
+<th class="column-title" style="display: table-cell;">Order </th>
+<th class="column-title" style="display: table-cell;">Bill to Name </th>
+<th class="column-title" style="display: table-cell;">Status </th>
+<th class="column-title" style="display: table-cell;">Amount </th>
+<th class="column-title no-link last" style="display: table-cell;"><span class="nobr">Action</span>
+</th>
+<th class="bulk-actions" style="display: none;" colspan="7">
+<a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span class="action-cnt">1 Records Selected</span> ) <i class="fa fa-chevron-down"></i></a>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr class="even pointer">
+<td class="a-center ">
+<div class="icheckbox_flat-green" style="position: relative;"><input name="table_records" class="flat" style="position: absolute; opacity: 0;" type="checkbox"><ins class="iCheck-helper" style="background: rgb(255, 255, 255); margin: 0px; padding: 0px; border: 0px; border-image: none; left: 0%; top: 0%; width: 100%; height: 100%; display: block; position: absolute; opacity: 0;"></ins></div>
+</td>
+<td class=" ">121000040</td>
+<td class=" ">May 23, 2014 11:47:56 PM </td>
+<td class=" ">121000210 <i class="success fa fa-long-arrow-up"></i></td>
+<td class=" ">John Blank L</td>
+<td class=" ">Paid</td>
+<td class="a-right a-right ">$7.45</td>
+<td class=" last"><a href="#">View</a>
+</td>
+</tr>
+<tr class="odd pointer">
+<td class="a-center ">
+<div class="icheckbox_flat-green" style="position: relative;"><input name="table_records" class="flat" style="position: absolute; opacity: 0;" type="checkbox"><ins class="iCheck-helper" style="background: rgb(255, 255, 255); margin: 0px; padding: 0px; border: 0px; border-image: none; left: 0%; top: 0%; width: 100%; height: 100%; display: block; position: absolute; opacity: 0;"></ins></div>
+</td>
+<td class=" ">121000039</td>
+<td class=" ">May 23, 2014 11:30:12 PM</td>
+<td class=" ">121000208 <i class="success fa fa-long-arrow-up"></i>
+</td>
+<td class=" ">John Blank L</td>
+<td class=" ">Paid</td>
+<td class="a-right a-right ">$741.20</td>
+<td class=" last"><a href="#">View</a>
+</td>
+</tr>
+<tr class="even pointer">
+<td class="a-center ">
+<div class="icheckbox_flat-green" style="position: relative;"><input name="table_records" class="flat" style="position: absolute; opacity: 0;" type="checkbox"><ins class="iCheck-helper" style="background: rgb(255, 255, 255); margin: 0px; padding: 0px; border: 0px; border-image: none; left: 0%; top: 0%; width: 100%; height: 100%; display: block; position: absolute; opacity: 0;"></ins></div>
+</td>
+<td class=" ">121000038</td>
+<td class=" ">May 24, 2014 10:55:33 PM</td>
+<td class=" ">121000203 <i class="success fa fa-long-arrow-up"></i>
+</td>
+<td class=" ">Mike Smith</td>
+<td class=" ">Paid</td>
+<td class="a-right a-right ">$432.26</td>
+<td class=" last"><a href="#">View</a>
+</td>
+</tr>
+<tr class="odd pointer">
+<td class="a-center ">
+<div class="icheckbox_flat-green" style="position: relative;"><input name="table_records" class="flat" style="position: absolute; opacity: 0;" type="checkbox"><ins class="iCheck-helper" style="background: rgb(255, 255, 255); margin: 0px; padding: 0px; border: 0px; border-image: none; left: 0%; top: 0%; width: 100%; height: 100%; display: block; position: absolute; opacity: 0;"></ins></div>
+</td>
+<td class=" ">121000037</td>
+<td class=" ">May 24, 2014 10:52:44 PM</td>
+<td class=" ">121000204</td>
+<td class=" ">Mike Smith</td>
+<td class=" ">Paid</td>
+<td class="a-right a-right ">$333.21</td>
+<td class=" last"><a href="#">View</a>
+</td>
+</tr>
+<tr class="even pointer">
+<td class="a-center ">
+<div class="icheckbox_flat-green" style="position: relative;"><input name="table_records" class="flat" style="position: absolute; opacity: 0;" type="checkbox"><ins class="iCheck-helper" style="background: rgb(255, 255, 255); margin: 0px; padding: 0px; border: 0px; border-image: none; left: 0%; top: 0%; width: 100%; height: 100%; display: block; position: absolute; opacity: 0;"></ins></div>
+</td>
+<td class=" ">121000040</td>
+<td class=" ">May 24, 2014 11:47:56 PM </td>
+<td class=" ">121000210</td>
+<td class=" ">John Blank L</td>
+<td class=" ">Paid</td>
+<td class="a-right a-right ">$7.45</td>
+<td class=" last"><a href="#">View</a>
+</td>
+</tr>
+<tr class="odd pointer">
+<td class="a-center ">
+<div class="icheckbox_flat-green" style="position: relative;"><input name="table_records" class="flat" style="position: absolute; opacity: 0;" type="checkbox"><ins class="iCheck-helper" style="background: rgb(255, 255, 255); margin: 0px; padding: 0px; border: 0px; border-image: none; left: 0%; top: 0%; width: 100%; height: 100%; display: block; position: absolute; opacity: 0;"></ins></div>
+</td>
+<td class=" ">121000039</td>
+<td class=" ">May 26, 2014 11:30:12 PM</td>
+<td class=" ">121000208 <i class="error fa fa-long-arrow-down"></i>
+</td>
+<td class=" ">John Blank L</td>
+<td class=" ">Paid</td>
+<td class="a-right a-right ">$741.20</td>
+<td class=" last"><a href="#">View</a>
+</td>
+</tr>
+<tr class="even pointer">
+<td class="a-center ">
+<div class="icheckbox_flat-green" style="position: relative;"><input name="table_records" class="flat" style="position: absolute; opacity: 0;" type="checkbox"><ins class="iCheck-helper" style="background: rgb(255, 255, 255); margin: 0px; padding: 0px; border: 0px; border-image: none; left: 0%; top: 0%; width: 100%; height: 100%; display: block; position: absolute; opacity: 0;"></ins></div>
+</td>
+<td class=" ">121000038</td>
+<td class=" ">May 26, 2014 10:55:33 PM</td>
+<td class=" ">121000203</td>
+<td class=" ">Mike Smith</td>
+<td class=" ">Paid</td>
+<td class="a-right a-right ">$432.26</td>
+<td class=" last"><a href="#">View</a>
+</td>
+</tr>
+<tr class="odd pointer">
+<td class="a-center ">
+<div class="icheckbox_flat-green" style="position: relative;"><input name="table_records" class="flat" style="position: absolute; opacity: 0;" type="checkbox"><ins class="iCheck-helper" style="background: rgb(255, 255, 255); margin: 0px; padding: 0px; border: 0px; border-image: none; left: 0%; top: 0%; width: 100%; height: 100%; display: block; position: absolute; opacity: 0;"></ins></div>
+</td>
+<td class=" ">121000037</td>
+<td class=" ">May 26, 2014 10:52:44 PM</td>
+<td class=" ">121000204</td>
+<td class=" ">Mike Smith</td>
+<td class=" ">Paid</td>
+<td class="a-right a-right ">$333.21</td>
+<td class=" last"><a href="#">View</a>
+</td>
+</tr>
+<tr class="even pointer">
+<td class="a-center ">
+<div class="icheckbox_flat-green" style="position: relative;"><input name="table_records" class="flat" style="position: absolute; opacity: 0;" type="checkbox"><ins class="iCheck-helper" style="background: rgb(255, 255, 255); margin: 0px; padding: 0px; border: 0px; border-image: none; left: 0%; top: 0%; width: 100%; height: 100%; display: block; position: absolute; opacity: 0;"></ins></div>
+</td>
+<td class=" ">121000040</td>
+<td class=" ">May 27, 2014 11:47:56 PM </td>
+<td class=" ">121000210</td>
+ <td class=" ">John Blank L</td>
+<td class=" ">Paid</td>
+<td class="a-right a-right ">$7.45</td>
+<td class=" last"><a href="#">View</a>
+</td>
+</tr>
+<tr class="odd pointer">
+<td class="a-center ">
+<div class="icheckbox_flat-green" style="position: relative;"><input name="table_records" class="flat" style="position: absolute; opacity: 0;" type="checkbox"><ins class="iCheck-helper" style="background: rgb(255, 255, 255); margin: 0px; padding: 0px; border: 0px; border-image: none; left: 0%; top: 0%; width: 100%; height: 100%; display: block; position: absolute; opacity: 0;"></ins></div>
+</td>
+<td class=" ">121000039</td>
+<td class=" ">May 28, 2014 11:30:12 PM</td>
+<td class=" ">121000208</td>
+<td class=" ">John Blank L</td>
+<td class=" ">Paid</td>
+<td class="a-right a-right ">$741.20</td>
+<td class=" last"><a href="#">View</a>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+        </div>
+      </div>
+
+    </main>
+
+    <!-- Essential javascripts for application to work-->
+    <script src="{% static "js/jquery-3.3.1.min.js" %}"></script>
+    <script src="{% static "js/popper.min.js" %}"></script>
+    <script src="{% static "js/bootstrap.min.js" %}"></script>
+    <script src="{% static "js/main.js" %}"></script>
+    <!-- The javascript plugin to display page loading on top-->
+    <script src="{% static "js/plugins/pace.min.js"%}"></script>
+    <!-- Page specific javascripts-->
+    <!-- Data table plugin-->
+    <script type="text/javascript" src="{% static "js/plugins/jquery.dataTables.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/plugins/dataTables.bootstrap.min.js" %}"></script>
+    <script type="text/javascript">$('#sampleTable1').DataTable();</script>
+    <script type="text/javascript">$('#sampleTable2').DataTable();</script>
+    <!-- Google analytics script-->
+    <script type="text/javascript">
+      if(document.location.hostname == 'pratikborsadiya.in') {
+      	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      	ga('create', 'UA-72504830-1', 'auto');
+      	ga('send', 'pageview');
+      }
+    </script>
+  </body>
+</html>

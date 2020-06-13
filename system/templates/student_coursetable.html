@@ -27,19 +27,6 @@
     <!-- Navbar顶部导航-->
     <header class="app-header">
         <p class="nav-title">学生选课系统</p>
-{#        <a class="app-header__logo" href="/index_student/">SHU-student</a>#}
-      <!-- Sidebar toggle button-->
-{#        <a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>#}
-      <!-- Navbar Right Menu-->
-{#      <ul class="app-nav">#}
-{#        <!-- User Menu-->#}
-{#        <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Open Profile Menu"><i class="fa fa-user fa-lg"></i></a>#}
-{#          <ul class="dropdown-menu settings-menu dropdown-menu-right">#}
-{#            <li><a class="dropdown-item" href="page-user.html"><i class="fa fa-cog fa-lg"></i> Settings</a></li>#}
-{#            <li><a class="dropdown-item" href="/logout/"><i class="fa fa-sign-out fa-lg"></i> Logout</a></li>#}
-{#          </ul>#}
-{#        </li>#}
-{#      </ul>#}
     </header>
     <!-- Sidebar menu侧面导航-->
     <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
@@ -47,60 +34,55 @@
       <div class="app-sidebar__user">
         <img style="height:45px;margin-right:30px;" src="{% static "images/student.jpg" %}" alt="User Image">
         <div>
-          <p class="app-sidebar__user-name">{{name}}</p>
-          <p class="app-sidebar__user-designation">{{number}}</p>
+          <p class="app-sidebar__user-name">{{xm}}</p>
+          <p class="app-sidebar__user-designation">{{xh}}</p>
         </div>
       </div>
 <!--      跳转到不同功能页面-->
       <ul class="app-menu">
-        <li><a class="app-menu__item active" href="/student_index/"><i class="app-menu__icon fa fa-home"></i><span class="app-menu__label">学生首页</span></a></li>
-        <li><a class="app-menu__item" href="/student_coursetable/"><i class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">课表查询</span></a></li>
+        <li><a class="app-menu__item" href="/student_index/"><i class="app-menu__icon fa fa-home"></i><span class="app-menu__label">学生首页</span></a></li>
+        <li><a class="app-menu__item active" href="/student_coursetable/"><i class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">课表查询</span></a></li>
         <li><a class="app-menu__item" href="/student_choose/"><i class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">选课管理</span></a></li>
         <li><a class="app-menu__item" href="/student_drop/"><i class="app-menu__icon fa fa-pie-chart"></i><span class="app-menu__label">退课管理</span></a></li>
         <li><a class="app-menu__item" href="/student_grade/"><i class="app-menu__icon fa fa-pie-chart"></i><span class="app-menu__label">成绩查询</span></a></li>
       </ul>
     </aside>
-<!--    主要内容部分-->
+
     <main class="app-content">
-<!--      头部-->
-{#      <div class="app-title">#}
-{#        <div>#}
-{#          <h1 style="font-size:20px">上海大学选课系统</h1>#}
-{#        </div>#}
-{#        <ul class="app-breadcrumb breadcrumb">#}
-{#          <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>#}
-{#          <li class="breadcrumb-item"><a style="font-size:13px;" href="#">个人信息 Student Data</a></li>#}
-{#        </ul>#}
-{#      </div>#}
-<!--      内容显示-->
-      <div class="clearfix"></div>
-      <div class="col-md-12">
+        <div class="row">
+        <div class="col-md-12">
           <div class="tile">
-            <h3 class="tile-title">学生信息</h3>
-            <div class="table-responsive">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th>学号</th>
-                    <th>姓名</th>
-                    <th>性别</th>
-                    <th>年龄</th>
-                    <th>学院</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th>{{xh}}</th>
-                    <th>{{xm}}</th>
-                    <th>{{xb}}</th>
-                    <th>{{csrq}}</th>
-                    <th>{{jg}}</th>
-                  </tr>
-                </tbody>
-              </table>
+            <div class="tile-body">
+              <div class="table-responsive">
+                <table class="table table-hover table-bordered" id="sampleTable">
+                  <thead>
+                    <tr>
+                      <th>课号</th>
+                      <th>课名</th>
+                      <th>工号</th>
+                      <th>教师名</th>
+                      <th>学分</th>
+                      <th>上课时间</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for item in xxxxxx %}
+                    <tr>
+                      <td>{{xxxxxx}}</td>
+                      <td>{{xxxxxx}}</td>
+                      <td>{{xxxxxx}}</td>
+                      <td>{{xxxxxx}}</td>
+                      <td>{{xxxxxx}}</td>
+                      <td>{{xxxxxx}}</td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>
+      </div>
     </main>
     <!-- Essential javascripts for application to work-->
     <script src="{% static "js/jquery-3.3.1.min.js" %}"></script>
@@ -110,9 +92,11 @@
     <!-- The javascript plugin to display page loading on top-->
     <script src="{% static "js/plugins/pace.min.js"%}"></script>
     <!-- Page specific javascripts-->
-    <script type="text/javascript" src="{% static "js/plugins/chart.js" %}"></script>
+    <!-- Data table plugin-->
+    <script type="text/javascript" src="{% static "js/plugins/jquery.dataTables.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/plugins/dataTables.bootstrap.min.js" %}"></script>
+    <script type="text/javascript">$('#sampleTable').DataTable();</script>
     <!-- Google analytics script-->
-<!--    看不懂！！！-->
     <script type="text/javascript">
       if(document.location.hostname == 'pratikborsadiya.in') {
       	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -122,8 +106,7 @@
       	ga('create', 'UA-72504830-1', 'auto');
       	ga('send', 'pageview');
       }
+
     </script>
   </body>
 </html>
-
-<!--  该页面相当于系统学生首页-->
