@@ -146,32 +146,31 @@ def select_course(request):
   print(course_id)
   teacher_id = request.POST.get('teacher_id')
   print(teacher_id)
-
-
   return render(request, 'select_course.html', context={'open_course': all})
 
 
 def delete_course(request):
   return render(request, 'delete_course.html')
 
-def check_my_course(request):
-  return render(request, 'check_my_course.html')
+def teacher_course(request):
+  return render(request, 'teacher_course.html')
 
-def edit_score(request):
-  return render(request,'edit_score.html')
+def teacher_edit_score(request):
+  return render(request, 'teacher_edit_score.html')
 
-def submit_score(request):
-  return render(request,'submit_score.html')
+def teacher_submit_score(request):
+  return render(request,'teacher_submit_score.html')
 
-def edit_student(request):
-  return render(request,'edit_student.html')
+def admin_edit_user(request):
+  return render(request,'admin_edit_user.html')
 
-def submit_student(request):
-  return render(request,'submit_student.html')
+def admin_submit_user(request):
+  return render(request,'admin_submit_user.html')
 
-def edit_course(request):
-  return render(request,'edit_course.html')
+def admin_edit_course(request):
+  return render(request,'admin_edit_course.html')
 
-def submit_course(request):
-  return render(request,'submit_course.html')
+def admin_submit_course(request):
+  return render(request,'admin_submit_course.html')
+
 

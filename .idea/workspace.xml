@@ -1,11 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="35853b46-5a59-4cd5-9384-07650ca5ee44" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/system/templates/check_my_score.html" beforeDir="false" afterPath="$PROJECT_DIR$/system/templates/check_my_score.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/system/templates/check_my_table.html" beforeDir="false" afterPath="$PROJECT_DIR$/system/templates/check_my_table.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/system/templates/select_course.html" beforeDir="false" afterPath="$PROJECT_DIR$/system/templates/select_course.html" afterDir="false" />
+=======
+    <list default="true" id="8538e380-7185-464c-9cab-3037db0a1a2c" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/a4d25105-f50f-4109-9fe4-c42cd75afbc1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/db_web.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/db_web.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/system/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/system/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/system/templates/admin_index.html" beforeDir="false" afterPath="$PROJECT_DIR$/system/templates/admin_index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/system/templates/static/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/system/templates/static/css/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/system/templates/static/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/system/templates/static/js/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/system/templates/student_index.html" beforeDir="false" afterPath="$PROJECT_DIR$/system/templates/student_index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/system/templates/teacher_index.html" beforeDir="false" afterPath="$PROJECT_DIR$/system/templates/teacher_index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/system/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/system/urls.py" afterDir="false" />
+>>>>>>> 1adc184d016e6ef9f483871a4fcc4c852c701835
       <change beforePath="$PROJECT_DIR$/system/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/system/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -29,6 +46,7 @@
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
         <item name="db.sqlite3" type="feb32156:DbDataSourceImpl" />
       </path>
+<<<<<<< HEAD
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
         <item name="db.sqlite3" type="feb32156:DbDataSourceImpl" />
@@ -45,6 +63,8 @@
         <item name="db.sqlite3" type="feb32156:DbDataSourceImpl" />
         <item name="collations" type="d4e8921:DatabaseStructure$FamilyGroup" />
       </path>
+=======
+>>>>>>> 1adc184d016e6ef9f483871a4fcc4c852c701835
     </expand>
     <select />
   </component>
@@ -85,54 +105,107 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
+<<<<<<< HEAD
         <entry file="file://$PROJECT_DIR$/system/views.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="188">
               <caret line="146" column="27" selection-start-line="146" selection-start-column="27" selection-end-line="146" selection-end-column="27" />
               <folding>
                 <element signature="e#0#45#0" expanded="true" />
+=======
+        <entry file="file://$PROJECT_DIR$/system/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="308">
+              <caret line="20" column="25" selection-start-line="20" selection-start-column="25" selection-end-line="20" selection-end-column="25" />
+              <folding>
+                <element signature="e#0#28#0" expanded="true" />
+>>>>>>> 1adc184d016e6ef9f483871a4fcc4c852c701835
               </folding>
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/system/templates/select_course.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="140">
               <caret line="127" column="49" lean-forward="true" selection-start-line="127" selection-start-column="49" selection-end-line="127" selection-end-column="49" />
+=======
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/system/templates/admin_submit_course.html">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/system/templates/admin_submit_student.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="220">
+              <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+>>>>>>> 1adc184d016e6ef9f483871a4fcc4c852c701835
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+<<<<<<< HEAD
         <entry file="file://$PROJECT_DIR$/system/templates/check_my_table.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="225">
               <caret line="69" column="46" selection-start-line="69" selection-start-column="46" selection-end-line="69" selection-end-column="46" />
+=======
+        <entry file="file://$PROJECT_DIR$/system/templates/teacher_submit_score.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="220">
+              <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+>>>>>>> 1adc184d016e6ef9f483871a4fcc4c852c701835
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+<<<<<<< HEAD
         <entry file="file://$PROJECT_DIR$/system/templates/check_my_score.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="197">
               <caret line="87" column="52" lean-forward="true" selection-start-line="87" selection-start-column="52" selection-end-line="87" selection-end-column="52" />
+=======
+        <entry file="file://$PROJECT_DIR$/system/templates/teacher_edit_score.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="240">
+              <caret line="48" column="13" lean-forward="true" selection-start-line="48" selection-start-column="13" selection-end-line="48" selection-end-column="13" />
+>>>>>>> 1adc184d016e6ef9f483871a4fcc4c852c701835
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+<<<<<<< HEAD
         <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/a4d25105-f50f-4109-9fe4-c42cd75afbc1/console_3.sql">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="221">
               <caret line="21" selection-start-line="21" selection-end-line="22" selection-end-column="99" />
+=======
+        <entry file="file://$PROJECT_DIR$/system/templates/teacher_course.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="330">
+              <caret line="48" column="13" lean-forward="true" selection-start-line="48" selection-start-column="13" selection-end-line="48" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/system/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1738">
+              <caret line="135" lean-forward="true" selection-start-line="135" selection-end-line="135" />
+>>>>>>> 1adc184d016e6ef9f483871a4fcc4c852c701835
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+<<<<<<< HEAD
         <entry file="file://$PROJECT_DIR$/system/urls.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="379">
@@ -140,10 +213,37 @@
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
               </folding>
+=======
+        <entry file="file://$PROJECT_DIR$/system/templates/admin_edit_user.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="328">
+              <caret line="56" column="141" selection-start-line="56" selection-start-column="141" selection-end-line="56" selection-end-column="141" />
+>>>>>>> 1adc184d016e6ef9f483871a4fcc4c852c701835
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
+=======
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/system/templates/admin_index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="270">
+              <caret line="56" column="51" selection-start-line="56" selection-start-column="51" selection-end-line="56" selection-end-column="51" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/system/templates/teacher_index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="196">
+              <caret line="49" column="14" lean-forward="true" selection-start-line="49" selection-start-column="14" selection-end-line="49" selection-end-column="14" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+>>>>>>> 1adc184d016e6ef9f483871a4fcc4c852c701835
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
@@ -160,11 +260,22 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/system/templates/check_my_table.html" />
         <option value="$PROJECT_DIR$/system/templates/check_my_score.html" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/a4d25105-f50f-4109-9fe4-c42cd75afbc1/console_3.sql" />
         <option value="$PROJECT_DIR$/system/views.py" />
         <option value="$PROJECT_DIR$/system/templates/select_course.html" />
+=======
+        <option value="$PROJECT_DIR$/system/views.py" />
+        <option value="$PROJECT_DIR$/system/templates/admin_edit_course.html" />
+        <option value="$PROJECT_DIR$/system/templates/admin_edit_user.html" />
+        <option value="$PROJECT_DIR$/system/templates/teacher_index.html" />
+        <option value="$PROJECT_DIR$/system/templates/teacher_edit_score.html" />
+        <option value="$PROJECT_DIR$/system/templates/teacher_course.html" />
+        <option value="$PROJECT_DIR$/system/templates/admin_index.html" />
+        <option value="$PROJECT_DIR$/system/urls.py" />
+>>>>>>> 1adc184d016e6ef9f483871a4fcc4c852c701835
       </list>
     </option>
   </component>
@@ -175,11 +286,19 @@
       </set>
     </option>
   </component>
+<<<<<<< HEAD
   <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
   <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
   <component name="JsGulpfileManager">
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
+=======
+  <component name="ProjectFrameBounds" extendedState="7">
+    <option name="x" value="54" />
+    <option name="y" value="165" />
+    <option name="width" value="1287" />
+    <option name="height" value="705" />
+>>>>>>> 1adc184d016e6ef9f483871a4fcc4c852c701835
   </component>
   <component name="ProjectId" id="1dFo5izoQnTsA7FA5UYoz1l9A1h" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -210,6 +329,19 @@
               <item name="db_web" type="462c0819:PsiDirectoryNode" />
               <item name="system" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
+<<<<<<< HEAD
+=======
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="css" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="DB_stu_pro" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DB_stu_pro" type="462c0819:PsiDirectoryNode" />
+              <item name="system" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="images" type="462c0819:PsiDirectoryNode" />
+>>>>>>> 1adc184d016e6ef9f483871a4fcc4c852c701835
             </path>
           </expand>
           <select />
@@ -229,10 +361,14 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="database.console.LAST_STATE" value="false" />
+<<<<<<< HEAD
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../gentelella-master" />
+=======
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/DB_stu_pro" />
+>>>>>>> 1adc184d016e6ef9f483871a4fcc4c852c701835
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -300,15 +436,28 @@
     </task>
     <servers />
   </component>
+<<<<<<< HEAD
+=======
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="3311000" />
+  </component>
+>>>>>>> 1adc184d016e6ef9f483871a4fcc4c852c701835
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="704" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
+<<<<<<< HEAD
       <window_info content_ui="combo" id="Project" order="1" weight="0.16895716" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Database Changes" order="0" weight="0.09950249" />
       <window_info anchor="bottom" id="Terminal" order="1" weight="0.1558669" />
+=======
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.21422797" />
+      <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Database Changes" order="0" weight="0.09950249" />
+      <window_info anchor="bottom" id="Terminal" order="1" visible="true" weight="0.053067993" />
+>>>>>>> 1adc184d016e6ef9f483871a4fcc4c852c701835
       <window_info anchor="bottom" id="Event Log" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="3" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Console" order="4" weight="0.25218913" />
@@ -321,7 +470,11 @@
       <window_info anchor="bottom" id="Cvs" order="11" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="12" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="13" />
+<<<<<<< HEAD
       <window_info anchor="right" id="Database" order="0" weight="0.14308812" />
+=======
+      <window_info anchor="right" id="Database" order="0" visible="true" weight="0.29021826" />
+>>>>>>> 1adc184d016e6ef9f483871a4fcc4c852c701835
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="1" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="SciView" order="2" />
       <window_info anchor="right" id="Ant Build" order="3" weight="0.25" />
@@ -377,6 +530,7 @@
     <state x="303" y="1" width="672" height="678" key="search.everywhere.popup/0.0.1280.680@0.0.1280.680" timestamp="1592106262948" />
   </component>
   <component name="editorHistoryManager">
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/system/templates/student_index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="720">
@@ -405,11 +559,21 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="197">
           <caret line="87" column="52" lean-forward="true" selection-start-line="87" selection-start-column="52" selection-end-line="87" selection-end-column="52" />
+=======
+    <entry file="file://$PROJECT_DIR$/system/templates/select_course.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/system/templates/student_index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="10" column="25" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="25" />
+>>>>>>> 1adc184d016e6ef9f483871a4fcc4c852c701835
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/system/templates/teacher_index.html">
+    <entry file="file://$PROJECT_DIR$/system/templates/login.html">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="22">
           <caret line="80" column="25" selection-start-line="80" selection-start-column="25" selection-end-line="80" selection-end-column="25" />
         </state>
@@ -426,23 +590,116 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
           <caret line="69" column="46" selection-start-line="69" selection-start-column="46" selection-end-line="69" selection-end-column="46" />
+=======
+        <state relative-caret-position="500">
+          <caret line="24" column="46" selection-start-line="24" selection-start-column="46" selection-end-line="24" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/system/templates/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="10" selection-start-line="10" selection-end-line="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/system/templates/delete_course.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/system/templates/check_my_table.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/system/templates/admin_edit_course.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="284">
+          <caret line="58" column="12" lean-forward="true" selection-start-line="58" selection-start-column="12" selection-end-line="58" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/system/templates/check_my_score.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/system/templates/admin_submit_course.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/system/templates/admin_submit_student.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/system/templates/teacher_index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="196">
+          <caret line="49" column="14" lean-forward="true" selection-start-line="49" selection-start-column="14" selection-end-line="49" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/system/templates/teacher_submit_score.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/system/templates/teacher_edit_score.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="48" column="13" lean-forward="true" selection-start-line="48" selection-start-column="13" selection-end-line="48" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/system/templates/teacher_course.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="48" column="13" lean-forward="true" selection-start-line="48" selection-start-column="13" selection-end-line="48" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/system/templates/admin_edit_user.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="328">
+          <caret line="56" column="141" selection-start-line="56" selection-start-column="141" selection-end-line="56" selection-end-column="141" />
+>>>>>>> 1adc184d016e6ef9f483871a4fcc4c852c701835
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/system/views.py">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="188">
           <caret line="146" column="27" selection-start-line="146" selection-start-column="27" selection-end-line="146" selection-end-column="27" />
           <folding>
             <element signature="e#0#45#0" expanded="true" />
+=======
+        <state relative-caret-position="270">
+          <caret line="56" column="51" selection-start-line="56" selection-start-column="51" selection-end-line="56" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/system/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="20" column="25" selection-start-line="20" selection-start-column="25" selection-end-line="20" selection-end-column="25" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+>>>>>>> 1adc184d016e6ef9f483871a4fcc4c852c701835
           </folding>
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/system/templates/select_course.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="140">
           <caret line="127" column="49" lean-forward="true" selection-start-line="127" selection-start-column="49" selection-end-line="127" selection-end-column="49" />
+=======
+    <entry file="file://$PROJECT_DIR$/system/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1738">
+          <caret line="135" lean-forward="true" selection-start-line="135" selection-end-line="135" />
+>>>>>>> 1adc184d016e6ef9f483871a4fcc4c852c701835
         </state>
       </provider>
     </entry>
