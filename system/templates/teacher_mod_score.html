@@ -14,7 +14,7 @@
     <meta property="og:url" content="http://pratikborsadiya.in/blog/vali-admin">
     <meta property="og:image" content="http://pratikborsadiya.in/blog/vali-admin/hero-social.png">
     <meta property="og:description" content="Vali is a responsive and free admin theme built with Bootstrap 4, SASS and PUG.js. It's fully customizable and modular.">
-    <title>教务处教师端-课程管理</title>
+    <title>教务处教师端-首页</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -45,8 +45,9 @@
     <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
     <aside class="app-sidebar">
       <div class="app-sidebar__user">
+
 {#        <img style="height:45px;margin-right:30px;" src="{% static "images/teacher.jpg" %}" alt="User Image">#}
-        <div>
+        <div >
           <p class="app-sidebar__user-name">{{xm}}</p>
             <p class="app-sidebar__user-designation">{{gh}}</p>
 
@@ -55,11 +56,10 @@
 <!--      跳转到不同功能页面-->
       <ul class="app-menu">
           <li><a class="app-menu__item" href="/teacher_index/"><i class="app-menu__icon fa fa-home"></i><span class="app-menu__label">教师首页</span></a></li>
-        <li><a class="app-menu__item  active" href="/teacher_course/"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">我的课程 Teacher Courses</span></a></li>
+        <li><a class="app-menu__item" href="/teacher_course/"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">我的课程 Teacher Courses</span></a></li>
         <li><a class="app-menu__item" href="/teacher_edit_score/"><i class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">成绩录入 Score Editing</span></a></li>
-
-     {#       待修改#}
-          <li><a class="app-menu__item" href="/teacher_mod_score/"><i class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">成绩提交</span></a></li>
+{#       待修改#}
+          <li><a class="app-menu__item  active" href="/teacher_mod_score/"><i class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">成绩提交</span></a></li>
 
       </ul>
     </aside>
@@ -76,40 +76,35 @@
 {#        </ul>#}
 {#      </div>#}
 <!--      内容显示-->
-
       <div class="clearfix"></div>
-      <div class="col-md-12">
-          <div class="tile">
-            <h3 class="tile-title">我的课程 Teacher Courses</h3>
 
-              <div class="table-responsive">
-                <table class="table table-hover table-bordered" id="sampleTable">
-                  <thead>
-                    <tr>
-                      <th>课程号 Course Id</th>
-                      <th>课程名 Course Name</th>
-                      <th>课程学分 Course Credit</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {% for item in courses_data %}
-                    <tr>
-                      <td>{{item.kh}}</td>
-                      <td>{{item.km}}</td>
-                      <td>{{item.xf}}</td>
-                    </tr>
-                    {% endfor %}
-                  </tbody>
-                </table>
-              </div>
+        <div class="col-md-12">
+          <div class="tile">
+            <h3 class="tile-title">提交成绩 Score Submit：{{student_number}}——{{student_name}}——{{course_name}}</h3>
+            <div class="tile-body">
+              <form class="row" method="POST">
+                <div class="form-group col-md-3">
+                  <label class="control-label">请输入学生成绩： </label>
+                  <input class="form-control" type="text" placeholder="Enter Student Score" name="id">
+                </div>
+                <div class="form-group col-md-4 align-self-end">
+                  <button class="btn btn-primary"><i class="fa fa-fw fa-lg fa-check-circle"></i>提交 Submit</button>
+                </div>
+                {% if messages %}
+                  <script>
+                    {% for msg in messages %}
+                        alert('{{msg.message}}');
+                     {% endfor %}
+                  </script>
+                {% endif %}
+              </form>
             </div>
           </div>
         </div>
 
-
     </main>
     <!-- Essential javascripts for application to work-->
-      <script src="{% static "js/jquery-3.3.1.min.js" %}"></script>
+    <script src="{% static "js/jquery-3.3.1.min.js" %}"></script>
     <script src="{% static "js/popper.min.js" %}"></script>
     <script src="{% static "js/bootstrap.min.js" %}"></script>
     <script src="{% static "js/main.js" %}"></script>
@@ -130,9 +125,8 @@
       	ga('create', 'UA-72504830-1', 'auto');
       	ga('send', 'pageview');
       }
-
     </script>
   </body>
 </html>
 
-
+<!--  该页面相当于系统教师首页-->

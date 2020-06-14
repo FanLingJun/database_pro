@@ -45,7 +45,7 @@
     <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
     <aside class="app-sidebar">
       <div class="app-sidebar__user">
-        <img style="height:45px;margin-right:30px;" src="{% static "images/manager.jpg" %}" alt="User Image">
+{#        <img style="height:45px;margin-right:30px;" src="{% static "images/manager.jpg" %}" alt="User Image">#}
         <div>
           <p class="app-sidebar__user-name">{{name}}</p>
           <p class="app-sidebar__user-designation">{{number}}</p>
@@ -53,8 +53,15 @@
       </div>
 <!--      跳转到不同功能页面-->
       <ul class="app-menu">
-        <li><a class="app-menu__item" href="/admin_edit_user/"><i class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">用户管理 Users Edit</span></a></li>
-        <li><a class="app-menu__item" href="/admin_edit_course/"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">开课管理 Courses Edit</span></a></li>
+            <li><a class="app-menu__item" href="/admin_index/"><i class="app-menu__icon fa fa-home"></i><span class="app-menu__label">管理员首页</span></a></li>
+            <li><a class="app-menu__item" href="/admin_edit_user/"><i class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">用户管理 Users Edit</span></a></li>
+            <li><a class="app-menu__item active" href="/admin_edit_course/"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">开课管理 Courses Edit</span></a></li>
+
+
+{#         待修改#}
+          <li><a class="app-menu__item" href="/admin_mod_course/"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">课程修改 </span></a></li>
+          <li><a class="app-menu__item" href="/admin_mod_user/"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">用户修改</span></a></li>
+
       </ul>
     </aside>
 <!--    主要内容部分-->

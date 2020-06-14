@@ -228,8 +228,8 @@ def teacher_edit_score(request):
   print(teacher_student_data)
   return render(request, 'teacher_edit_score.html',context={'student_data':teacher_student_data})
 
-def teacher_submit_score(request):
-  return render(request,'teacher_submit_score.html')
+def teacher_mod_score(request):
+  return render(request,'teacher_mod_score.html')
 
 def admin_edit_user(request):
   all_student = models.student.objects.all()
@@ -244,8 +244,8 @@ def admin_edit_user(request):
     models.student.objects.create(xh=xh, xm=xm, jg=jg, sjhm=sjhm,pwd='student')
     return redirect('/admin_edit_user.html/')
 
-def admin_submit_user(request):
-  return render(request,'admin_submit_user.html')
+def admin_mod_user(request):
+  return render(request,'admin_mod_user.html')
 
 def admin_edit_course(request):
   cursor = connection.cursor()
@@ -285,7 +285,7 @@ def admin_edit_course(request):
       return redirect('/admin_edit_course.html/')
 
 
-def admin_submit_course(request):
-  return render(request,'admin_submit_course.html')
+def admin_mod_course(request):
+  return render(request,'admin_mod_course.html')
 
 

@@ -16,12 +16,12 @@ urlpatterns = [
     # 教师端的跳转页面
     path('teacher_course/', views.teacher_course),
     path('teacher_edit_score/', views.teacher_edit_score),
-    path('submit_score/', views.teacher_submit_score),
+    path('teacher_mod_score/', views.teacher_mod_score),
     # 管理员端的跳转页面
     path('admin_edit_user/', views.admin_edit_user),
-    path('admin_submit_user/', views.admin_submit_user),
+    path('admin_mod_user/', views.admin_mod_user),
     path('admin_edit_course/', views.admin_edit_course),
-    path('admin_submit_course/', views.admin_submit_course),
+    path('admin_mod_course/', views.admin_mod_course),
 ]
 
-handler404 = views.page_not_found
+# handler404 = views.page_not_found
