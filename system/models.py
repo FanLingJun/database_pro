@@ -1,14 +1,10 @@
 from django.db import models
 
-# 创建模型，对应数据库的表
-class user(models.Model):   #
-    number = models.CharField(primary_key=True, max_length=8)
-    name = models.CharField(max_length=8)
-    department = models.CharField(max_length=10)
-    usertype = models.CharField(max_length=10)
-    sex = models.CharField(max_length=2)
-    age = models.CharField(max_length=2)
-    pswd = models.CharField(max_length=8)
+class department(models.Model):
+  yxh = models.CharField(max_length=8,primary_key=True)
+  mc = models.CharField(max_length=16)
+  dz = models.CharField(max_length=25)
+  lxdh = models.CharField(max_length=19)
 
 # 学生表
 class student(models.Model):
@@ -18,7 +14,7 @@ class student(models.Model):
   csrq = models.DateField(max_length=12)
   jg = models.CharField(max_length=12)
   sjhm = models.CharField(max_length=8)
-  yxh = models.CharField(max_length=8)
+  yxh = models.ForeignKey(to = department, on_delete=models.CASCADE)
   pwd = models.CharField(max_length=6)
 
 class teacher(models.Model):
@@ -28,7 +24,7 @@ class teacher(models.Model):
   csrq = models.DateField(max_length=12)
   xl = models.CharField(max_length=12)
   jbgz = models.CharField(max_length=8)
-  yxh = models.CharField(max_length=8)
+  yxh = models.ForeignKey(to=department, on_delete=models.CASCADE)
   pwd = models.CharField(max_length=6)
 
 class admin(models.Model):
@@ -36,5 +32,28 @@ class admin(models.Model):
   xm = models.CharField(max_length=8)
   xb = models.CharField(max_length=4)
   pwd = models.CharField(max_length=6)
+
+class course(models.Model):
+  kh = models.CharField(primary_key=True, max_length=16)
+  km = models.CharField(max_length=16)
+  xf = models.IntegerField()
+  xs = models.IntegerField()
+  yxh = models.ForeignKey(to=department, on_delete=models.CASCADE)
+
+class e_table(models.Model):
+  xh = models.ForeignKey(to = student, on_delete=models.CASCADE)
+  xq = models.CharField(max_length=20)
+  kh = models.ForeignKey(to = course, on_delete=models.CASCADE)
+  gh = models.ForeignKey(to = teacher, on_delete=models.CASCADE)
+  pscj = models.CharField(max_length=10,null=True)
+  kscj = models.CharField(max_length=10,null=True)
+  zpcj = models.CharField(max_length=10,null=True)
+
+class open_course(models.Model):
+  xq = models.CharField(max_length=20)
+  kh = models.ForeignKey(to = course, on_delete=models.CASCADE)
+  gh = models.ForeignKey(to = teacher, on_delete=models.CASCADE)
+  sksj = models.CharField(max_length=20)
+
 
 
