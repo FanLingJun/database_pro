@@ -5,6 +5,15 @@
     <title>Title</title>
 </head>
 <body>
-
+{% for item in all_scores %}
+<tr>
+  <td>{{ xm }}</td>
+  <td>{{ xh }}</td>
+  <td>{{item.xq}}</td>
+  <td>{{item.kh}}</td>
+  <td>{{item.zpcj}}</td>
+  <br/>
+</tr>
+{% endfor %}
 </body>
 </html>

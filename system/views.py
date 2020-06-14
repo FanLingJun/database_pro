@@ -64,24 +64,35 @@ def admin_index(request):
 def check_my_score(request):
   number = request.session.get('number')
   student = models.student.objects.filter(xh=number)
-  elect_course_data = models.e_table.objects.filter(xh=number)
+  all_scores = models.e_table.objects.filter(xh=number)
+  num_list = []
+  for every in all_scores:
+    num = getattr(every, 'kh')
+    num = getattr(num, 'kh')
+    num_list.append(num)
+  print(num_list)
+  all_course = models.course.objects.filter(kh__in=num_list)
+  # all = chain(all_scores,all_course)
+  # print(all)
   return render(request, 'check_my_score.html', context={'xm': student[0].xm, 'xh': number,
-                                                           'xq': elect_course_data[0].xq,
-                                                         'kh':elect_course_data[0].kh,
-                                                         'zpcj':elect_course_data[0].zpcj
+                                                           'all_scores':all_scores
                                                          })
 def check_my_table(request):
   # 判断逻辑，根据e表，如果匹配到学号且总评成绩为null则为这个学期选的课
   number = request.session.get('number')
-  print(number,"-------------")
-  elect_course = models.e_table.objects.filter(xh=number).filter(zpcj__isnull=True)
+  print("===========",number)
+  student = models.student.objects.filter(xh=number)
+  elect_course = models.e_table.objects.all().filter(xh=number).filter(zpcj__isnull=True)
   print(elect_course)
-  all_course = []
-  for i in elect_course:
-    c = models.course.objects.filter(kh=i.kh)
-    all_course.append(c)
-  print(all_course)
-  return render(request, 'check_my_table.html', context={'elect_course': elect_course,
+  num_list = []
+  for every in elect_course:
+    num = getattr(every,'kh')
+    num = getattr(num, 'kh')
+    num_list.append(num)
+  print(num_list)
+  all_course = models.course.objects.filter(kh__in=num_list)
+  return render(request, 'check_my_table.html', context={'xm':student[0].xm,
+                                                         'all_course':all_course
                                                          })
 
 def select_course(request):

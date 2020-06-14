@@ -5,6 +5,16 @@
     <title>Title</title>
 </head>
 <body>
-{{ elect_course }}
+
+{% for item in all_course %}
+<tr>
+  <td>{{ xm }}</td>
+  <td>{{item.kh}}</td>
+  <td>{{item.km}}</td>
+  <td>{{item.xf}}</td>
+  <td>{{item.xs}}</td>
+  <br/>
+</tr>
+{% endfor %}
 </body>
 </html>
