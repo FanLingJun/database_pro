@@ -193,19 +193,19 @@ def teacher_course(request):
 def teacher_edit_score(request):
   return render(request, 'teacher_edit_score.html')
 
-def teacher_submit_score(request):
-  return render(request,'teacher_submit_score.html')
+def teacher_mod_score(request):
+  return render(request,'teacher_mod_score.html')
 
 def admin_edit_user(request):
   return render(request,'admin_edit_user.html')
 
-def admin_submit_user(request):
-  return render(request,'admin_submit_user.html')
+def admin_mod_user(request):
+  return render(request,'admin_mod_user.html')
 
 def admin_edit_course(request):
   return render(request,'admin_edit_course.html')
 
-def admin_submit_course(request):
-  return render(request,'admin_submit_course.html')
+def admin_mod_course(request):
+  return render(request,'admin_mod_course.html')
 
 

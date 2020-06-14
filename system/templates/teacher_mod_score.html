@@ -14,7 +14,7 @@
     <meta property="og:url" content="http://pratikborsadiya.in/blog/vali-admin">
     <meta property="og:image" content="http://pratikborsadiya.in/blog/vali-admin/hero-social.png">
     <meta property="og:description" content="Vali is a responsive and free admin theme built with Bootstrap 4, SASS and PUG.js. It's fully customizable and modular.">
-    <title>教务处管理员端-开课管理</title>
+    <title>教务处教师端-首页</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -26,7 +26,7 @@
   <body class="app sidebar-mini" style="background-color: #E5E5E5">
     <!-- Navbar顶部导航-->
     <header class="app-header">
-        <p class="nav-title">系统管理员端</p>
+        <p class="nav-title">系统教师端</p>
 {#        <a class="app-header__logo" href="/index_student/">SHU-student</a>#}
       <!-- Sidebar toggle button-->
 {#        <a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>#}
@@ -45,22 +45,21 @@
     <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
     <aside class="app-sidebar">
       <div class="app-sidebar__user">
-{#        <img style="height:45px;margin-right:30px;" src="{% static "images/manager.jpg" %}" alt="User Image">#}
-        <div>
-          <p class="app-sidebar__user-name">{{name}}</p>
-          <p class="app-sidebar__user-designation">{{number}}</p>
+
+{#        <img style="height:45px;margin-right:30px;" src="{% static "images/teacher.jpg" %}" alt="User Image">#}
+        <div >
+          <p class="app-sidebar__user-name">{{xm}}</p>
+            <p class="app-sidebar__user-designation">{{gh}}</p>
+
         </div>
       </div>
 <!--      跳转到不同功能页面-->
       <ul class="app-menu">
-            <li><a class="app-menu__item" href="/admin_index/"><i class="app-menu__icon fa fa-home"></i><span class="app-menu__label">管理员首页</span></a></li>
-            <li><a class="app-menu__item" href="/admin_edit_user/"><i class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">用户管理 Users Edit</span></a></li>
-            <li><a class="app-menu__item active" href="/admin_edit_course/"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">开课管理 Courses Edit</span></a></li>
-
-
-{#         待修改#}
-          <li><a class="app-menu__item" href="/admin_mod_course/"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">课程修改 </span></a></li>
-          <li><a class="app-menu__item" href="/admin_mod_user/"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">用户修改</span></a></li>
+          <li><a class="app-menu__item" href="/teacher_index/"><i class="app-menu__icon fa fa-home"></i><span class="app-menu__label">教师首页</span></a></li>
+        <li><a class="app-menu__item" href="/teacher_course/"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">我的课程 Teacher Courses</span></a></li>
+        <li><a class="app-menu__item" href="/teacher_edit_score/"><i class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">成绩录入 Score Editing</span></a></li>
+{#       待修改#}
+          <li><a class="app-menu__item  active" href="/teacher_mod_score/"><i class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">成绩提交</span></a></li>
 
       </ul>
     </aside>
@@ -77,66 +76,31 @@
 {#        </ul>#}
 {#      </div>#}
 <!--      内容显示-->
+      <div class="clearfix"></div>
 
-              <div class="row">
         <div class="col-md-12">
           <div class="tile">
-            <h3 class="tile-tile">开课管理 Opened Courses</h3>
+            <h3 class="tile-title">提交成绩 Score Submit：{{student_number}}——{{student_name}}——{{course_name}}</h3>
             <div class="tile-body">
-              <div class="table-responsive">
-                <table class="table table-hover table-bordered" id="sampleTable">
-                  <thead>
-                    <tr>
-                      <th>课程编号 Course Number</th>
-                      <th>课程学分 Course Credit</th>
-                      <th>课程名 Course Name</th>
-                      <th>教师编号 Teacher Number</th>
-                      <th>教师 Teacher Name</th>
-                      <th>操作 Edit</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {% for item in opened_course %}
-                    <tr>
-                      <td>{{item.id}}</td>
-                      <td>{{item.credit}}</td>
-                      <td>{{item.name}}</td>
-                      <td>{{item.teacher_number}}</td>
-                      <td>{{item.teacher_name}}</td>
-                      <td>
-                        <a href="/course_submit/?courseid={{item.id}}&ope=1" style="padding:7px">编辑</a>
-                        <a href="/course_submit/?courseid={{item.id}}&ope=0" style="padding:7px">删除</a>
-                      </td>
-                    </tr>
-                    {% endfor %}
-                  </tbody>
-                </table>
-              </div>
+              <form class="row" method="POST">
+                <div class="form-group col-md-3">
+                  <label class="control-label">请输入学生成绩： </label>
+                  <input class="form-control" type="text" placeholder="Enter Student Score" name="id">
+                </div>
+                <div class="form-group col-md-4 align-self-end">
+                  <button class="btn btn-primary"><i class="fa fa-fw fa-lg fa-check-circle"></i>提交 Submit</button>
+                </div>
+                {% if messages %}
+                  <script>
+                    {% for msg in messages %}
+                        alert('{{msg.message}}');
+                     {% endfor %}
+                  </script>
+                {% endif %}
+              </form>
             </div>
           </div>
         </div>
-        <div class="col-md-12">
-          <div class="tile">
-            <h3 class="tile-title">新增课程 Add Course</h3>
-            <div class="table-responsive">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <form method="POST">
-                      <input type="text" placeholder="课程编号 course number" name="id" style="margin:10px 30px 10px 15px;border-width: 3px 0px 0px 0px;width:160px"></input>
-                      <input type="text" placeholder="课程学分 course credit" name="credit" style="margin:10px 30px 10px 20px;border-width: 3px 0px 0px 0px;width:160px"></input>
-                      <input type="text" placeholder="课程名 course name" name="name" style="margin:10px 30px 10px 20px;border-width: 3px 0px 0px 0px;width:160px"></input>
-                      <input type="text" placeholder="教师编号 teacher number" name="teacher_number" style="margin:10px 30px 10px 20px;border-width: 3px 0px 0px 0px;width:160px"></input>
-                      <input type="text" placeholder="教师 teacher name" name="teacher_name" style="margin:10px 40px 10px 20px;border-width: 3px 0px 0px 0px;width:160px"></input>
-                      <button class="btn btn-primary"><i class="fa fa-fw fa-lg fa-check-circle"></i>提交 Submit</button>
-                    </form>
-                  </tr>
-                </thead>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
 
     </main>
     <!-- Essential javascripts for application to work-->
@@ -165,4 +129,4 @@
   </body>
 </html>
 
-<!--  该页面相当于系统管理员首页-->
+<!--  该页面相当于系统教师首页-->
