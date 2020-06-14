@@ -80,25 +80,27 @@
                 <table class="table table-hover table-bordered" id="sampleTable">
                   <thead>
                     <tr>
-                      <th>课程编号 Course Number</th>
-                      <th>课程学分 Course Credit</th>
-                      <th>课程名 Course Name</th>
-                      <th>教师编号 Teacher Number</th>
-                      <th>教师 Teacher Name</th>
+                      <th>课程号</th>
+                      <th>课名</th>
+                      <th>学分</th>
+                      <th>教师号</th>
+                      <th>教师名</th>
+                      <th>上课时间</th>
                       <th>操作 Edit</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {% for item in opened_course %}
+                    {% for item in open_course %}
                     <tr>
-                      <td>{{item.id}}</td>
-                      <td>{{item.credit}}</td>
-                      <td>{{item.name}}</td>
-                      <td>{{item.teacher_number}}</td>
-                      <td>{{item.teacher_name}}</td>
+                      <td>{{item.kh_id}}</td>
+                      <td>{{item.km}}</td>
+                      <td>{{item.xf}}</td>
+                      <td>{{item.gh}}</td>
+                      <td>{{item.xm}}</td>
+                      <td>{{item.sksj}}</td>
                       <td>
-                        <a href="/course_submit/?courseid={{item.id}}&ope=1" style="padding:7px">编辑</a>
-                        <a href="/course_submit/?courseid={{item.id}}&ope=0" style="padding:7px">删除</a>
+                        <a href="/admin_submit_course/?kh_id={{item.kh_id}}&ope=1" style="padding:7px">编辑</a>
+                        <a href="/admin_submit_course/?kh_id={{item.kh_id}}&ope=0" style="padding:7px">删除</a>
                       </td>
                     </tr>
                     {% endfor %}
@@ -116,11 +118,15 @@
                 <thead>
                   <tr>
                     <form method="POST">
-                      <input type="text" placeholder="课程编号 course number" name="id" style="margin:10px 30px 10px 15px;border-width: 3px 0px 0px 0px;width:160px"></input>
-                      <input type="text" placeholder="课程学分 course credit" name="credit" style="margin:10px 30px 10px 20px;border-width: 3px 0px 0px 0px;width:160px"></input>
-                      <input type="text" placeholder="课程名 course name" name="name" style="margin:10px 30px 10px 20px;border-width: 3px 0px 0px 0px;width:160px"></input>
-                      <input type="text" placeholder="教师编号 teacher number" name="teacher_number" style="margin:10px 30px 10px 20px;border-width: 3px 0px 0px 0px;width:160px"></input>
-                      <input type="text" placeholder="教师 teacher name" name="teacher_name" style="margin:10px 40px 10px 20px;border-width: 3px 0px 0px 0px;width:160px"></input>
+                      {% csrf_token %}
+                      <input type="text" placeholder="课程号" name="kh" style="margin:10px 30px 10px 15px;border-width: 3px 0px 0px 0px;width:160px"></input>
+                      <input type="text" placeholder="课名" name="km" style="margin:10px 30px 10px 20px;border-width: 3px 0px 0px 0px;width:160px"></input>
+                      <input type="text" placeholder="学分" name="xf" style="margin:10px 30px 10px 20px;border-width: 3px 0px 0px 0px;width:160px"></input>
+                      <input type="text" placeholder="教师号" name="gh" style="margin:10px 40px 10px 20px;border-width: 3px 0px 0px 0px;width:160px"></input>
+                      <input type="text" placeholder="上课时间" name="sksj" style="margin:10px 40px 10px 20px;border-width: 3px 0px 0px 0px;width:160px"></input>
+                      <input type="text" placeholder="学期" name="xq" style="margin:10px 40px 10px 20px;border-width: 3px 0px 0px 0px;width:160px"></input>
+                      <input type="text" placeholder="学时" name="xs" style="margin:10px 40px 10px 20px;border-width: 3px 0px 0px 0px;width:160px"></input>
+                      {% comment %}请在这里添加一个选择学院的checkbox{% endcomment %}
                       <button class="btn btn-primary"><i class="fa fa-fw fa-lg fa-check-circle"></i>提交 Submit</button>
                     </form>
                   </tr>

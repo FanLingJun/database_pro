@@ -6,6 +6,7 @@ from django.db import connection
 
 def page_not_found(request, **kwargs):
   return render(request,'error.html')
+
 # 在这个视图文件中，定义方法
 # 编写函数逻辑判断，应对响应
 def login(request):
@@ -188,22 +189,101 @@ def delete_course(request):
       return redirect('/delete_course.html/')
 
 def teacher_course(request):
-  return render(request, 'teacher_course.html')
+  number = request.session.get('number')
+  cursor = connection.cursor()
+  cursor.execute(
+    "select distinct kh,km,xf from system_course,system_e_table "
+    "where system_e_table.kh_id = system_course.kh"
+    " and zpcj is null")
+  all_info = cursor.fetchall()  # 读取所有
+  courses_data = []
+  for item in all_info:
+    temp = dict()  # 注意这里一定要放在循环之内！！！！！！！！！！！！
+    temp['kh'] = item[0]
+    temp['km'] = item[1]
+    temp['xf'] = item[2]
+    courses_data.append(temp)
+  return render(request, 'teacher_course.html',context={'courses_data':courses_data})
 
 def teacher_edit_score(request):
-  return render(request, 'teacher_edit_score.html')
+  number = request.session.get('number')
+  cursor = connection.cursor()
+  # 查询这个老师教的学生的成绩
+  cursor.execute(
+    "select distinct kh,km,xh,xm,pscj,kscj,zpcj from system_course,system_e_table,system_student "
+    "where system_e_table.kh_id = system_course.kh and system_student.xh = system_e_table.xh_id"
+    " and zpcj is null and system_e_table.gh_id = %s", [number])
+  all_info = cursor.fetchall()  # 读取所有
+  teacher_student_data = []
+  for item in all_info:
+    temp = dict()  # 注意这里一定要放在循环之内！！！！！！！！！！！！
+    temp['kh'] = item[0]
+    temp['km'] = item[1]
+    temp['xh'] = item[2]
+    temp['xm'] = item[3]
+    temp['pscj'] = item[4]
+    temp['kscj'] = item[5]
+    temp['zpcj'] = item[6]
+    teacher_student_data.append(temp)
+  print(teacher_student_data)
+  return render(request, 'teacher_edit_score.html',context={'student_data':teacher_student_data})
 
 def teacher_submit_score(request):
   return render(request,'teacher_submit_score.html')
 
 def admin_edit_user(request):
-  return render(request,'admin_edit_user.html')
+  all_student = models.student.objects.all()
+  if request.method == 'GET':
+    return render(request,'admin_edit_user.html',context={'all_student':all_student})
+  else:
+    xh = request.POST.get('xh')
+    xm = request.POST.get('xm')
+    jg = request.POST.get('jg')
+    sjhm = request.POST.get('sjhm')
+    # 这里还需要三个字段！
+    models.student.objects.create(xh=xh, xm=xm, jg=jg, sjhm=sjhm,pwd='student')
+    return redirect('/admin_edit_user.html/')
 
 def admin_submit_user(request):
   return render(request,'admin_submit_user.html')
 
 def admin_edit_course(request):
-  return render(request,'admin_edit_course.html')
+  cursor = connection.cursor()
+  cursor.execute("select distinct xq,km,xf,kh_id,xm,gh,sksj "
+                 "from system_open_course,system_teacher,system_course "
+                 "where system_open_course.gh_id = system_teacher.gh "
+                 "and system_open_course.kh_id = system_course.kh")
+  open_course = cursor.fetchall()
+  print(open_course)
+  all = []
+  for item in open_course:
+    course = dict()  # 注意这里一定要放在循环之内！！！！！！！！！！！！
+    course['xq'] = item[0]
+    course['km'] = item[1]
+    course['xf'] = item[2]
+    course['kh_id'] = item[3]
+    course['xm'] = item[4]
+    course['gh'] = item[5]
+    course['sksj'] = item[6]
+    all.append(course)
+  if request.method == 'GET':
+    return render(request,'admin_edit_course.html',context={'open_course': all})
+  else:
+    kh = request.POST.get('kh')
+    km = request.POST.get('km')
+    xf = request.POST.get('xf')
+    gh = request.POST.get('gh')
+    sksj = request.POST.get('sksj')
+    xq = request.POST.get('xq')
+    xs = request.POST.get('xs')
+    models.open_course.objects.create(xq=xq, kh_id=kh, gh_id=gh, sksj=sksj)
+    if (models.course.objects.filter(kh=kh)):
+      # 有这门课了
+      return redirect('/admin_edit_course.html/')
+    else:
+      models.course.objects.create(kh=kh, km=km, xf=xf, xs=xs, yxh_id='01')
+      return redirect('/admin_edit_course.html/')
+
 
 def admin_submit_course(request):
   return render(request,'admin_submit_course.html')

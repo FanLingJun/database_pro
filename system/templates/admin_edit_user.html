@@ -103,33 +103,32 @@
                 <table class="table table-hover table-bordered" id="sampleTable">
                   <thead>
                     <tr>
-                      <th>编号 Number</th>
+                      <th>学号 Number</th>
                       <th>姓名 Name</th>
-                      <th>学院 Department</th>
-                      <th>类型 UserType</th>
                       <th>性别 Sex</th>
-                      <th>年龄 Age</th>
-                      <th>密码 Password</th>
-                      <th>操作 Edit</th>
+                      <th>出生日期 Age</th>
+                      <th>籍贯 Password</th>
+                      <th>手机号 Edit</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {% for item in user_data %}
+                    {% for item in all_student %}
                     <tr>
-                      <td>{{item.number}}</td>
-                      <td>{{item.name}}</td>
-                      <td>{{item.department}}</td>
-                      <td>{{item.usertype}}</td>
-                      <td>{{item.sex}}</td>
-                      <td>{{item.age}}</td>
-                      <td>{{item.pswd}}</td>
+                      <td>{{item.xh}}</td>
+                      <td>{{item.xm}}</td>
+                      <td>{{item.xb}}</td>
+                      <td>{{item.csrq}}</td>
+                      <td>{{item.jg}}</td>
+                      <td>{{item.sjhm}}</td>
+
                       <td>
-                        <a href="/admin_user_submit/?userid={{item.number}}&ope=1" style="padding:7px">编辑</a>
-                        <a href="/admin_user_submit/?userid={{item.number}}&ope=0" style="padding:7px">删除</a>
+                        <a href="/admin_user_submit/?xh={{item.xh}}&ope=1" style="padding:7px">编辑</a>
+                        <a href="/admin_user_submit/?xh={{item.xh}}&ope=0" style="padding:7px">删除</a>
                       </td>
                     </tr>
                     {% endfor %}
                   </tbody>
+
                 </table>
               </div>
             </div>
@@ -144,13 +143,15 @@
                 <thead>
                   <tr>
                     <form method="POST">
-                      <input type="text" placeholder="编号 number" name="number" style="margin:10px 20px 10px 15px;border-width: 3px 0px 0px 0px;width:110px"></input>
-                      <input type="text" placeholder="姓名 name" name="name" style="margin:10px 20px 10px 20px;border-width: 3px 0px 0px 0px;width:110px"></input>
-                      <input type="text" placeholder="学院 department" name="department" style="margin:10px 20px 10px 20px;border-width: 3px 0px 0px 0px;width:110px"></input>
-                      <input type="text" placeholder="类型 user type" name="usertype" style="margin:10px 20px 10px 20px;border-width: 3px 0px 0px 0px;width:110px"></input>
-                      <input type="text" placeholder="性别 sex" name="sex" style="margin:10px 20px 10px 20px;border-width: 3px 0px 0px 0px;width:110px"></input>
-                      <input type="text" placeholder="年龄 age" name="age" style="margin:10px 20px 10px 20px;border-width: 3px 0px 0px 0px;width:110px"></input>
-                      <input type="text" placeholder="密码 password" name="pswd" style="margin:10px 40px 10px 20px;border-width: 3px 0px 0px 0px;width:110px"></input>
+                      {% csrf_token %}
+                      <input type="text" placeholder="学号 number" name="xh" style="margin:10px 20px 10px 15px;border-width: 3px 0px 0px 0px;width:110px"></input>
+                      <input type="text" placeholder="姓名 name" name="xm" style="margin:10px 20px 10px 20px;border-width: 3px 0px 0px 0px;width:110px"></input>
+                      {% comment %}学院请做成checkbox{% endcomment %}
+                      {% comment %}出生日期请做成日历模式
+                      性别请做成选择模式{% endcomment %}
+
+                      <input type="text" placeholder="籍贯 age" name="jg" style="margin:10px 20px 10px 20px;border-width: 3px 0px 0px 0px;width:110px"></input>
+                      <input type="text" placeholder="手机号 password" name="sjhm" style="margin:10px 40px 10px 20px;border-width: 3px 0px 0px 0px;width:110px"></input>
                       <button class="btn btn-primary"><i class="fa fa-fw fa-lg fa-check-circle"></i>提交 Submit</button>
                     </form>
                   </tr>
