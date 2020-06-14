@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from system import models # 引入对象模型
+from django.db import connection
 
 # 在这个视图文件中，定义方法
 # 编写函数逻辑判断，应对响应
@@ -40,20 +41,36 @@ def login(request):
 
 def student_index(request):
     number = request.session.get('number')
-    student = models.student.objects.filter(xh=number)
-    return render(request, 'student_index.html', context={'xh': number, 'xm': student[0].xm,
-                                                          'xb': student[0].xb, 'csrq': student[0].csrq,
-                                                          'jg': student[0].jg,'sjhm' : student[0].sjhm
-                                                          })
+    print(number,type(number))
+    cursor = connection.cursor()
+    # 查询操作
+    cursor.execute("select xh,xm,xb,jg,sjhm,mc from system_student,system_department "
+                   "where system_student.yxh_id = system_department.yxh and system_student.xh = %s",[number])
+    student_info = cursor.fetchall()  # 读取所有
+    print(student_info,type(student_info))
+    # student_info = [('0101', '陈迪茂', '男', '副教授', '计算机学院')]
+    student_info = student_info[0]
+    print(student_info)
+    return render(request, 'student_index.html', context={'xh': student_info[0],'xm':student_info[1],
+                                                          'xb':student_info[2],'jg':student_info[3],
+                                                          'sjhm':student_info[4],'mc':student_info[5]})
 
 
 def teacher_index(request):
-  number = request.session.get('number')
-  teacher = models.teacher.objects.filter(gh=number)
-  return render(request, 'teacher_index.html', context={'gh': number, 'xm': teacher[0].xm,
-                                                        'xb': teacher[0].xb, 'csrq': teacher[0].csrq,
-                                                        'xl': teacher[0].xl, 'jbgz': teacher[0].jbgz
-                                                        })
+    number = request.session.get('number')
+    print(number,type(number))
+    cursor = connection.cursor()
+    # 查询操作
+    cursor.execute("select gh,xm,xb,xl,mc from system_teacher,system_department "
+                   "where system_teacher.yxh_id = system_department.yxh and system_teacher.gh = %s",[number])
+    teacher_info = cursor.fetchall()  # 读取所有
+    print(teacher_info,type(teacher_info))
+    # teacher_info = [('0101', '陈迪茂', '男', '副教授', '计算机学院')]
+    teacher_info = teacher_info[0]
+    print(teacher_info)
+    return render(request, 'teacher_index.html', context={'gh': teacher_info[0],'xm':teacher_info[1],
+                                                          'xb':teacher_info[2],'xl':teacher_info[3],
+                                                          'mc':teacher_info[4]})
 
 def admin_index(request):
   number = request.session.get('number')
