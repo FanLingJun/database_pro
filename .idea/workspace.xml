@@ -2,21 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="35853b46-5a59-4cd5-9384-07650ca5ee44" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/a4d25105-f50f-4109-9fe4-c42cd75afbc1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/a4d25105-f50f-4109-9fe4-c42cd75afbc1.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/system/templates/admin_index.html" beforeDir="false" afterPath="$PROJECT_DIR$/system/templates/admin_index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/system/templates/check_my_score.html" beforeDir="false" afterPath="$PROJECT_DIR$/system/templates/check_my_score.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/system/templates/check_my_table.html" beforeDir="false" afterPath="$PROJECT_DIR$/system/templates/check_my_table.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/templates/delete_course.html" beforeDir="false" afterPath="$PROJECT_DIR$/system/templates/delete_course.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/templates/select_course.html" beforeDir="false" afterPath="$PROJECT_DIR$/system/templates/select_course.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/templates/static/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/system/templates/static/css/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/templates/static/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/system/templates/static/js/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/templates/student_choose.html" beforeDir="false" afterPath="$PROJECT_DIR$/system/templates/student_choose.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/system/templates/student_choose.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/system/templates/student_coursetable.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/system/templates/student_drop.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/system/templates/student_index.html" beforeDir="false" afterPath="$PROJECT_DIR$/system/templates/student_index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/system/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/system/templates/teacher_index.html" beforeDir="false" afterPath="$PROJECT_DIR$/system/templates/teacher_index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/system/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/system/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -132,7 +126,7 @@
       <workItem from="1592061143181" duration="126000" />
       <workItem from="1592099701642" duration="92000" />
       <workItem from="1592099926672" duration="6404000" />
-      <workItem from="1592115545249" duration="1630000" />
+      <workItem from="1592115545249" duration="1984000" />
     </task>
     <servers />
   </component>
