@@ -2,11 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="35853b46-5a59-4cd5-9384-07650ca5ee44" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/system/templates/student_choose.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/system/templates/student_coursetable.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/system/templates/student_drop.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/a4d25105-f50f-4109-9fe4-c42cd75afbc1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/a4d25105-f50f-4109-9fe4-c42cd75afbc1.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/system/templates/check_my_score.html" beforeDir="false" afterPath="$PROJECT_DIR$/system/templates/check_my_score.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/system/templates/check_my_table.html" beforeDir="false" afterPath="$PROJECT_DIR$/system/templates/check_my_table.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/system/templates/delete_course.html" beforeDir="false" afterPath="$PROJECT_DIR$/system/templates/delete_course.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/system/templates/select_course.html" beforeDir="false" afterPath="$PROJECT_DIR$/system/templates/select_course.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/system/templates/static/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/system/templates/static/css/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/system/templates/static/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/system/templates/static/js/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/system/templates/student_choose.html" beforeDir="false" afterPath="$PROJECT_DIR$/system/templates/student_choose.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/system/templates/student_index.html" beforeDir="false" afterPath="$PROJECT_DIR$/system/templates/student_index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/system/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/system/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/system/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/system/views.py" afterDir="false" />
@@ -32,29 +40,6 @@
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
         <item name="db.sqlite3" type="feb32156:DbDataSourceImpl" />
       </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="db.sqlite3" type="feb32156:DbDataSourceImpl" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="db.sqlite3" type="feb32156:DbDataSourceImpl" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="main: schema" type="981a47c2:SqliteImplModel$Schema" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="db.sqlite3" type="feb32156:DbDataSourceImpl" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="main: schema" type="981a47c2:SqliteImplModel$Schema" />
-        <item name="system_student: table" type="3d80ac25:SqliteImplModel$Table" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="db.sqlite3" type="feb32156:DbDataSourceImpl" />
-        <item name="collations" type="d4e8921:DatabaseStructure$FamilyGroup" />
-      </path>
     </expand>
     <select />
   </component>
@@ -72,6 +57,13 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="IgnoredFileRootStore">
+    <option name="generatedRoots">
+      <set>
+        <option value="D:\py code\db_project_final\.idea" />
+      </set>
+    </option>
+  </component>
   <component name="ProjectId" id="1dFo5izoQnTsA7FA5UYoz1l9A1h" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -82,9 +74,10 @@
   <component name="PropertiesComponent">
     <property name="DatabaseDriversLRU" value="sqlite" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="database.console.LAST_STATE" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../gentelella-master" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
@@ -137,6 +130,9 @@
       <workItem from="1592043449195" duration="11892000" />
       <workItem from="1592061082836" duration="49000" />
       <workItem from="1592061143181" duration="126000" />
+      <workItem from="1592099701642" duration="92000" />
+      <workItem from="1592099926672" duration="6404000" />
+      <workItem from="1592115545249" duration="1630000" />
     </task>
     <servers />
   </component>
@@ -148,13 +144,17 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="350" y="0" width="594" height="680" key="#db_web/0.0.1280.680@0.0.1280.680" timestamp="1592030148080" />
-    <state x="421" y="96" key="FileChooserDialogImpl" timestamp="1592052224431">
+    <state x="421" y="96" key="FileChooserDialogImpl" timestamp="1592102108477">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="421" y="96" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1592052224431" />
+    <state x="421" y="96" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1592102108477" />
     <state x="142" y="0" key="SettingsEditor" timestamp="1592035315468">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="142" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1592035315468" />
+    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup" timestamp="1592106262948">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup/0.0.1280.680@0.0.1280.680" timestamp="1592106262948" />
   </component>
 </project>
