@@ -3,6 +3,9 @@ from django.contrib import messages
 from system import models # 引入对象模型
 from django.db import connection
 
+
+def page_not_found(request, **kwargs):
+  return render(request,'error.html')
 # 在这个视图文件中，定义方法
 # 编写函数逻辑判断，应对响应
 def login(request):
@@ -124,33 +127,65 @@ def check_my_table(request):
 
 
 def select_course(request):
-  cursor = connection.cursor()
-  cursor.execute("select distinct xq,km,xf,kh_id,xm,gh,sksj "
-                  "from system_open_course,system_teacher,system_course "
-                  "where system_open_course.gh_id = system_teacher.gh "
-                  "and system_open_course.kh_id = system_course.kh")
-  open_course = cursor.fetchall()
-  print(open_course)
-  all = []
-  for item in open_course:
-    course = dict()  # 注意这里一定要放在循环之内！！！！！！！！！！！！
-    course['xq'] = item[0]
-    course['km'] = item[1]
-    course['xf'] = item[2]
-    course['kh_id'] = item[3]
-    course['xm'] = item[4]
-    course['gh'] = item[5]
-    course['sksj'] = item[6]
-    all.append(course)
-  course_id = request.POST.get('course_id')
-  print(course_id)
-  teacher_id = request.POST.get('teacher_id')
-  print(teacher_id)
-  return render(request, 'select_course.html', context={'open_course': all})
-
+    number = request.session.get('number')
+    cursor = connection.cursor()
+    cursor.execute("select distinct xq,km,xf,kh_id,xm,gh,sksj "
+                    "from system_open_course,system_teacher,system_course "
+                    "where system_open_course.gh_id = system_teacher.gh "
+                    "and system_open_course.kh_id = system_course.kh")
+    open_course = cursor.fetchall()
+    print(open_course)
+    all = []
+    for item in open_course:
+      course = dict()  # 注意这里一定要放在循环之内！！！！！！！！！！！！
+      course['xq'] = item[0]
+      course['km'] = item[1]
+      course['xf'] = item[2]
+      course['kh_id'] = item[3]
+      course['xm'] = item[4]
+      course['gh'] = item[5]
+      course['sksj'] = item[6]
+      all.append(course)
+    if request.method == 'GET':
+      return render(request, 'select_course.html', context={'open_course': all})
+    else:
+      course_id = request.POST.get('course_id')
+      print(course_id)
+      teacher_id = request.POST.get('teacher_id')
+      print(teacher_id)
+      models.e_table.objects.create(xq='2019-2020春季', xh_id=number, kh_id=course_id, gh_id=teacher_id)
+      # messages.success(request, '选课成功啦~~~~~~')
+      return redirect('/select_course.html/')
 
 def delete_course(request):
-  return render(request, 'delete_course.html')
+    number = request.session.get('number')
+    cursor = connection.cursor()
+    cursor.execute(
+      "select kh,km,gh,xm,xf "
+      "from system_course,system_e_table,system_teacher "
+      "where system_e_table.kh_id = system_course.kh "
+      "and system_e_table.gh_id = system_teacher.gh "
+      "and xh_id = %s and zpcj is not null",
+      [number])
+    all_course = cursor.fetchall()  # 读取所有
+    # print(all_scores, type(all_scores))
+    selected_c = []
+    for item in all_course:
+      s_c = dict()  # 注意这里一定要放在循环之内！！！！！！！！！！！！
+      s_c['kh'] = item[0]
+      s_c['km'] = item[1]
+      s_c['gh'] = item[2]
+      s_c['xm'] = item[3]
+      s_c['xf'] = item[4]
+      selected_c.append(s_c)
+    if request.method == 'GET':
+      return render(request, 'delete_course.html', context={'selected_course': selected_c})
+    else:
+      course_id = request.POST.get('course_id')
+      # 先选中，再删除
+      models.e_table.objects.filter(xh_id=number, kh_id=course_id).delete()
+      # messages.success(request, '退课成功啦~~~~~~')
+      return redirect('/delete_course.html/')
 
 def teacher_course(request):
   return render(request, 'teacher_course.html')

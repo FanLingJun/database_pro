@@ -23,3 +23,5 @@ urlpatterns = [
     path('admin_edit_course/', views.admin_edit_course),
     path('admin_submit_course/', views.admin_submit_course),
 ]
+
+handler404 = views.page_not_found
