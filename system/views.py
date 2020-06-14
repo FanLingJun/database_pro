@@ -78,23 +78,33 @@ def admin_index(request):
   return render(request, 'admin_index.html', context={'gh': number, 'xm': admin[0].xm, 'xb': admin[0].xb
                                                         })
 
-
 def check_my_score(request):
   number = request.session.get('number')
-  student = models.student.objects.filter(xh=number)
-  all_scores = models.e_table.objects.filter(xh=number)
-  num_list = []
-  for every in all_scores:
-    num = getattr(every, 'kh')
-    num = getattr(num, 'kh')
-    num_list.append(num)
-  print(num_list)
-  all_course = models.course.objects.filter(kh__in=num_list)
-  # all = chain(all_scores,all_course)
-  # print(all)
-  return render(request, 'check_my_score.html', context={'xm': student[0].xm, 'xh': number,
-                                                           'all_scores':all_scores
-                                                         })
+  cursor = connection.cursor()
+  cursor.execute("select kh,km,xf,zpcj from system_course,system_e_table where system_e_table.kh_id = system_course.kh and xh_id = %s and zpcj is not null", [number])
+  all_scores = cursor.fetchall()  # 读取所有
+  # print(all_scores, type(all_scores))
+  all_s = []
+  for item in all_scores:
+    scores = dict() # 注意这里一定要放在循环之内！！！！！！！！！！！！
+    scores['kh'] = item[0]
+    scores['km'] = item[1]
+    scores['xf'] = item[2]
+    scores['zpcj'] = item[3]
+    if int(item[3]) > 89:
+      scores['gpa'] = 4.0
+    elif int(item[3]) > 84:
+      scores['gpa'] = 3.7
+    elif int(item[3]) > 79:
+      scores['gpa'] = 3.0
+    elif int(item[3]) > 69:
+      scores['gpa'] = 2.0
+    elif int(item[3]) > 59:
+      scores['gpa'] = 1.0
+    else: scores['gpa'] = 0.0
+    all_s.append(scores)
+  return render(request, 'check_my_score.html', context={'xh': number,'scores':all_s})
+
 def check_my_table(request):
   # 判断逻辑，根据e表，如果匹配到学号且总评成绩为null则为这个学期选的课
   number = request.session.get('number')
@@ -109,12 +119,37 @@ def check_my_table(request):
     num_list.append(num)
   print(num_list)
   all_course = models.course.objects.filter(kh__in=num_list)
-  return render(request, 'check_my_table.html', context={'xm':student[0].xm,
-                                                         'all_course':all_course
-                                                         })
+  print(all_course)
+  return render(request, 'check_my_table.html', context={'xm':student[0].xm,'all_course':all_course})
+
 
 def select_course(request):
-  return render(request, 'select_course.html')
+  cursor = connection.cursor()
+  cursor.execute("select distinct xq,km,xf,kh_id,xm,gh,sksj "
+                  "from system_open_course,system_teacher,system_course "
+                  "where system_open_course.gh_id = system_teacher.gh "
+                  "and system_open_course.kh_id = system_course.kh")
+  open_course = cursor.fetchall()
+  print(open_course)
+  all = []
+  for item in open_course:
+    course = dict()  # 注意这里一定要放在循环之内！！！！！！！！！！！！
+    course['xq'] = item[0]
+    course['km'] = item[1]
+    course['xf'] = item[2]
+    course['kh_id'] = item[3]
+    course['xm'] = item[4]
+    course['gh'] = item[5]
+    course['sksj'] = item[6]
+    all.append(course)
+  course_id = request.POST.get('course_id')
+  print(course_id)
+  teacher_id = request.POST.get('teacher_id')
+  print(teacher_id)
+
+
+  return render(request, 'select_course.html', context={'open_course': all})
+
 
 def delete_course(request):
   return render(request, 'delete_course.html')

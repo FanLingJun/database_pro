@@ -74,23 +74,21 @@
                           <tr>
                             <th>课号</th>
                             <th>课名</th>
-                            <th>工号</th>
-                            <th>教师名</th>
-                            <th>成绩</th>
+                            <th>学分</th>
+                            <th>总评成绩</th>
                             <th>绩点</th>
                           </tr>
                         </thead>
                         <tbody>
-{#                         {% for item in xxxxxx %}#}
+                         {% for item in scores %}
                           <tr>
-                            <td>0830</td>
-                            <td>数据库</td>
-                            <td>1000</td>
-                            <td>王小明</td>
-                            <td>88</td>
-                            <td>3.7</td>
+                            <td>{{ item.kh }}</td>
+                            <td>{{ item.km }}</td>
+                            <td>{{ item.xf }}</td>
+                            <td>{{ item.zpcj }}</td>
+                            <td>{{ item.gpa }}</td>
                           </tr>
-{#                        {% endfor %}#}
+                        {% endfor %}
                         </tbody>
                       </table>
                     </div>
