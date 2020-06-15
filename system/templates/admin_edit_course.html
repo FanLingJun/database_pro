@@ -47,8 +47,8 @@
       <div class="app-sidebar__user">
 {#        <img style="height:45px;margin-right:30px;" src="{% static "images/manager.jpg" %}" alt="User Image">#}
         <div>
-          <p class="app-sidebar__user-name">{{name}}</p>
-          <p class="app-sidebar__user-designation">{{number}}</p>
+          <p class="app-sidebar__user-name">{{xm}}</p>
+          <p class="app-sidebar__user-designation">{{gh}}</p>
         </div>
       </div>
 <!--      跳转到不同功能页面-->
@@ -106,8 +106,8 @@
                       <td>{{item.xm}}</td>
                       <td>{{item.sksj}}</td>
                       <td>
-                        <a href="/admin_submit_course/?kh_id={{item.kh_id}}&ope=1" style="padding:7px">编辑</a>
-                        <a href="/admin_submit_course/?kh_id={{item.kh_id}}&ope=0" style="padding:7px">删除</a>
+                        <a href="/admin_mod_course/?kh_id={{item.kh_id}}isdel=0" style="padding:7px">编辑</a>
+                        <a href="/admin_mod_course/?kh_id={{item.kh_id}}isdel=1" style="padding:7px">删除</a>
                       </td>
                     </tr>
                     {% endfor %}

@@ -54,11 +54,9 @@
       </div>
 <!--      跳转到不同功能页面-->
       <ul class="app-menu">
+           <li><a class="app-menu__item" href="/teacher_index/"><i class="app-menu__icon fa fa-home"></i><span class="app-menu__label">教师首页</span></a></li>
         <li><a class="app-menu__item" href="/teacher_course/"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">我的课程 Teacher Courses</span></a></li>
-        <li><a class="app-menu__item  active" href="/teacher_eidt_score/"><i class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">成绩录入 Score Editing</span></a></li>
-
-      {#       待修改#}
-          <li><a class="app-menu__item" href="/teacher_mod_score/"><i class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">成绩提交</span></a></li>
+        <li><a class="app-menu__item  active" href="/teacher_edit_score/"><i class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">成绩录入 Score Editing</span></a></li>
 
       </ul>
     </aside>
@@ -123,7 +121,7 @@
                       <td>{{item.kscj}}</td>
                       <td>{{item.zpcj}}</td>
                       <td>
-        <a href="/teacher_submit_score/?kh={{item.kh}}&xh={{item.xh}}">录入</a>
+        <a href="/teacher_mod_score/?kh={{item.kh}}&xh={{item.xh}}">录入</a>
                       </td>
                     </tr>
                     {% endfor %}
