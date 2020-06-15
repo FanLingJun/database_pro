@@ -191,7 +191,6 @@ def delete_course(request):
       return redirect('/delete_course.html/')
 
 def teacher_course(request):
-  number = request.session.get('number')
   cursor = connection.cursor()
   cursor.execute(
     "select distinct kh,km,xf from system_course,system_e_table "
@@ -231,23 +230,62 @@ def teacher_edit_score(request):
   return render(request, 'teacher_edit_score.html',context={'student_data':teacher_student_data})
 
 def teacher_mod_score(request):
-  return render(request,'teacher_mod_score.html')
+  # 教师提交学生成绩
+  number = request.session.get('number')
+  kh = request.GET.get('kh')
+  xh = request.GET.get('xh')
+  print("course id and student id",kh,xh)
+  km = models.course.objects.filter(kh=kh)
+  km = km[0].km
+  xm = models.student.objects.filter(xh=xh)
+  xm = xm[0].xm
+  print(km,xm)
+  pscj = request.POST.get('pscj')
+  kscj = request.POST.get('kscj')
+  zpcj = request.POST.get('zpcj')
+  print("the input is:",pscj,kscj,zpcj)
+  if request.method == 'GET':
+    return render(request, 'teacher_mod_score.html',context={'xh':xh,'xm':xm,'km':km})
+  else:
+    # 先找到对应数据，再update
+    models.e_table.objects.filter(gh_id=number, kh_id=kh, xh_id=xh).update(pscj=pscj, kscj=kscj, zpcj=zpcj)
+    return render(request, 'teacher_mod_score.html', context={'xh': xh, 'xm': xm, 'km': km})
 
 def admin_edit_user(request):
   all_student = models.student.objects.all()
+  all_teacher = models.student.objects.all()
   if request.method == 'GET':
-    return render(request,'admin_edit_user.html',context={'all_student':all_student})
+    return render(request,'admin_edit_user.html',context={'all_student':all_student,'all_teacher':all_teacher})
   else:
     xh = request.POST.get('xh')
     xm = request.POST.get('xm')
     jg = request.POST.get('jg')
     sjhm = request.POST.get('sjhm')
     # 这里还需要三个字段！
-    models.student.objects.create(xh=xh, xm=xm, jg=jg, sjhm=sjhm,pwd='student')
-    return redirect('/admin_edit_user.html/')
+    models.student.objects.create(xh=xh, xm=xm, jg=jg,csrq='1999-2-28',xb='女', sjhm=sjhm,pwd='student',yxh_id='01')
+    return render(request, 'admin_edit_user.html', context={'all_student': all_student, 'all_teacher': all_teacher})
 
 def admin_mod_user(request):
-  return render(request,'admin_mod_user.html')
+  xh = request.GET.get('xh')
+  isdel = request.GET.get('isdel')
+  if (isdel == 1):
+    models.student.objects.filter(xh=xh).delete()
+    return redirect('/admin_mod_user.html/')
+  else:
+    student_info = models.student.objects.filter(xh=xh)
+    department = models.department.objects.filter(yxh = student_info.yxh)
+    department = department.mc
+    xm = request.POST.get('xm')
+    xb = request.POST.get('xb')
+    sjhm = request.POST.get('sjhm')
+    jg = request.POST.get('jg')
+    yxh = request.POST.get('yxh')
+    models.student.objects.filter(xh=xh).update(xm=xm,xb=xb,sjhm=sjhm,jg=jg,yxh=yxh)
+
+  return render(request,'admin_mod_user.html',context={'xh':student_info[0].xh,'xm':student_info[0].xm,
+                                                       'sjhm':student_info[0].sjhm,'department':department,
+                                                       'jg':student_info[0].jg,'xb':student_info[0].xb,
+                                                       'yxh':student_info[0].yxh})
 
 def admin_mod_teacher(request):
   return render(request,'admin_mod_teacher.html')
@@ -281,16 +319,33 @@ def admin_edit_course(request):
     sksj = request.POST.get('sksj')
     xq = request.POST.get('xq')
     xs = request.POST.get('xs')
-    models.open_course.objects.create(xq=xq, kh_id=kh, gh_id=gh, sksj=sksj)
     if (models.course.objects.filter(kh=kh)):
       # 有这门课了
+      models.open_course.objects.create(xq=xq, kh_id=kh, gh_id=gh, sksj=sksj)
       return redirect('/admin_edit_course.html/')
     else:
       models.course.objects.create(kh=kh, km=km, xf=xf, xs=xs, yxh_id='01')
-      return redirect('/admin_edit_course.html/')
-
+      models.open_course.objects.create(xq=xq, kh_id=kh, gh_id=gh, sksj=sksj)
+    return render(request, 'admin_edit_course.html', context={'open_course': all})
 
 def admin_mod_course(request):
-  return render(request,'admin_mod_course.html')
+  kh = request.GET.get('kh_id')
+  isdel = request.GET.get('isdel')
+  if (isdel == 1):
+    models.course.objects.filter(kh=kh).delete()
+    return redirect('/admin_mod_course.html/')
+  else:
+    course_info = models.student.objects.filter(kh=kh)
+    department = models.department.objects.filter(yxh=course_info.yxh)
+    department = department.mc
+    km = request.POST.get('km')
+    xf = request.POST.get('xf')
+    xs = request.POST.get('xs')
+    yxh = request.POST.get('yxh')
+    models.student.objects.filter(kh=kh).update(km=km,xf=xf,xs=xs,yxh=yxh)
+
+  return render(request, 'admin_mod_course.html', context={'kh': course_info[0].kh, 'km': course_info[0].km,
+                                                         'xf': course_info[0].xf, 'department': department,
+                                                         'xs': course_info[0].xs, 'yxh': course_info[0].yxh})
 
 
