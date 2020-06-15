@@ -54,19 +54,7 @@
 
         <div class="col-md-12">
           <div class="tile">
-              <div class="bs-component">
-              <ul class="nav nav-pills">
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">请选择要查询成绩的学期</a>
-                  <div class="dropdown-menu">
-                    {% for item in courses_data %}
-                    <a class="dropdown-item" href="/scores_edit/?course_name={{item.course_name}}">{{ item.course_name }}</a>
-                    {% endfor %}
-                  </div>
-                </li>
-              </ul>
-            </div>
-              <div style="padding-top: 10px;"></div>
+          <h3 class="tile-tile">成绩信息</h3>
             <div class="tile-body">
               <div class="table-responsive">
                       <table class="table table-hover table-bordered">
