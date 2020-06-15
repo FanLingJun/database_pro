@@ -55,9 +55,9 @@
 <!--      跳转到不同功能页面-->
            <ul class="app-menu">
                <li><a class="app-menu__item" href="/admin_index/"><i class="app-menu__icon fa fa-home"></i><span class="app-menu__label">管理员首页</span></a></li>
-               <li><a class="app-menu__item" href="/admin_edit_student/"><i class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">学生管理 Users Edit</span></a></li>
+               <li><a class="app-menu__item  active" href="/admin_edit_student/"><i class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">学生管理 Users Edit</span></a></li>
                <li><a class="app-menu__item " href="/admin_edit_teacher/"><i class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">教师管理 Users Edit</span></a></li>
-               <li><a class="app-menu__item  active" href="/admin_edit_course/"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">开课管理 Courses Edit</span></a></li>
+               <li><a class="app-menu__item" href="/admin_edit_course/"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">开课管理 Courses Edit</span></a></li>
            </ul>
     </aside>
 <!--    主要内容部分-->
@@ -76,57 +76,97 @@
       <div class="clearfix"></div>
       <div class="col-md-12">
           <div class="tile">
-            <h3 class="tile-title">修改课程信息</h3>
+            <h3 class="tile-title">修改学生信息 Modify Student Info</h3>
 
-               <div class="table-responsive">
+              <div class="table-responsive">
               <table class="table">
                 <tbody>
 
                   <tr>
 {#                    <form method="POST">#}
 {#                        {% csrf_token %}#}
-{#                      <a>课号：</a>#}
-{#                      <input type="text" value="{{kh}}" name="kh" style="margin:10px 33px 10px 0px;border-width: 3px 0px 0px 0px;width:120px"></input>#}
-{#                      <a>课分：</a>#}
-{#                      <input type="text" value="{{km}}" name="km" style="margin:10px 33px 10px 0px;border-width: 3px 0px 0px 0px;width:120px"></input>#}
-{#                      <a>学分：</a>#}
-{#                      <input type="text" value="{{xf}}" name="xf" style="margin:10px 33px 10px 0px;border-width: 3px 0px 0px 0px;width:120px"></input>#}
-{#                      <a>学时：</a>#}
-{#                      <input type="text" value="{{xs}}" name="xs" style="margin:10px 33px 10px 0px;border-width: 3px 0px 0px 0px;width:120px"></input>#}
-{#                      <a>院系号：01代表计算机/02代表通信</a>#}
-{#                      <input type="text" value="{{yxh}}" name="yxh" style="margin:10px 43px 10px 0px;border-width: 3px 0px 0px 0px;width:120px"></input>#}
+{#                      <a>编号：</a>#}
+{#                      <input type="text" value="{{xh}}" name="xh" style="margin:10px 23px 10px 0px;border-width: 3px 0px 0px 0px;width:90px"></input>#}
+{#                      <a>姓名：</a>#}
+{#                      <input type="text" value="{{xm}}" name="xm" style="margin:10px 23px 10px 0px;border-width: 3px 0px 0px 0px;width:90px"></input>#}
+{#                      <a>籍贯：</a>#}
+{#                      <input type="text" value="{{jg}}" name="jg" style="margin:10px 23px 10px 0px;border-width: 3px 0px 0px 0px;width:90px"></input>#}
+{#                      <a>手机号：</a>#}
+{#                      <input type="text" value="{{sjhm}}" name="sjhm" style="margin:10px 20px 13px 0px;border-width: 3px 0px 0px 0px;width:90px"></input>#}
+{#                      <a>性别：</a>#}
+{#                      <input type="text" value="{{xb}}" name="xb" style="margin:10px 23px 10px 0px;border-width: 3px 0px 0px 0px;width:90px"></input>#}
+{##}
+{#                      {% comment %}<a>出生日期：</a>#}
+{#                      <input type="text" value="{{csrq}}" name="csrq" style="margin:10px 23px 10px 0px;border-width: 3px 0px 0px 0px;width:90px"></input>#}
+{#                      {% endcomment %}#}
+{#                      <a>院系号：1为cs/2为通信</a>#}
+{#                      <input type="text" value="{{yxh}}" name="yxh" style="margin:10px 23px 10px 0px;border-width: 3px 0px 0px 0px;width:90px"></input>#}
+{#                      <button class="btn btn-primary"><i class="fa fa-fw fa-lg fa-check-circle"></i>提交 Submit</button>#}
+{#                    </form>#}
 
-                   <form class="row" method="POST">
+                        <form class="row" method="POST">
                       {% csrf_token %}
                         <div class="row">
                         <div class="form-group col-md-3">
-                            <label class="control-label">课号</label>
-                              <input class="form-control"type="text"  value="{{kh}}"  name="kh" >
+                            <label class="control-label">学号</label>
+                              <input class="form-control"type="text"  value="{{xh}}"  name="xh" >
                         </div>
 
                         <div class="form-group col-md-3">
-                            <label class="control-label">课名</label>
-                              <input class="form-control"type="text"  value="{{km}}" name="km" >
+                            <label class="control-label">姓名</label>
+                              <input class="form-control"type="text"  value="{{xm}}" name="xm" >
+                        </div>
+
+                      {% comment %}学院请做成checkbox{% endcomment %}
+{#                        xsxy学生学院#}
+
+{#                        <div class="form-group col-md-3" >#}
+{#                            <label for="xsxh">学院</label>#}
+{#                            <select id="xsxy" class="form-control" value="{{}}" mutiple="">#}
+{#                                <option>计算机学院</option>#}
+{#                                <option>通讯学院</option>#}
+{#                            </select>#}
+{#                        </div>#}
+
+                      {% comment %}出生日期请做成日历模式
+                      性别请做成选择模式{% endcomment %}
+
+{#                        <div class="form-group col-md-3">#}
+{#                            <label class="control-label">出生日期</label>#}
+{#                                <input id="csrq" class="form-control" type="text" name="csrq" placeholder="Date of Birth">#}
+{#                        </div>#}
+
+
+                        <div class="form-group col-md-3">
+                            <label class="control-label">性别</label>
+                              <input class="form-control" type="text"value="{{xb}}" name="xb" >
+                        </div>
+
+                        <div class="form-group col-md-3">
+                            <label class="control-label">籍贯</label>
+                              <input class="form-control" type="text" value="{{jg}}"name="jg" >
+                        </div>
+
+                        <div class="form-group col-md-3">
+                            <label class="control-label">手机号</label>
+                              <input class="form-control" type="text" value="{{sjhm}}"name="sjhm" >
                         </div>
 
                             <div class="form-group col-md-3">
-                            <label class="control-label">学分</label>
-                              <input class="form-control"type="text"  value="{{xf}}" name="km" >
+                            <label class="control-label">院系号 1为cs/2为通信</label>
+                              <input class="form-control" type="text" value="{{yxh}}"name="yxh" >
+                           </div>
                         </div>
 
-                            <div class="form-group col-md-3">
-                            <label class="control-label">学时</label>
-                              <input class="form-control"type="text"  value="{{xs}}" name="xs" >
-                        </div>
+                          <button class="btn btn-primary " ><i class="fa fa-fw fa-lg fa-check-circle"></i>提交 Submit</button>
 
-                            <div class="form-group col-md-3">
-                            <label class="control-label">院系号：01代表计算机/02代表通信</label>
-                              <input class="form-control"type="text"  value="{{yxh}}" name="yxh" >
-                        </div>
 
-                        </div>
-                           <button class="btn btn-primary"><i class="fa fa-fw fa-lg fa-check-circle"></i>提交 Submit</button>
+{#                      <input type="text" placeholder="籍贯 age" name="jg" style="margin:10px 20px 10px 20px;border-width: 3px 0px 0px 0px;width:110px"></input>#}
+{#                      <input type="text" placeholder="手机号 sjhm" name="sjhm" style="margin:10px 40px 10px 20px;border-width: 3px 0px 0px 0px;width:110px"></input>#}
+
                     </form>
+
+
                   </tr>
 
                 </tbody>
@@ -137,7 +177,7 @@
         </div>
     </main>
     <!-- Essential javascripts for application to work-->
-   <script src="{% static "js/jquery-3.3.1.min.js" %}"></script>
+    <script src="{% static "js/jquery-3.3.1.min.js" %}"></script>
     <script src="{% static "js/popper.min.js" %}"></script>
     <script src="{% static "js/bootstrap.min.js" %}"></script>
     <script src="{% static "js/main.js" %}"></script>
@@ -162,4 +202,4 @@
   </body>
 </html>
 
-
+<!--  该页面相当于系统管理员首页-->

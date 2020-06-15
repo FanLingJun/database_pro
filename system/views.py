@@ -249,7 +249,45 @@ def teacher_mod_score(request):
     models.e_table.objects.filter(gh_id=number, kh_id=kh, xh_id=xh).update(pscj=pscj, kscj=kscj, zpcj=zpcj)
     return redirect('/teacher_mod_score/')
 
-def admin_edit_user(request):
+def admin_edit_student(request):
+  cursor = connection.cursor()
+  # 查询操作
+  cursor.execute("select xh,xm,xb,csrq,jg,sjhm,mc from system_student,system_department "
+                 "where system_student.yxh_id = system_department.yxh")
+  student_info = cursor.fetchall()  # 读取所有
+  all_student = []
+  for item in student_info:
+    temp = dict()  # 注意这里一定要放在循环之内！！！！！！！！！！！！
+    temp['xh'] = item[0]
+    temp['xm'] = item[1]
+    temp['xb'] = item[2]
+    temp['csrq'] = item[3]
+    temp['jg'] = item[4]
+    temp['sjhm'] = item[5]
+    temp['mc'] = item[6]
+    all_student.append(temp)
+  # all_student = models.student.objects.all()
+
+  if request.method == 'POST':
+    xh = request.POST.get('xh')
+    xm = request.POST.get('xm')
+    jg = request.POST.get('jg')
+    sjhm = request.POST.get('sjhm')
+    xb = request.POST.get('xb')
+    csrq = request.POST.get('csrq')
+    print(csrq, type(csrq))
+
+
+    print("now is student")
+    print(xh,xm,jg,xb,sjhm)
+    models.student.objects.create(xh=xh, xm=xm, jg=jg,csrq=csrq,xb=xb, sjhm=sjhm,pwd='student',yxh_id='01')
+    return redirect('/admin_edit_student/')
+
+  else:
+    return render(request, 'admin_edit_student.html', context={'all_student': all_student})
+
+
+def admin_edit_teacher(request):
   cursor = connection.cursor()
   # 查询操作
   cursor.execute("select gh,xm,xb,xl,csrq,mc from system_teacher,system_department "
@@ -266,55 +304,31 @@ def admin_edit_user(request):
     temp['mc'] = item[5]
     all_teacher.append(temp)
 
-  cursor.execute("select xh,xm,xb,csrq,jg,sjhm,mc from system_student,system_department "
-                 "where system_student.yxh_id = system_department.yxh")
-  student_info = cursor.fetchall()  # 读取所有
-  all_student = []
-  for item in student_info:
-    temp = dict()  # 注意这里一定要放在循环之内！！！！！！！！！！！！
-    temp['xh'] = item[0]
-    temp['xm'] = item[1]
-    temp['xb'] = item[2]
-    temp['csrq'] = item[3]
-    temp['jg'] = item[4]
-    temp['sjhm'] = item[5]
-    temp['mc'] = item[6]
-    all_student.append(temp)
-  # all_student = models.student.objects.all()
   # all_teacher = models.teacher.objects.all()
   if request.method == 'POST':
-    xh = request.POST.get('xh')
     gh = request.POST.get('gh')
     xm = request.POST.get('xm')
-    jg = request.POST.get('jg')
-    sjhm = request.POST.get('sjhm')
     xl = request.POST.get('xl')
     xb = request.POST.get('xb')
     csrq = request.POST.get('csrq')
     print(csrq, type(csrq))
 
-    if (xh):
-      # 学生的信息
-      print("now is student")
-      print(xh,xm,jg,xb,sjhm)
-      models.student.objects.create(xh=xh, xm=xm, jg=jg,csrq=csrq,xb=xb, sjhm=sjhm,pwd='student',yxh_id='01')
-      return redirect('/admin_edit_user/')
-    else:
       # 老师
-      print("now is teacher")
-      print(gh,xm,xl,csrq,xb)
-      models.teacher.objects.create(gh=gh, xm=xm, xl=xl, csrq=csrq, xb=xb, jbgz='8000', pwd='teacher',yxh_id='01')
-      return redirect('/admin_edit_user/')
+    print("now is teacher")
+    print(gh,xm,xl,csrq,xb)
+    models.teacher.objects.create(gh=gh, xm=xm, xl=xl, csrq=csrq, xb=xb, jbgz='8000', pwd='teacher',yxh_id='01')
+    return redirect('/admin_edit_student/')
   else:
-    return render(request, 'admin_edit_user.html', context={'all_student': all_student, 'all_teacher': all_teacher})
+    return render(request, 'admin_edit_teacher.html', context={'all_teacher': all_teacher})
 
-def admin_mod_user(request):
+
+def admin_mod_student(request):
   xh = request.GET.get('xh')
   isdel = request.GET.get('isdel')
   student_info = models.student.objects.filter(xh=xh).first()
   if (int(isdel) == 1):
     models.student.objects.filter(xh=xh).delete()
-    return redirect('/admin_edit_user/')
+    return redirect('/admin_edit_student/')
   else:
     if request.method == 'POST':
       department = models.department.objects.filter(yxh=student_info.yxh_id).first()
@@ -327,8 +341,8 @@ def admin_mod_user(request):
       yxh = request.POST.get('yxh')
       models.student.objects.filter(xh=xh).update(xm=xm,xb=xb,jg=jg,sjhm=sjhm,yxh_id=yxh,pwd = 'student')
       # return render(request, 'admin_mod_user.html', context={'xm':xm,'xh':xh,'jg':jg,'sjhm':sjhm,'csrq':csrq,'xb':xb,'yxh':yxh})
-      return redirect('/admin_edit_user/')
-  return render(request, 'admin_mod_user.html', context={'xm':student_info.xm,'xh':student_info.xh,
+      return redirect('/admin_edit_student/')
+  return render(request, 'admin_mod_student.html', context={'xm':student_info.xm,'xh':student_info.xh,
                                                          'jg':student_info.jg,'sjhm':student_info.sjhm,
                                                          'csrq':student_info.csrq,'xb':student_info.xb,
                                                          'yxh':student_info.yxh_id})
@@ -341,7 +355,7 @@ def admin_mod_teacher(request):
   print(teacher_info)
   if (int(isdel) == 1):
     models.teacher.objects.filter(gh=gh).delete()
-    return redirect('/admin_edit_user/')
+    return redirect('/admin_edit_teacher/')
   else:
     if request.method == 'POST':
       department = models.department.objects.filter(yxh=teacher_info.yxh_id).first()
@@ -351,7 +365,7 @@ def admin_mod_teacher(request):
       xl = request.POST.get('xl')
       jbgz = request.POST.get('jbgz')
       models.teacher.objects.filter(gh=gh).update(xm=xm, xb=xb, xl=xl,jbgz=jbgz)
-      return redirect('/admin_edit_user/')
+      return redirect('/admin_edit_teacher/')
 
   return render(request, 'admin_mod_teacher.html', context={'xm': teacher_info.xm, 'gh': teacher_info.gh,
                                                          'xl': teacher_info.xl, 'jbgz':teacher_info.jbgz,

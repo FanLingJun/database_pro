@@ -52,12 +52,12 @@
         </div>
       </div>
 <!--      跳转到不同功能页面-->
-      <ul class="app-menu">
-            <li><a class="app-menu__item" href="/admin_index/"><i class="app-menu__icon fa fa-home"></i><span class="app-menu__label">管理员首页</span></a></li>
-            <li><a class="app-menu__item" href="/admin_edit_user/"><i class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">用户管理 Users Edit</span></a></li>
-            <li><a class="app-menu__item active" href="/admin_edit_course/"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">开课管理 Courses Edit</span></a></li>
-
-      </ul>
+           <ul class="app-menu">
+               <li><a class="app-menu__item" href="/admin_index/"><i class="app-menu__icon fa fa-home"></i><span class="app-menu__label">管理员首页</span></a></li>
+               <li><a class="app-menu__item" href="/admin_edit_student/"><i class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">学生管理 Users Edit</span></a></li>
+               <li><a class="app-menu__item " href="/admin_edit_teacher/"><i class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">教师管理 Users Edit</span></a></li>
+               <li><a class="app-menu__item   active" href="/admin_edit_course/"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">开课管理 Courses Edit</span></a></li>
+           </ul>
     </aside>
 <!--    主要内容部分-->
     <main class="app-content">
@@ -158,11 +158,11 @@
                             <div class="form-group col-md-3" >
                             <label for="xq">学期</label>
                             <select id="xq" class="form-control" mutiple="" name="xq">
-                                <option>2012-2013秋季</option>
-                                <option>2012-2013冬季</option>
-                                <option>2013-2014秋季</option>
-                                <option>2013-2014冬季</option>
-                                <option>2019-2020春季</option>
+                                <option value="01">2012-2013秋季</option>
+                                <option value="02">2012-2013冬季</option>
+                                <option value="03">2013-2014秋季</option>
+                                <option value="04">2013-2014冬季</option>
+                                <option value="05">2019-2020春季</option>
                             </select>
                         </div>
 
@@ -174,9 +174,11 @@
                       {% comment %}请在这里添加一个选择学院的checkbox{% endcomment %}
                         <div class="form-group col-md-3" >
                             <label for="kcxy">学院</label>
-                            <select id="kcxy" class="form-control" mutiple="" name="kcxy">
-                                <option>计算机学院</option>
-                                <option>通讯学院</option>
+                            <select id="kcxy" class="form-control" mutiple="" name="mc">
+                                <option value="01">计算机学院</option>
+                                <option value="02">通讯学院</option>
+                                <option value="03">理学院</option>
+                                <option value="04">文学院</option>
                             </select>
                         </div>
                         </div>

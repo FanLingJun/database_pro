@@ -14,7 +14,7 @@
     <meta property="og:url" content="http://pratikborsadiya.in/blog/vali-admin">
     <meta property="og:image" content="http://pratikborsadiya.in/blog/vali-admin/hero-social.png">
     <meta property="og:description" content="Vali is a responsive and free admin theme built with Bootstrap 4, SASS and PUG.js. It's fully customizable and modular.">
-    <title>教务处教师端</title>
+    <title>教务处管理员端-用户管理</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -46,19 +46,18 @@
     <aside class="app-sidebar">
       <div class="app-sidebar__user">
 {#        <img style="height:45px;margin-right:30px;" src="{% static "images/manager.jpg" %}" alt="User Image">#}
-        <div >
+        <div>
           <p class="app-sidebar__user-name">{{xm}}</p>
-            <p class="app-sidebar__user-designation">{{gh}}</p>
-
+          <p class="app-sidebar__user-designation">{{gh}}</p>
         </div>
       </div>
 <!--      跳转到不同功能页面-->
-      <ul class="app-menu">
-          <li><a class="app-menu__item" href="/admin_index/"><i class="app-menu__icon fa fa-home"></i><span class="app-menu__label">管理员首页</span></a></li>
-        <li><a class="app-menu__item  active" href="/admin_edit_user/"><i class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">用户管理 Users Edit</span></a></li>
-        <li><a class="app-menu__item" href="/admin_edit_course/"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">开课管理 Courses Edit</span></a></li>
-
-      </ul>
+           <ul class="app-menu">
+               <li><a class="app-menu__item" href="/admin_index/"><i class="app-menu__icon fa fa-home"></i><span class="app-menu__label">管理员首页</span></a></li>
+               <li><a class="app-menu__item  active" href="/admin_edit_student/"><i class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">学生管理 Users Edit</span></a></li>
+               <li><a class="app-menu__item " href="/admin_edit_teacher/"><i class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">教师管理 Users Edit</span></a></li>
+               <li><a class="app-menu__item" href="/admin_edit_course/"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">开课管理 Courses Edit</span></a></li>
+           </ul>
     </aside>
 <!--    主要内容部分-->
     <main class="app-content">
@@ -74,90 +73,130 @@
 {#      </div>#}
 <!--      内容显示-->
       <div class="clearfix"></div>
-      <div class="col-md-12">
+{#      <div class="col-md-12">#}
+{#          <div class="tile">#}
+{#            <h3 class="tile-title">用户管理 User Edit</h3>#}
+{#          </div>#}
+{#      </div>#}
+
+
+        <div class="col-md-12">
           <div class="tile">
-            <h3 class="tile-title">修改学生信息 Modify Student Info</h3>
+            <h3 class="tile-title">学生管理 Student Edit</h3>
 
+
+            <div class="tile-body">
               <div class="table-responsive">
+                <table class="table table-hover table-bordered" id="sampleTable">
+                  <thead>
+                    <tr>
+                      <th>学号 Number</th>
+                      <th>姓名 Name</th>
+                        <th>学院 School</th>
+                      <th>性别 Sex</th>
+                      <th>出生日期 Age</th>
+                      <th>籍贯 Password</th>
+                      <th>手机号 sjhm</th>
+                      <th>操作 Opt</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for item in all_student %}
+                    <tr>
+                      <td>{{item.xh}}</td>
+                      <td>{{item.xm}}</td>
+                        <td>{{item.mc}}</td>
+                      <td>{{item.xb}}</td>
+                      <td>{{item.csrq}}</td>
+                      <td>{{item.jg}}</td>
+                      <td>{{item.sjhm}}</td>
+                      <td>
+                        <a href="/admin_mod_student/?xh={{item.xh}}&isdel=0" style="padding:7px">编辑</a>
+                        <a href="/admin_mod_student/?xh={{item.xh}}&isdel=1" style="padding:7px">删除</a>
+                      </td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-12">
+          <div class="tile">
+            <h3 class="tile-title">新增学生 Add Students</h3>
+            <div class="table-responsive">
               <table class="table">
-                <tbody>
-
+                <thead>
                   <tr>
-{#                    <form method="POST">#}
-{#                        {% csrf_token %}#}
-{#                      <a>编号：</a>#}
-{#                      <input type="text" value="{{xh}}" name="xh" style="margin:10px 23px 10px 0px;border-width: 3px 0px 0px 0px;width:90px"></input>#}
-{#                      <a>姓名：</a>#}
-{#                      <input type="text" value="{{xm}}" name="xm" style="margin:10px 23px 10px 0px;border-width: 3px 0px 0px 0px;width:90px"></input>#}
-{#                      <a>籍贯：</a>#}
-{#                      <input type="text" value="{{jg}}" name="jg" style="margin:10px 23px 10px 0px;border-width: 3px 0px 0px 0px;width:90px"></input>#}
-{#                      <a>手机号：</a>#}
-{#                      <input type="text" value="{{sjhm}}" name="sjhm" style="margin:10px 20px 13px 0px;border-width: 3px 0px 0px 0px;width:90px"></input>#}
-{#                      <a>性别：</a>#}
-{#                      <input type="text" value="{{xb}}" name="xb" style="margin:10px 23px 10px 0px;border-width: 3px 0px 0px 0px;width:90px"></input>#}
-{##}
-{#                      {% comment %}<a>出生日期：</a>#}
-{#                      <input type="text" value="{{csrq}}" name="csrq" style="margin:10px 23px 10px 0px;border-width: 3px 0px 0px 0px;width:90px"></input>#}
-{#                      {% endcomment %}#}
-{#                      <a>院系号：1为cs/2为通信</a>#}
-{#                      <input type="text" value="{{yxh}}" name="yxh" style="margin:10px 23px 10px 0px;border-width: 3px 0px 0px 0px;width:90px"></input>#}
-{#                      <button class="btn btn-primary"><i class="fa fa-fw fa-lg fa-check-circle"></i>提交 Submit</button>#}
-{#                    </form>#}
-
-                        <form class="row" method="POST">
+                    <form class="row" method="POST">
                       {% csrf_token %}
                         <div class="row">
                         <div class="form-group col-md-3">
                             <label class="control-label">学号</label>
-                              <input class="form-control"type="text"  value="{{xh}}"  name="xh" >
+                              <input class="form-control"type="text" placeholder="学号 number" name="xh" >
                         </div>
 
                         <div class="form-group col-md-3">
                             <label class="control-label">姓名</label>
-                              <input class="form-control"type="text"  value="{{xm}}" name="xm" >
+                              <input class="form-control"type="text" placeholder="姓名 name" name="xm" >
                         </div>
 
                       {% comment %}学院请做成checkbox{% endcomment %}
 {#                        xsxy学生学院#}
 
-{#                        <div class="form-group col-md-3" >#}
-{#                            <label for="xsxh">学院</label>#}
-{#                            <select id="xsxy" class="form-control" value="{{}}" mutiple="">#}
-{#                                <option>计算机学院</option>#}
-{#                                <option>通讯学院</option>#}
-{#                            </select>#}
-{#                        </div>#}
+                        <div class="form-group col-md-3" >
+                            <label for="xsxh">学院</label>
+                            <select id="xsxy" class="form-control" mutiple="" name="mc">
+                                <option value="01">计算机学院</option>
+                                <option value="02">通讯学院</option>
+                                <option value="03">理学院</option>
+                                <option value="04">文学院</option>
+                            </select>
+                        </div>
 
                       {% comment %}出生日期请做成日历模式
                       性别请做成选择模式{% endcomment %}
 
-{#                        <div class="form-group col-md-3">#}
-{#                            <label class="control-label">出生日期</label>#}
-{#                                <input id="csrq" class="form-control" type="text" name="csrq" placeholder="Date of Birth">#}
-{#                        </div>#}
-
-
                         <div class="form-group col-md-3">
+                            <label class="control-label">出生日期</label>
+                                <input id="csrq" class="form-control" type="text" name="csrq" placeholder="Date of Birth">
+                        </div>
+                       </div>
+
+                        <div class="row">
+                        <div class="form-group col-md-3"  >
                             <label class="control-label">性别</label>
-                              <input class="form-control" type="text"value="{{xb}}" name="xb" >
+
+                            <div class="row">
+                            <div class="form-check" style="margin-left: 20px">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" type="radio" value = "男" name="xb" >
+                                    男
+                                </label>
+                            </div>
+                            <div class="form-check" style="margin-left: 20px">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" type="radio" value = "女" name="xb">
+                                    女
+                                </label>
+                            </div>
+                            </div>
+
                         </div>
 
                         <div class="form-group col-md-3">
                             <label class="control-label">籍贯</label>
-                              <input class="form-control" type="text" value="{{jg}}"name="jg" >
+                              <input class="form-control" type="text" placeholder="籍贯 age" name="jg" >
                         </div>
 
                         <div class="form-group col-md-3">
                             <label class="control-label">手机号</label>
-                              <input class="form-control" type="text" value="{{sjhm}}"name="sjhm" >
+                              <input class="form-control" type="text" placeholder="手机号 sjhm" name="sjhm" >
                         </div>
 
-                            <div class="form-group col-md-3">
-                            <label class="control-label">院系号 1为cs/2为通信</label>
-                              <input class="form-control" type="text" value="{{yxh}}"name="yxh" >
-                           </div>
                         </div>
-
                           <button class="btn btn-primary " ><i class="fa fa-fw fa-lg fa-check-circle"></i>提交 Submit</button>
 
 
@@ -165,18 +204,16 @@
 {#                      <input type="text" placeholder="手机号 sjhm" name="sjhm" style="margin:10px 40px 10px 20px;border-width: 3px 0px 0px 0px;width:110px"></input>#}
 
                     </form>
-
-
                   </tr>
-
-                </tbody>
+                </thead>
               </table>
             </div>
-
           </div>
         </div>
+
     </main>
     <!-- Essential javascripts for application to work-->
+
     <script src="{% static "js/jquery-3.3.1.min.js" %}"></script>
     <script src="{% static "js/popper.min.js" %}"></script>
     <script src="{% static "js/bootstrap.min.js" %}"></script>
@@ -184,6 +221,23 @@
     <!-- The javascript plugin to display page loading on top-->
     <script src="{% static "js/plugins/pace.min.js"%}"></script>
     <!-- Page specific javascripts-->
+    <script type="text/javascript" src="{% static "js/plugins/bootstrap-datepicker.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/plugins/select2.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/plugins/bootstrap-datepicker.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/plugins/dropzone.js" %}"></script>
+
+     <script type="text/javascript">
+      $('#csrq').datepicker({
+      	format: "yyyy-mm-dd",
+      	autoclose: true,
+      	todayHighlight: true
+      });
+      $('#nl').datepicker({
+      	format: "yyyy-mm-dd",
+      	autoclose: true,
+      	todayHighlight: true
+      });
+    </script>
     <!-- Data table plugin-->
     <script type="text/javascript" src="{% static "js/plugins/jquery.dataTables.min.js" %}"></script>
     <script type="text/javascript" src="{% static "js/plugins/dataTables.bootstrap.min.js" %}"></script>
@@ -202,4 +256,4 @@
   </body>
 </html>
 
-<!--  该页面相当于系统管理员首页-->
+
