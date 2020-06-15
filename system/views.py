@@ -37,12 +37,10 @@ def login(request):
                 return redirect('/admin_index/')
             else:
                 # 密码错误
-                messages.success(request, "Error!")
-                return render(request, 'login.html')
+                return render(request, 'login.html', {'script': "alert", 'wrong': '密码错误'})
         # 账号或密码不存在
         else:
-            messages.success(request, "Error!")
-            return render(request, 'login.html')
+            return render(request, 'login.html', {'script': "alert", 'wrong': '账号或密码不存在'})
 
 
 def student_index(request):
@@ -168,7 +166,7 @@ def delete_course(request):
       "from system_course,system_e_table,system_teacher "
       "where system_e_table.kh_id = system_course.kh "
       "and system_e_table.gh_id = system_teacher.gh "
-      "and xh_id = %s and zpcj is not null",
+      "and xh_id = %s and zpcj is null",
       [number])
     all_course = cursor.fetchall()  # 读取所有
     # print(all_scores, type(all_scores))
