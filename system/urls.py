@@ -20,6 +20,7 @@ urlpatterns = [
     # 管理员端的跳转页面
     path('admin_edit_user/', views.admin_edit_user),
     path('admin_mod_user/', views.admin_mod_user),
+    path('admin_mod_teacher/', views.admin_mod_teacher),
     path('admin_edit_course/', views.admin_edit_course),
     path('admin_mod_course/', views.admin_mod_course),
 ]

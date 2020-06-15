@@ -54,8 +54,8 @@
       </div>
 <!--      跳转到不同功能页面-->
       <ul class="app-menu">
-          <li><a class="app-menu__item active" href="/admin_index/"><i class="app-menu__icon fa fa-home"></i><span class="app-menu__label">管理员首页</span></a></li>
-        <li><a class="app-menu__item" href="/admin_edit_user/"><i class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">用户管理 Users Edit</span></a></li>
+          <li><a class="app-menu__item" href="/admin_index/"><i class="app-menu__icon fa fa-home"></i><span class="app-menu__label">管理员首页</span></a></li>
+        <li><a class="app-menu__item  active" href="/admin_edit_user/"><i class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">用户管理 Users Edit</span></a></li>
         <li><a class="app-menu__item" href="/admin_edit_course/"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">开课管理 Courses Edit</span></a></li>
 
       </ul>
@@ -76,25 +76,37 @@
       <div class="clearfix"></div>
       <div class="col-md-12">
           <div class="tile">
-            <h3 class="tile-title">个人信息 Personal Data</h3>
-            <div class="table-responsive">
+            <h3 class="tile-title">修改教师信息 Modify Teacher Info</h3>
+
+              <div class="table-responsive">
               <table class="table">
-                <thead>
-                  <tr>
-                    <th>工号 Number</th>
-                    <th>姓名 Name</th>
-                    <th>性别 Sex</th>
-                  </tr>
-                </thead>
                 <tbody>
+
                   <tr>
-                    <th>{{gh}}</th>
-                    <th>{{xm}}</th>
-                    <th>{{xb}}</th>
+                    <form method="POST">
+                        {% csrf_token %}
+                      <a>编号：</a>
+                      <input type="text" value="{{item.number}}" name="number" style="margin:10px 23px 10px 0px;border-width: 3px 0px 0px 0px;width:90px"></input>
+                      <a>姓名：</a>
+                      <input type="text" value="{{item.name}}" name="name" style="margin:10px 23px 10px 0px;border-width: 3px 0px 0px 0px;width:90px"></input>
+                      <a>院系：</a>
+                      <input type="text" value="{{item.department}}" name="department" style="margin:10px 23px 10px 0px;border-width: 3px 0px 0px 0px;width:90px"></input>
+                      <a>类型：</a>
+                      <input type="text" value="{{item.usertype}}" name="usertype" style="margin:10px 20px 13px 0px;border-width: 3px 0px 0px 0px;width:90px"></input>
+                      <a>性别：</a>
+                      <input type="text" value="{{item.sex}}" name="sex" style="margin:10px 23px 10px 0px;border-width: 3px 0px 0px 0px;width:90px"></input>
+                      <a>年龄：</a>
+                      <input type="text" value="{{item.age}}" name="age" style="margin:10px 23px 10px 0px;border-width: 3px 0px 0px 0px;width:90px"></input>
+                      <a>密码：</a>
+                      <input type="text" value="{{item.pswd}}" name="pswd" style="margin:10px 23px 10px 0px;border-width: 3px 0px 0px 0px;width:90px"></input>
+                      <button class="btn btn-primary"><i class="fa fa-fw fa-lg fa-check-circle"></i>提交 Submit</button>
+                    </form>
                   </tr>
+
                 </tbody>
               </table>
             </div>
+
           </div>
         </div>
     </main>
@@ -106,9 +118,11 @@
     <!-- The javascript plugin to display page loading on top-->
     <script src="{% static "js/plugins/pace.min.js"%}"></script>
     <!-- Page specific javascripts-->
-    <script type="text/javascript" src="{% static "js/plugins/chart.js" %}"></script>
+    <!-- Data table plugin-->
+    <script type="text/javascript" src="{% static "js/plugins/jquery.dataTables.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/plugins/dataTables.bootstrap.min.js" %}"></script>
+    <script type="text/javascript">$('#sampleTable').DataTable();</script>
     <!-- Google analytics script-->
-<!--    看不懂！！！-->
     <script type="text/javascript">
       if(document.location.hostname == 'pratikborsadiya.in') {
       	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

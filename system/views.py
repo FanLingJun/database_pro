@@ -7,8 +7,10 @@ from django.db import connection
 def page_not_found(request, **kwargs):
   return render(request,'error.html')
 
+
 # 在这个视图文件中，定义方法
 # 编写函数逻辑判断，应对响应
+
 def login(request):
     if request.method == 'GET':
         return render(request, 'login.html')
@@ -246,6 +248,9 @@ def admin_edit_user(request):
 
 def admin_mod_user(request):
   return render(request,'admin_mod_user.html')
+
+def admin_mod_teacher(request):
+  return render(request,'admin_mod_teacher.html')
 
 def admin_edit_course(request):
   cursor = connection.cursor()
