@@ -83,26 +83,90 @@
                 <tbody>
 
                   <tr>
-                    <form method="POST">
-                        {% csrf_token %}
-                      <a>编号：</a>
-                      <input type="text" value="{{xh}}" name="xh" style="margin:10px 23px 10px 0px;border-width: 3px 0px 0px 0px;width:90px"></input>
-                      <a>姓名：</a>
-                      <input type="text" value="{{xm}}" name="xm" style="margin:10px 23px 10px 0px;border-width: 3px 0px 0px 0px;width:90px"></input>
-                      <a>籍贯：</a>
-                      <input type="text" value="{{jg}}" name="jg" style="margin:10px 23px 10px 0px;border-width: 3px 0px 0px 0px;width:90px"></input>
-                      <a>手机号：</a>
-                      <input type="text" value="{{sjhm}}" name="sjhm" style="margin:10px 20px 13px 0px;border-width: 3px 0px 0px 0px;width:90px"></input>
-                      <a>性别：</a>
-                      <input type="text" value="{{xb}}" name="xb" style="margin:10px 23px 10px 0px;border-width: 3px 0px 0px 0px;width:90px"></input>
+{#                    <form method="POST">#}
+{#                        {% csrf_token %}#}
+{#                      <a>编号：</a>#}
+{#                      <input type="text" value="{{xh}}" name="xh" style="margin:10px 23px 10px 0px;border-width: 3px 0px 0px 0px;width:90px"></input>#}
+{#                      <a>姓名：</a>#}
+{#                      <input type="text" value="{{xm}}" name="xm" style="margin:10px 23px 10px 0px;border-width: 3px 0px 0px 0px;width:90px"></input>#}
+{#                      <a>籍贯：</a>#}
+{#                      <input type="text" value="{{jg}}" name="jg" style="margin:10px 23px 10px 0px;border-width: 3px 0px 0px 0px;width:90px"></input>#}
+{#                      <a>手机号：</a>#}
+{#                      <input type="text" value="{{sjhm}}" name="sjhm" style="margin:10px 20px 13px 0px;border-width: 3px 0px 0px 0px;width:90px"></input>#}
+{#                      <a>性别：</a>#}
+{#                      <input type="text" value="{{xb}}" name="xb" style="margin:10px 23px 10px 0px;border-width: 3px 0px 0px 0px;width:90px"></input>#}
+{##}
+{#                      {% comment %}<a>出生日期：</a>#}
+{#                      <input type="text" value="{{csrq}}" name="csrq" style="margin:10px 23px 10px 0px;border-width: 3px 0px 0px 0px;width:90px"></input>#}
+{#                      {% endcomment %}#}
+{#                      <a>院系号：1为cs/2为通信</a>#}
+{#                      <input type="text" value="{{yxh}}" name="yxh" style="margin:10px 23px 10px 0px;border-width: 3px 0px 0px 0px;width:90px"></input>#}
+{#                      <button class="btn btn-primary"><i class="fa fa-fw fa-lg fa-check-circle"></i>提交 Submit</button>#}
+{#                    </form>#}
 
-                      {% comment %}<a>出生日期：</a>
-                      <input type="text" value="{{csrq}}" name="csrq" style="margin:10px 23px 10px 0px;border-width: 3px 0px 0px 0px;width:90px"></input>
-                      {% endcomment %}
-                      <a>院系号：1为cs/2为通信</a>
-                      <input type="text" value="{{yxh}}" name="yxh" style="margin:10px 23px 10px 0px;border-width: 3px 0px 0px 0px;width:90px"></input>
-                      <button class="btn btn-primary"><i class="fa fa-fw fa-lg fa-check-circle"></i>提交 Submit</button>
+                        <form class="row" method="POST">
+                      {% csrf_token %}
+                        <div class="row">
+                        <div class="form-group col-md-3">
+                            <label class="control-label">学号</label>
+                              <input class="form-control"type="text"  value="{{xh}}"  name="xh" >
+                        </div>
+
+                        <div class="form-group col-md-3">
+                            <label class="control-label">姓名</label>
+                              <input class="form-control"type="text"  value="{{xm}}" name="xm" >
+                        </div>
+
+                      {% comment %}学院请做成checkbox{% endcomment %}
+{#                        xsxy学生学院#}
+
+{#                        <div class="form-group col-md-3" >#}
+{#                            <label for="xsxh">学院</label>#}
+{#                            <select id="xsxy" class="form-control" value="{{}}" mutiple="">#}
+{#                                <option>计算机学院</option>#}
+{#                                <option>通讯学院</option>#}
+{#                            </select>#}
+{#                        </div>#}
+
+                      {% comment %}出生日期请做成日历模式
+                      性别请做成选择模式{% endcomment %}
+
+{#                        <div class="form-group col-md-3">#}
+{#                            <label class="control-label">出生日期</label>#}
+{#                                <input id="csrq" class="form-control" type="text" name="csrq" placeholder="Date of Birth">#}
+{#                        </div>#}
+
+
+                        <div class="form-group col-md-3">
+                            <label class="control-label">性别</label>
+                              <input class="form-control" type="text"value="{{xb}}" name="xb" >
+                        </div>
+
+                        <div class="form-group col-md-3">
+                            <label class="control-label">籍贯</label>
+                              <input class="form-control" type="text" value="{{jg}}"name="jg" >
+                        </div>
+
+                        <div class="form-group col-md-3">
+                            <label class="control-label">手机号</label>
+                              <input class="form-control" type="text" value="{{sjhm}}"name="sjhm" >
+                        </div>
+
+                            <div class="form-group col-md-3">
+                            <label class="control-label">院系号 1为cs/2为通信</label>
+                              <input class="form-control" type="text" value="{{yxh}}"name="yxh" >
+                           </div>
+                        </div>
+
+                          <button class="btn btn-primary " ><i class="fa fa-fw fa-lg fa-check-circle"></i>提交 Submit</button>
+
+
+{#                      <input type="text" placeholder="籍贯 age" name="jg" style="margin:10px 20px 10px 20px;border-width: 3px 0px 0px 0px;width:110px"></input>#}
+{#                      <input type="text" placeholder="手机号 sjhm" name="sjhm" style="margin:10px 40px 10px 20px;border-width: 3px 0px 0px 0px;width:110px"></input>#}
+
                     </form>
+
+
                   </tr>
 
                 </tbody>

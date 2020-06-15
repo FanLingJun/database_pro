@@ -83,23 +83,7 @@
         <div class="col-md-12">
           <div class="tile">
             <h3 class="tile-title">学生管理 Student Edit</h3>
-              <div class="row">
-        <div class="col-lg-12">
-            <div class="bs-component">
-              <ul class="nav nav-pills">
-                <li class="nav-item"><a class="nav-link disabled">选择学院 Department</a></li>
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">——{{selected_department}}——</a>
-                  <div class="dropdown-menu">
-                    {% for item in department_data %}
-                    <a class="dropdown-item" href="/admin_user_edit/?selected_department={{item}}">{{ item }}</a>
-                    {% endfor %}
-                  </div>
-                </li>
-              </ul>
-            </div>
-        </div>
-      </div>
+
 
             <div class="tile-body">
               <div class="table-responsive">
@@ -108,11 +92,12 @@
                     <tr>
                       <th>学号 Number</th>
                       <th>姓名 Name</th>
+                        <th>学院 School</th>
                       <th>性别 Sex</th>
                       <th>出生日期 Age</th>
                       <th>籍贯 Password</th>
-                      <th>手机号 Edit</th>
-                      <th>学院 Edit</th>
+                      <th>手机号 sjhm</th>
+                      <th>操作 Opt</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -120,11 +105,11 @@
                     <tr>
                       <td>{{item.xh}}</td>
                       <td>{{item.xm}}</td>
+                        <td>{{item.mc}}</td>
                       <td>{{item.xb}}</td>
                       <td>{{item.csrq}}</td>
                       <td>{{item.jg}}</td>
                       <td>{{item.sjhm}}</td>
-                      <td>{{item.mc}}</td>
                       <td>
                         <a href="/admin_mod_user/?xh={{item.xh}}&isdel=0" style="padding:7px">编辑</a>
                         <a href="/admin_mod_user/?xh={{item.xh}}&isdel=1" style="padding:7px">删除</a>
@@ -132,7 +117,6 @@
                     </tr>
                     {% endfor %}
                   </tbody>
-
                 </table>
               </div>
             </div>
@@ -140,28 +124,9 @@
         </div>
 
 
-
         <div class="col-md-12">
           <div class="tile">
           <h3 class="tile-title">教师管理 Teacher Edit</h3>
-              <div class="row">
-        <div class="col-lg-12">
-            <div class="bs-component">
-              <ul class="nav nav-pills">
-                <li class="nav-item"><a class="nav-link disabled">选择学院 Department</a></li>
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">——{{selected_department}}——</a>
-                  <div class="dropdown-menu">
-                    {% for item in department_data %}
-                    <a class="dropdown-item" href="/admin_edit_user/?selected_department={{item}}">{{ item }}</a>
-                    {% endfor %}
-                  </div>
-                </li>
-              </ul>
-            </div>
-        </div>
-      </div>
-
 
             <div class="tile-body">
               <div class="table-responsive">
@@ -170,10 +135,11 @@
                     <tr>
                       <th>工号 Number</th>
                       <th>姓名 Name</th>
+                        <th>学院 School</th>
                       <th>性别 Sex</th>
                       <th>出生日期 Age</th>
-                      <th>学历 Password</th>
-                      <th>学院 Password</th>
+                      <th>职称 Title</th>
+                        <th>操作 Opt</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -207,6 +173,7 @@
                   <tr>
                     <form class="row" method="POST">
                       {% csrf_token %}
+                        <div class="row">
                         <div class="form-group col-md-3">
                             <label class="control-label">学号</label>
                               <input class="form-control"type="text" placeholder="学号 number" name="xh" >
@@ -218,36 +185,44 @@
                         </div>
 
                       {% comment %}学院请做成checkbox{% endcomment %}
-                          <li class="nav-item"><a class="nav-link disabled">学院 Department</a></li>
-                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">——{{selected_department}}——</a>
-                                     <div class="dropdown-menu">
-                                        {% for item in department_data %}
-                                            <a class="dropdown-item" href="/admin_edit_user/?selected_department={{item}}">{{ item }}</a>
-                                         {% endfor %}
-                                    </div>
-                             </li>
-                      {% comment %}出生日期请做成日历模式
-                      性别请做成选择模式{% endcomment %}
-                        <div class="form-group col-md-3">
-                            <label class="control-label">出生日期</label>
-                                <input id="csrq" class="form-control" type="text" name="csrq" placeholder="Select Date">
+{#                        xsxy学生学院#}
+
+                        <div class="form-group col-md-3" >
+                            <label for="xsxh">学院</label>
+                            <select id="xsxy" class="form-control" mutiple="" name="xsxy">
+                                <option>计算机学院</option>
+                                <option>通讯学院</option>
+                            </select>
                         </div>
 
-                        <div class="form-group"  style="margin:10px 20px 10px 20px">
+                      {% comment %}出生日期请做成日历模式
+                      性别请做成选择模式{% endcomment %}
+
+                        <div class="form-group col-md-3">
+                            <label class="control-label">出生日期</label>
+                                <input id="csrq" class="form-control" type="text" name="csrq" placeholder="Date of Birth">
+                        </div>
+                       </div>
+
+                        <div class="row">
+                        <div class="form-group col-md-3"  >
                             <label class="control-label">性别</label>
-                            <div class="form-check">
+
+                            <div class="row">
+                            <div class="form-check" style="margin-left: 20px">
                                 <label class="form-check-label">
-                                    <input class="form-check-input" type="radio" value = "男" name="xb">
+                                    <input class="form-check-input" type="radio" value = "男" name="xb" >
                                     男
                                 </label>
                             </div>
-                            <div class="form-check">
+                            <div class="form-check" style="margin-left: 20px">
                                 <label class="form-check-label">
                                     <input class="form-check-input" type="radio" value = "女" name="xb">
                                     女
                                 </label>
                             </div>
+                            </div>
+
                         </div>
 
                         <div class="form-group col-md-3">
@@ -260,7 +235,8 @@
                               <input class="form-control" type="text" placeholder="手机号 sjhm" name="sjhm" >
                         </div>
 
-                          <button class="btn btn-primary" style="margin:10px 20px 10px 20px"><i class="fa fa-fw fa-lg fa-check-circle"></i>提交 Submit</button>
+                        </div>
+                          <button class="btn btn-primary " ><i class="fa fa-fw fa-lg fa-check-circle"></i>提交 Submit</button>
 
 
 {#                      <input type="text" placeholder="籍贯 age" name="jg" style="margin:10px 20px 10px 20px;border-width: 3px 0px 0px 0px;width:110px"></input>#}
@@ -283,7 +259,7 @@
                   <tr>
                     <form method="POST">
                       {% csrf_token %}
-
+                        <div class="row">
                         <div class="form-group col-md-3">
                             <label class="control-label">工号</label>
                               <input class="form-control"type="text" placeholder="工号 number" name="gh" >
@@ -294,30 +270,37 @@
                               <input class="form-control"type="text" placeholder="姓名 name" name="xm" >
                         </div>
 
+{#                      教师学院 jsxy#}
+                        <div class="form-group col-md-3" >
+                            <label for="jsxh">学院</label>
+                            <select id="jsxy" class="form-control" mutiple="" name="jsxy">
+                                <option>计算机学院</option>
+                                <option>通讯学院</option>
+                            </select>
+                        </div>
 
-                        <li class="nav-item"><a class="nav-link disabled">学院 Department</a></li>
-                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">——{{selected_department}}——</a>
-                                     <div class="dropdown-menu">
-                                        {% for item in department_data %}
-                                            <a class="dropdown-item" href="/admin_edit_user/?selected_department={{item}}">{{ item }}</a>
-                                         {% endfor %}
-                                    </div>
-                             </li>
+                        <div class="form-group col-md-3">
+                            <label class="control-label">出生日期</label>
+                                <input id="nl" class="form-control" type="text" name = "csrq" placeholder="Date of Birth">
+                        </div>
+                        </div>
 
-                        <div class="form-group"  style="margin:10px 20px 10px 20px">
+                        <div class="row">
+                        <div class="form-group col-md-3">
                             <label class="control-label">性别</label>
-                            <div class="form-check">
+                            <div class="row">
+                            <div class="form-check" style="margin-left: 20px">
                                 <label class="form-check-label">
-                                    <input class="form-check-input" type="radio" value = "男" name="xb">
+                                    <input class="form-check-input" type="radio" value = "男" name="xb" >
                                     男
                                 </label>
                             </div>
-                            <div class="form-check">
+                            <div class="form-check" style="margin-left: 20px">
                                 <label class="form-check-label">
                                     <input class="form-check-input" type="radio" value = "女" name="xb">
                                     女
                                 </label>
+                            </div>
                             </div>
                         </div>
                       {% comment %}学院请做成checkbox{% endcomment %}
@@ -325,17 +308,19 @@
                       性别请做成选择模式{% endcomment %}
 
 {#                        这里的出生日期的id用nl表示 否则好像日历显示不出来#}
-                        <div class="form-group col-md-3">
-                            <label class="control-label">学历</label>
-                              <input class="form-control" type="text" placeholder="学历 " name="xl" >
+{#                      学历 xl#}
+                        <div class="form-group col-md-3" >
+                            <label for="xl">职称</label>
+                            <select id="xl" class="form-control" mutiple="">
+                                <option>讲师</option>
+                                <option>副教授</option>
+                                <option>教授</option>
+                            </select>
+                        </div>
                         </div>
 
-                         <div class="form-group col-md-3">
-                            <label class="control-label">出生日期</label>
-                                <input id="nl" class="form-control" type="text" name = "csrq" placeholder="Select Date">
-                        </div>
 
-                      <button type = "submit" class="btn btn-primary" style="margin:10px 20px 10px 20px"><i class="fa fa-fw fa-lg fa-check-circle"></i>提交 Submit</button>
+                      <button type = "submit" class="btn btn-primary" ><i class="fa fa-fw fa-lg fa-check-circle"></i>提交 Submit</button>
                     </form>
                   </tr>
                 </thead>

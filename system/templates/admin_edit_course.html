@@ -121,23 +121,65 @@
                   <tr>
                     <form method="POST">
                       {% csrf_token %}
-                      <input type="text" placeholder="课程号" name="kh" style="margin:10px 30px 10px 15px;border-width: 3px 0px 0px 0px;width:160px"></input>
-                      <input type="text" placeholder="课名" name="km" style="margin:10px 30px 10px 20px;border-width: 3px 0px 0px 0px;width:160px"></input>
-                      <input type="text" placeholder="学分" name="xf" style="margin:10px 30px 10px 20px;border-width: 3px 0px 0px 0px;width:160px"></input>
-                      <input type="text" placeholder="教师号" name="gh" style="margin:10px 40px 10px 20px;border-width: 3px 0px 0px 0px;width:160px"></input>
-                      <input type="text" placeholder="上课时间" name="sksj" style="margin:10px 40px 10px 20px;border-width: 3px 0px 0px 0px;width:160px"></input>
-                      <input type="text" placeholder="学期" name="xq" style="margin:10px 40px 10px 20px;border-width: 3px 0px 0px 0px;width:160px"></input>
-                      <input type="text" placeholder="学时" name="xs" style="margin:10px 40px 10px 20px;border-width: 3px 0px 0px 0px;width:160px"></input>
+{#                      <input type="text" placeholder="课程号" name="kh" style="margin:10px 30px 10px 15px;border-width: 3px 0px 0px 0px;width:160px"></input>#}
+{#                      <input type="text" placeholder="课名" name="km" style="margin:10px 30px 10px 20px;border-width: 3px 0px 0px 0px;width:160px"></input>#}
+{#                      <input type="text" placeholder="学分" name="xf" style="margin:10px 30px 10px 20px;border-width: 3px 0px 0px 0px;width:160px"></input>#}
+{#                      <input type="text" placeholder="教师号" name="gh" style="margin:10px 40px 10px 20px;border-width: 3px 0px 0px 0px;width:160px"></input>#}
+{#                      <input type="text" placeholder="上课时间" name="sksj" style="margin:10px 40px 10px 20px;border-width: 3px 0px 0px 0px;width:160px"></input>#}
+{#                      <input type="text" placeholder="学期" name="xq" style="margin:10px 40px 10px 20px;border-width: 3px 0px 0px 0px;width:160px"></input>#}
+{#                      <input type="text" placeholder="学时" name="xs" style="margin:10px 40px 10px 20px;border-width: 3px 0px 0px 0px;width:160px"></input>#}
+
+                        <div class="row">
+                        <div class="form-group col-md-3">
+                            <label class="control-label">课号</label>
+                              <input class="form-control"type="text" placeholder="课号" name="kh" >
+                        </div>
+
+                        <div class="form-group col-md-3">
+                            <label class="control-label">课名</label>
+                              <input class="form-control"type="text" placeholder="课名" name="km" >
+                        </div>
+
+                            <div class="form-group col-md-3">
+                            <label class="control-label">学分</label>
+                              <input class="form-control"type="text" placeholder="学分" name="xf" >
+                        </div>
+
+                            <div class="form-group col-md-3">
+                            <label class="control-label">教师号</label>
+                              <input class="form-control"type="text" placeholder="教师号" name="gh" >
+                        </div>
+
+                            <div class="form-group col-md-3">
+                            <label class="control-label">上课时间</label>
+                              <input class="form-control"type="text" placeholder="上课时间" name="sksj" >
+                        </div>
+
+                            <div class="form-group col-md-3" >
+                            <label for="xq">学期</label>
+                            <select id="xq" class="form-control" mutiple="" name="xq">
+                                <option>2012-2013秋季</option>
+                                <option>2012-2013冬季</option>
+                                <option>2013-2014秋季</option>
+                                <option>2013-2014冬季</option>
+                                <option>2019-2020春季</option>
+                            </select>
+                        </div>
+
+                            <div class="form-group col-md-3">
+                            <label class="control-label">学时</label>
+                              <input class="form-control"type="text" placeholder="学时" name="xs" >
+                        </div>
+
                       {% comment %}请在这里添加一个选择学院的checkbox{% endcomment %}
-                        <li class="nav-item"><a class="nav-link disabled">学院 Department</a></li>
-                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">——{{selected_department}}——</a>
-                                     <div class="dropdown-menu">
-                                        {% for item in department_data %}
-                                            <a class="dropdown-item" href="/admin_edit_user/?selected_department={{item}}">{{ item }}</a>
-                                         {% endfor %}
-                                    </div>
-                             </li>
+                        <div class="form-group col-md-3" >
+                            <label for="kcxy">学院</label>
+                            <select id="kcxy" class="form-control" mutiple="" name="kcxy">
+                                <option>计算机学院</option>
+                                <option>通讯学院</option>
+                            </select>
+                        </div>
+                        </div>
                       <button class="btn btn-primary"><i class="fa fa-fw fa-lg fa-check-circle"></i>提交 Submit</button>
                     </form>
                   </tr>
