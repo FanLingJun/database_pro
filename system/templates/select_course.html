@@ -51,8 +51,121 @@
     </aside>
 
     <main class="app-content">
- <div class="row">
+        <div class="row">
+        <div class="col-md-12">
+          <div class="tile">
+              <h3 class="tile-tile">课程查询</h3>
+              <form method="post">
+                  <div class="form-inline">
+                      <input type="text" class="form-control" placeholder="请输入课名" name="km">
+                      <button type="button" class="btn btn-primary">搜索</button>
+                      <div style="padding-left: 275px;">
+                          <button type="button" class="btn btn-primary" onclick="show()">显示所有可选课程</button>
+                      </div>
+                       <div style="padding-left: 275px;">
+                           <button id="insertBtn" type="button" class="btn btn-primary" data-toggle="modal"
+                data-target="#insertLesson">选课</button>
+                       </div>
+                  </div>
+              </form>
 
+              <div class="modal fade" id="insertLesson" tabindex="-1" role="dialog" aria-labelledby="insertModalLabel">
+                               <div class="modal-dialog" role="document">
+                                   <div class="modal-content">
+                                       <div class="modal-header">
+                                           <h3 class="modal-title">待选课程数据</h3>
+                                           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+
+                                       </div>
+                                       <div class="modal-body">
+                                           <form class="form-horizontal" method="post">
+                                                {% csrf_token %}
+                                               <div class="form-group">
+                                                   <label for="inputEmail3" class="col-md-4 control-label">课程号：</label>
+                                                   <div class="col-md-8">
+                                                       <input type="text" class="form-control" id="course_id" placeholder="请输入课程号">
+                                                   </div>
+                                               </div>
+                                               <div class="form-group" style="padding-top: 20px;">
+                                                   <label for="inputPassword3" class="col-md-4 control-label">教师号：</label>
+                                                   <div class="col-md-8">
+                                                       <input type="text" class="form-control" id="teacher_id" placeholder="请输入教师号">
+                                                   </div>
+                                               </div>
+                                           </form>
+                                       </div>
+                                       <div class="modal-footer">
+                                           <button class="btn btn-primary align-self-end" data-dismiss="modal" >确定</button>
+                                       </div>
+                                   </div>
+                               </div>
+                           </div>
+
+              <div style="padding-top: 10px;"></div>
+              <div class="tile-body">
+                  <div class="table-responsive">
+                      <table class="table table-hover table-bordered">
+                        <thead>
+                          <tr>
+                            <th>课号</th>
+                            <th>课名</th>
+                            <th>工号</th>
+                            <th>教师名</th>
+                            <th>学分</th>
+                            <th>上课时间</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+{#                         {% for item in xxxxxx %}#}
+                          <tr>
+                            <td>0830</td>
+                            <td>数据库</td>
+                            <td>1000</td>
+                            <td>王小明</td>
+                            <td>4</td>
+                            <td>周三3-4</td>
+                          </tr>
+{#                        {% endfor %}#}
+                        </tbody>
+                      </table>
+                    </div>
+          </div>
+        </div>
+      </div>
+        <div class="col-md-12" style="display: none" id="div">
+          <div class="tile">
+          <h3 class="tile-tile">可选课程</h3>
+            <div class="tile-body">
+                <table class="table table-hover table-bordered" id="sampleTable1">
+                  <thead>
+                    <tr>
+                      <th>学期</th>
+                      <th>课号</th>
+                      <th>学分</th>
+                      <th>课号</th>
+                      <th>教师名</th>
+                      <th>教师工号</th>
+                      <th>上课时间</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for item in open_course %}
+                    <tr>
+                      <td>{{ item.xq}}</td>
+                      <td>{{item.km}}</td>
+                      <td>{{item.xf}}</td>
+                      <td>{{item.kh_id}}</td>
+                      <td>{{item.xm}}</td>
+                      <td>{{item.gh}}</td>
+                      <td>{{item.sksj}}</td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
         <div class="col-md-12">
           <div class="tile">
           <h3 class="tile-tile">课程查询</h3>
@@ -176,6 +289,29 @@
       	ga('create', 'UA-72504830-1', 'auto');
       	ga('send', 'pageview');
       }
+    </script>
+  <script type="text/javascript">
+        function show (event) {
+        //取消冒泡
+        let oevent = event || window.event
+        if (document.all) {
+            oevent.cancelBubble = true
+        } else {
+            oevent.stopPropagation()
+        }
+        if (document.getElementById('div').style.display === 'none' || document.getElementById('div').style.display === '') {
+            document.getElementById('div').style.display = 'block'
+        } else {
+            document.getElementById('div').style.display = 'none'
+        }
+    }
+    document.onclick = function () {
+        document.getElementById('div').style.display = 'none'
+    }
+    document.getElementById('div').onclick = function (event) {
+        let oevent = event || window.event
+        oevent.stopPropagation()
+    }
     </script>
   </body>
 </html>
