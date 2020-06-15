@@ -189,7 +189,6 @@ def delete_course(request):
       return redirect('/delete_course.html/')
 
 def teacher_course(request):
-  number = request.session.get('number')
   cursor = connection.cursor()
   cursor.execute(
     "select distinct kh,km,xf from system_course,system_e_table "
