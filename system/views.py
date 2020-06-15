@@ -253,42 +253,82 @@ def teacher_mod_score(request):
 
 def admin_edit_user(request):
   all_student = models.student.objects.all()
-  all_teacher = models.student.objects.all()
-  if request.method == 'GET':
-    return render(request,'admin_edit_user.html',context={'all_student':all_student,'all_teacher':all_teacher})
-  else:
+  all_teacher = models.teacher.objects.all()
+  if request.method == 'POST':
     xh = request.POST.get('xh')
+    gh = request.POST.get('gh')
     xm = request.POST.get('xm')
     jg = request.POST.get('jg')
     sjhm = request.POST.get('sjhm')
-    # 这里还需要三个字段！
-    models.student.objects.create(xh=xh, xm=xm, jg=jg,csrq='1999-2-28',xb='女', sjhm=sjhm,pwd='student',yxh_id='01')
+    xl = request.POST.get('xl')
+    xb = request.POST.get('xb')
+    csrq = request.POST.get('csrq')
+    print(csrq, type(csrq))
+
+    if (xh):
+      # 学生的信息
+      print("now is student")
+      print(xh,xm,jg,xb,sjhm)
+      models.student.objects.create(xh=xh, xm=xm, jg=jg,csrq=csrq,xb=xb, sjhm=sjhm,pwd='student',yxh_id='01')
+      return redirect('/admin_edit_user/')
+    else:
+      # 老师
+      print("now is teacher")
+      print(gh,xm,xl,csrq,xb)
+      models.teacher.objects.create(gh=gh, xm=xm, xl=xl, csrq=csrq, xb=xb, jbgz='8000', pwd='teacher',yxh_id='01')
+      return redirect('/admin_edit_user/')
+  else:
     return render(request, 'admin_edit_user.html', context={'all_student': all_student, 'all_teacher': all_teacher})
 
 def admin_mod_user(request):
   xh = request.GET.get('xh')
   isdel = request.GET.get('isdel')
-  if (isdel == 1):
+  student_info = models.student.objects.filter(xh=xh).first()
+  if (int(isdel) == 1):
     models.student.objects.filter(xh=xh).delete()
-    return redirect('/admin_mod_user.html/')
+    return redirect('/admin_edit_user/')
   else:
-    student_info = models.student.objects.filter(xh=xh)
-    department = models.department.objects.filter(yxh = student_info.yxh)
-    department = department.mc
-    xm = request.POST.get('xm')
-    xb = request.POST.get('xb')
-    sjhm = request.POST.get('sjhm')
-    jg = request.POST.get('jg')
-    yxh = request.POST.get('yxh')
-    models.student.objects.filter(xh=xh).update(xm=xm,xb=xb,sjhm=sjhm,jg=jg,yxh=yxh)
-
-  return render(request,'admin_mod_user.html',context={'xh':student_info[0].xh,'xm':student_info[0].xm,
-                                                       'sjhm':student_info[0].sjhm,'department':department,
-                                                       'jg':student_info[0].jg,'xb':student_info[0].xb,
-                                                       'yxh':student_info[0].yxh})
+    if request.method == 'POST':
+      department = models.department.objects.filter(yxh=student_info.yxh_id).first()
+      print(department.mc, type(department.mc))
+      xm = request.POST.get('xm')
+      xb = request.POST.get('xb')
+      csrq = request.POST.get('csrq')
+      jg = request.POST.get('jg')
+      sjhm = request.POST.get('sjhm')
+      yxh = request.POST.get('yxh')
+      models.student.objects.filter(xh=xh).update(xm=xm,xb=xb,jg=jg,sjhm=sjhm,yxh_id=yxh,pwd = 'student')
+      # return render(request, 'admin_mod_user.html', context={'xm':xm,'xh':xh,'jg':jg,'sjhm':sjhm,'csrq':csrq,'xb':xb,'yxh':yxh})
+      return redirect('/admin_edit_user/')
+  return render(request, 'admin_mod_user.html', context={'xm':student_info.xm,'xh':student_info.xh,
+                                                         'jg':student_info.jg,'sjhm':student_info.sjhm,
+                                                         'csrq':student_info.csrq,'xb':student_info.xb,
+                                                         'yxh':student_info.yxh_id})
 
 def admin_mod_teacher(request):
-  return render(request,'admin_mod_teacher.html')
+  gh = request.GET.get('gh')
+  isdel = request.GET.get('isdel')
+  teacher_info = models.teacher.objects.filter(gh=gh).first()
+  print("=====",gh)
+  print(teacher_info)
+  if (int(isdel) == 1):
+    models.teacher.objects.filter(gh=gh).delete()
+    return redirect('/admin_edit_user/')
+  else:
+    if request.method == 'POST':
+      department = models.department.objects.filter(yxh=teacher_info.yxh_id).first()
+      print(department.mc, type(department.mc))
+      xm = request.POST.get('xm')
+      xb = request.POST.get('xb')
+      xl = request.POST.get('xl')
+      jbgz = request.POST.get('jbgz')
+      models.teacher.objects.filter(gh=gh).update(xm=xm, xb=xb, xl=xl,jbgz=jbgz)
+      return redirect('/admin_edit_user/')
+
+  return render(request, 'admin_mod_teacher.html', context={'xm': teacher_info.xm, 'gh': teacher_info.gh,
+                                                         'xl': teacher_info.xl, 'jbgz':teacher_info.jbgz,
+                                                         'csrq': teacher_info.csrq, 'xb': teacher_info.xb,
+                                                         })
 
 def admin_edit_course(request):
   cursor = connection.cursor()
@@ -331,21 +371,21 @@ def admin_edit_course(request):
 def admin_mod_course(request):
   kh = request.GET.get('kh_id')
   isdel = request.GET.get('isdel')
-  if (isdel == 1):
+  print(kh,type(kh),isdel,type(isdel))
+  if (int(isdel) == 1):
     models.course.objects.filter(kh=kh).delete()
-    return redirect('/admin_mod_course.html/')
+    return redirect('/admin_edit_course/')
   else:
-    course_info = models.student.objects.filter(kh=kh)
-    department = models.department.objects.filter(yxh=course_info.yxh)
-    department = department.mc
-    km = request.POST.get('km')
-    xf = request.POST.get('xf')
-    xs = request.POST.get('xs')
-    yxh = request.POST.get('yxh')
-    models.student.objects.filter(kh=kh).update(km=km,xf=xf,xs=xs,yxh=yxh)
+    if request.method == 'POST':
+      course_info = models.course.objects.filter(kh=kh).first()
+      department = models.department.objects.filter(yxh=course_info.yxh_id).first()
+      print(department.mc,type(department.mc))
+      km = request.POST.get('km')
+      xf = request.POST.get('xf')
+      xs = request.POST.get('xs')
+      yxh = request.POST.get('yxh')
+      models.course.objects.filter(kh=kh).update(km=km,xf=xf,xs=xs,yxh_id=yxh)
+      return render(request, 'admin_mod_course.html', context={'kh': kh,'km':km,'xf':xf,'xs':xs,'yxh':yxh})
 
-  return render(request, 'admin_mod_course.html', context={'kh': course_info[0].kh, 'km': course_info[0].km,
-                                                         'xf': course_info[0].xf, 'department': department,
-                                                         'xs': course_info[0].xs, 'yxh': course_info[0].yxh})
-
+  return render(request, 'admin_mod_course.html',context={'kh':kh})
 

@@ -86,16 +86,16 @@
                   <tr>
                     <form method="POST">
                         {% csrf_token %}
-                      <a>课程编号：</a>
-                      <input type="text" value="{{item.id}}" name="id" style="margin:10px 33px 10px 0px;border-width: 3px 0px 0px 0px;width:120px"></input>
+                      <a>课号：</a>
+                      <input type="text" value="{{kh}}" name="kh" style="margin:10px 33px 10px 0px;border-width: 3px 0px 0px 0px;width:120px"></input>
+                      <a>课分：</a>
+                      <input type="text" value="{{km}}" name="km" style="margin:10px 33px 10px 0px;border-width: 3px 0px 0px 0px;width:120px"></input>
                       <a>学分：</a>
-                      <input type="text" value="{{item.credit}}" name="credit" style="margin:10px 33px 10px 0px;border-width: 3px 0px 0px 0px;width:120px"></input>
-                      <a>课程名：</a>
-                      <input type="text" value="{{item.name}}" name="name" style="margin:10px 33px 10px 0px;border-width: 3px 0px 0px 0px;width:120px"></input>
-                      <a>教师编号：</a>
-                      <input type="text" value="{{item.teacher_number}}" name="teacher_number" style="margin:10px 33px 10px 0px;border-width: 3px 0px 0px 0px;width:120px"></input>
-                      <a>教师姓名：</a>
-                      <input type="text" value="{{item.teacher_name}}" name="teacher_name" style="margin:10px 43px 10px 0px;border-width: 3px 0px 0px 0px;width:120px"></input>
+                      <input type="text" value="{{xf}}" name="xf" style="margin:10px 33px 10px 0px;border-width: 3px 0px 0px 0px;width:120px"></input>
+                      <a>学时：</a>
+                      <input type="text" value="{{xs}}" name="xs" style="margin:10px 33px 10px 0px;border-width: 3px 0px 0px 0px;width:120px"></input>
+                      <a>院系号：01代表计算机/02代表通信</a>
+                      <input type="text" value="{{yxh}}" name="yxh" style="margin:10px 43px 10px 0px;border-width: 3px 0px 0px 0px;width:120px"></input>
                       <button class="btn btn-primary"><i class="fa fa-fw fa-lg fa-check-circle"></i>提交 Submit</button>
                     </form>
                   </tr>
