@@ -37,12 +37,10 @@ def login(request):
                 return redirect('/admin_index/')
             else:
                 # 密码错误
-                messages.success(request, "Error!")
-                return render(request, 'login.html')
+                return render(request, 'login.html', {'script': "alert", 'wrong': '密码错误'})
         # 账号或密码不存在
         else:
-            messages.success(request, "Error!")
-            return render(request, 'login.html')
+            return render(request, 'login.html', {'script': "alert", 'wrong': '账号或密码不存在'})
 
 
 def student_index(request):
@@ -158,7 +156,7 @@ def select_course(request):
       print(teacher_id)
       models.e_table.objects.create(xq='2019-2020春季', xh_id=number, kh_id=course_id, gh_id=teacher_id)
       # messages.success(request, '选课成功啦~~~~~~')
-      return redirect('/select_course.html/')
+      return redirect('/select_course/')
 
 def delete_course(request):
     number = request.session.get('number')
@@ -168,7 +166,7 @@ def delete_course(request):
       "from system_course,system_e_table,system_teacher "
       "where system_e_table.kh_id = system_course.kh "
       "and system_e_table.gh_id = system_teacher.gh "
-      "and xh_id = %s and zpcj is not null",
+      "and xh_id = %s and zpcj is null",
       [number])
     all_course = cursor.fetchall()  # 读取所有
     # print(all_scores, type(all_scores))
@@ -188,7 +186,7 @@ def delete_course(request):
       # 先选中，再删除
       models.e_table.objects.filter(xh_id=number, kh_id=course_id).delete()
       # messages.success(request, '退课成功啦~~~~~~')
-      return redirect('/delete_course.html/')
+      return redirect('/delete_course/')
 
 def teacher_course(request):
   cursor = connection.cursor()
@@ -249,11 +247,41 @@ def teacher_mod_score(request):
   else:
     # 先找到对应数据，再update
     models.e_table.objects.filter(gh_id=number, kh_id=kh, xh_id=xh).update(pscj=pscj, kscj=kscj, zpcj=zpcj)
-    return render(request, 'teacher_mod_score.html', context={'xh': xh, 'xm': xm, 'km': km})
+    return redirect('/teacher_mod_score/')
 
 def admin_edit_user(request):
-  all_student = models.student.objects.all()
-  all_teacher = models.teacher.objects.all()
+  cursor = connection.cursor()
+  # 查询操作
+  cursor.execute("select gh,xm,xb,xl,csrq,mc from system_teacher,system_department "
+                 "where system_teacher.yxh_id = system_department.yxh")
+  teacher_info = cursor.fetchall()  # 读取所有
+  all_teacher = []
+  for item in teacher_info:
+    temp = dict()  # 注意这里一定要放在循环之内！！！！！！！！！！！！
+    temp['gh'] = item[0]
+    temp['xm'] = item[1]
+    temp['xb'] = item[2]
+    temp['xl'] = item[3]
+    temp['csrq'] = item[4]
+    temp['mc'] = item[5]
+    all_teacher.append(temp)
+
+  cursor.execute("select xh,xm,xb,csrq,jg,sjhm,mc from system_student,system_department "
+                 "where system_student.yxh_id = system_department.yxh")
+  student_info = cursor.fetchall()  # 读取所有
+  all_student = []
+  for item in student_info:
+    temp = dict()  # 注意这里一定要放在循环之内！！！！！！！！！！！！
+    temp['xh'] = item[0]
+    temp['xm'] = item[1]
+    temp['xb'] = item[2]
+    temp['csrq'] = item[3]
+    temp['jg'] = item[4]
+    temp['sjhm'] = item[5]
+    temp['mc'] = item[6]
+    all_student.append(temp)
+  # all_student = models.student.objects.all()
+  # all_teacher = models.teacher.objects.all()
   if request.method == 'POST':
     xh = request.POST.get('xh')
     gh = request.POST.get('gh')
@@ -362,10 +390,12 @@ def admin_edit_course(request):
     if (models.course.objects.filter(kh=kh)):
       # 有这门课了
       models.open_course.objects.create(xq=xq, kh_id=kh, gh_id=gh, sksj=sksj)
-      return redirect('/admin_edit_course.html/')
+      return redirect('/admin_edit_course/')
     else:
       models.course.objects.create(kh=kh, km=km, xf=xf, xs=xs, yxh_id='01')
       models.open_course.objects.create(xq=xq, kh_id=kh, gh_id=gh, sksj=sksj)
+      return redirect('/admin_edit_course/')
+
     return render(request, 'admin_edit_course.html', context={'open_course': all})
 
 def admin_mod_course(request):

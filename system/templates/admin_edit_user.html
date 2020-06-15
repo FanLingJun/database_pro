@@ -92,11 +92,12 @@
                     <tr>
                       <th>学号 Number</th>
                       <th>姓名 Name</th>
+                        <th>学院 School</th>
                       <th>性别 Sex</th>
                       <th>出生日期 Age</th>
                       <th>籍贯 Password</th>
                       <th>手机号 sjhm</th>
-                        <th>操作 Opt</th>
+                      <th>操作 Opt</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -104,6 +105,7 @@
                     <tr>
                       <td>{{item.xh}}</td>
                       <td>{{item.xm}}</td>
+                        <td>{{item.mc}}</td>
                       <td>{{item.xb}}</td>
                       <td>{{item.csrq}}</td>
                       <td>{{item.jg}}</td>
@@ -133,6 +135,7 @@
                     <tr>
                       <th>工号 Number</th>
                       <th>姓名 Name</th>
+                        <th>学院 School</th>
                       <th>性别 Sex</th>
                       <th>出生日期 Age</th>
                       <th>职称 Title</th>
@@ -147,7 +150,7 @@
                       <td>{{item.xb}}</td>
                       <td>{{item.csrq}}</td>
                       <td>{{item.xl}}</td>
-
+                      <td>{{item.mc}}</td>
                       <td>
                         <a href="/admin_mod_teacher/?gh={{item.gh}}&isdel=0" style="padding:7px">编辑</a>
                         <a href="/admin_mod_teacher/?gh={{item.gh}}&isdel=1" style="padding:7px">删除</a>
