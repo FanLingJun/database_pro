@@ -83,19 +83,49 @@
                 <tbody>
 
                   <tr>
-                    <form method="POST">
-                        {% csrf_token %}
-                      <a>工号：</a>
-                      <input type="text" value="{{gh}}" name="gh" style="margin:10px 23px 10px 0px;border-width: 3px 0px 0px 0px;width:90px"></input>
-                      <a>姓名：</a>
-                      <input type="text" value="{{xm}}" name="xm" style="margin:10px 23px 10px 0px;border-width: 3px 0px 0px 0px;width:90px"></input>
-                      <a>性别：</a>
-                      <input type="text" value="{{xb}}" name="xb" style="margin:10px 23px 10px 0px;border-width: 3px 0px 0px 0px;width:90px"></input>
-                      <a>学历：</a>
-                      <input type="text" value="{{xl}}" name="xl" style="margin:10px 20px 13px 0px;border-width: 3px 0px 0px 0px;width:90px"></input>
-                      <a>工资：</a>
-                      <input type="text" value="{{jbgz}}" name="jbgz" style="margin:10px 23px 10px 0px;border-width: 3px 0px 0px 0px;width:90px"></input>
-                      <button class="btn btn-primary"><i class="fa fa-fw fa-lg fa-check-circle"></i>提交 Submit</button>
+{#                    <form method="POST">#}
+{#                        {% csrf_token %}#}
+{#                      <a>工号：</a>#}
+{#                      <input type="text" value="{{gh}}" name="gh" style="margin:10px 23px 10px 0px;border-width: 3px 0px 0px 0px;width:90px"></input>#}
+{#                      <a>姓名：</a>#}
+{#                      <input type="text" value="{{xm}}" name="xm" style="margin:10px 23px 10px 0px;border-width: 3px 0px 0px 0px;width:90px"></input>#}
+{#                      <a>性别：</a>#}
+{#                      <input type="text" value="{{xb}}" name="xb" style="margin:10px 23px 10px 0px;border-width: 3px 0px 0px 0px;width:90px"></input>#}
+{#                      <a>学历：</a>#}
+{#                      <input type="text" value="{{xl}}" name="xl" style="margin:10px 20px 13px 0px;border-width: 3px 0px 0px 0px;width:90px"></input>#}
+{#                      <a>工资：</a>#}
+{#                      <input type="text" value="{{jbgz}}" name="jbgz" style="margin:10px 23px 10px 0px;border-width: 3px 0px 0px 0px;width:90px"></input>#}
+{#                      <button class="btn btn-primary"><i class="fa fa-fw fa-lg fa-check-circle"></i>提交 Submit</button>#}
+
+                        <form class="row" method="POST">
+                      {% csrf_token %}
+                        <div class="row">
+                        <div class="form-group col-md-3">
+                            <label class="control-label">工号</label>
+                              <input class="form-control"type="text"  value="{{gh}}"  name="gh" >
+                        </div>
+
+                        <div class="form-group col-md-3">
+                            <label class="control-label">姓名</label>
+                              <input class="form-control"type="text"  value="{{xm}}" name="xm" >
+                        </div>
+
+                            <div class="form-group col-md-3">
+                            <label class="control-label">性别</label>
+                              <input class="form-control"type="text"  value="{{xb}}" name="xb" >
+                        </div>
+
+                            <div class="form-group col-md-3">
+                            <label class="control-label">职称</label>
+                              <input class="form-control"type="text"  value="{{xl}}" name="xl" >
+                        </div>
+
+                            <div class="form-group col-md-3">
+                            <label class="control-label">工资</label>
+                              <input class="form-control"type="text"  value="{{jbgz}}" name="jbgz" >
+                        </div>
+                        </div>
+                     <button class="btn btn-primary"><i class="fa fa-fw fa-lg fa-check-circle"></i>提交 Submit</button>
                     </form>
                   </tr>
 
