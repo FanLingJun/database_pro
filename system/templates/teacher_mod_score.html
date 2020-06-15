@@ -82,20 +82,20 @@
             <h3 class="tile-title">提交成绩 Score Submit：{{xh}}——{{xm}}——{{km}}</h3>
             <div class="tile-body">
               <form class="row" method="POST">
-
+                  {% csrf_token %}
                 <div class="form-group col-md-3">
                   <label class="control-label">平时成绩： </label>
-                  <input class="form-control" type="text" placeholder="Enter Usual grades" name="id">
+                  <input class="form-control" type="text" placeholder="Enter Usual grades" name="pscj">
                 </div>
 
               <div class="form-group col-md-3">
                   <label class="control-label">考试成绩： </label>
-                  <input class="form-control" type="text" placeholder="Enter Exam results" name="id">
+                  <input class="form-control" type="text" placeholder="Enter Exam results" name="kscj">
                 </div>
 
               <div class="form-group col-md-3">
                   <label class="control-label">总评成绩： </label>
-                  <input class="form-control" type="text" placeholder="Enter overall rating" name="id">
+                  <input class="form-control" type="text" placeholder="Enter overall rating" name="zpcj">
                 </div>
 
                 <div class="form-group col-md-4 align-self-end">
