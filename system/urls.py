@@ -4,6 +4,7 @@ urlpatterns = [
     path('', views.login),
     # path('index/', views.index),
     path('login/', views.login),
+    path('logout/', views.logout),
     path('student_index/', views.student_index),
     path('teacher_index/', views.teacher_index),
     path('admin_index/', views.admin_index),

@@ -5,9 +5,11 @@ from django.db import connection
 
 
 def page_not_found(request, **kwargs):
-  return render(request,'error.html')
+  return redirect('/login/')
 
-
+def logout(request):
+  request.session['number'] = None
+  return redirect('/login/')
 # 在这个视图文件中，定义方法
 # 编写函数逻辑判断，应对响应
 
