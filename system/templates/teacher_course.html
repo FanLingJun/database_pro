@@ -32,13 +32,13 @@
     <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
     <aside class="app-sidebar">
       <div class="app-sidebar__user">
-{#        <img style="height:45px;margin-right:30px;" src="{% static "images/teacher.jpg" %}" alt="User Image">#}
+        <img style="height:60px;margin-right:15px;" src="{% static "images/jiaoshi.png" %}" alt="User Image">
         <div>
-          <p class="app-sidebar__user-name">{{xm}}</p>
-            <p class="app-sidebar__user-designation">{{gh}}</p>
-
+          <p class="app-sidebar__user-name">姓名：{{xm}}</p>
+            <p class="app-sidebar__user-designation">工号：{{gh}}</p>
         </div>
       </div>
+        <div class="divider"></div>
 <!--      跳转到不同功能页面-->
       <ul class="app-menu">
           <li><a class="app-menu__item" href="/teacher_index/"><i class="app-menu__icon fa fa-home"></i><span class="app-menu__label">教师首页</span></a></li>
