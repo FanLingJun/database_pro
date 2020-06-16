@@ -137,7 +137,7 @@
           </div>
         </div>
       </div>
-        <div class="col-md-12" style="display: none" id="div">
+        <div class="col-md-12" style="display: block" >
           <div class="tile">
           <h3 class="tile-tile">可选课程</h3>
             <div class="tile-body">
@@ -281,7 +281,7 @@
     <!-- Data table plugin-->
     <script type="text/javascript" src="{% static "js/plugins/jquery.dataTables.min.js" %}"></script>
     <script type="text/javascript" src="{% static "js/plugins/dataTables.bootstrap.min.js" %}"></script>
-    <script type="text/javascript">$('#sampleTable1').DataTable();</script>
+    {% comment %}<script type="text/javascript">$('#sampleTable1').DataTable();</script>{% endcomment %}
     <script type="text/javascript">$('#sampleTable2').DataTable();</script>
     <!-- Google analytics script-->
     <script type="text/javascript">

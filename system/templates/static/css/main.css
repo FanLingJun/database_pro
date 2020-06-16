@@ -16884,7 +16884,9 @@ table.jambo_table tbody tr.selected td {
 
 .logout{
   font-size: 15px;
-  padding-left: 1040px;
+  position: fixed;
+  top: 25px;
+  right: 45px;
   color:#ffffff;
   text-decoration: underline;
 }
