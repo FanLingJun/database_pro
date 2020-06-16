@@ -55,17 +55,21 @@
         <div class="col-md-12">
           <div class="tile">
               <h3 class="tile-tile">课程查询</h3>
-              <form method="post">
+              <form method="POST">
+                {% csrf_token %}
                   <div class="form-inline">
                       <input type="text" class="form-control" placeholder="请输入课名" name="km">
-                      <button type="button" class="btn btn-primary">搜索</button>
-                      <div style="padding-left: 275px;">
+                      <button type="submit" class="btn btn-primary">搜索</button>
+
+                      {% comment %}<div style="padding-left: 275px;">
                           <button type="button" class="btn btn-primary" onclick="show()">显示所有可选课程</button>
-                      </div>
-                       <div style="padding-left: 275px;">
+                      </div>{% endcomment %}
+
+                       {% comment %}<div style="padding-left: 275px;">
                            <button id="insertBtn" type="button" class="btn btn-primary" data-toggle="modal"
                 data-target="#insertLesson">选课</button>
-                       </div>
+                       </div>{% endcomment %}
+
                   </div>
               </form>
 
@@ -117,16 +121,16 @@
                           </tr>
                         </thead>
                         <tbody>
-{#                         {% for item in xxxxxx %}#}
+                        {% for item in course_data %}
                           <tr>
-                            <td>0830</td>
-                            <td>数据库</td>
-                            <td>1000</td>
-                            <td>王小明</td>
-                            <td>4</td>
-                            <td>周三3-4</td>
+                            <td>{{ item.kh }}</td>
+                            <td>{{ item.km }}</td>
+                            <td>{{ item.gh }}</td>
+                            <td>{{ item.xm }}</td>
+                            <td>{{ item.xf }}</td>
+                            <td>{{ item.sksj }}</td>
                           </tr>
-{#                        {% endfor %}#}
+                        {% endfor %}
                         </tbody>
                       </table>
                     </div>

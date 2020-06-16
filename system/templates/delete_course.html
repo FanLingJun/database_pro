@@ -76,7 +76,7 @@
                             <td>{{ item.xm }}</td>
                             <td>{{ item.xf }}</td>
                             <td>
-                                <button class="btn btn-primary"><a href="/delete_course/?course_id={{item.kh}}" style="color: #ffffff">退课</a></button>
+                                <button class="btn btn-primary"><a href="/delete_course/?kh={{item.kh}}" style="color: #ffffff">退课</a></button>
                             </td>
                           </tr>
                         {% endfor %}
@@ -88,7 +88,7 @@
 
       </div>
 
-        <div class="col-md-12">
+        {% comment %}<div class="col-md-12">
           <div class="tile">
             <h3 class="tile-title">退课</h3>
             <div class="tile-body">
@@ -114,7 +114,7 @@
             </div>
           </div>
         </div>
-
+{% endcomment %}
         {% comment %}<div class="col-md-12">
           <div class="tile">
           <h3 class="tile-tile"></h3>

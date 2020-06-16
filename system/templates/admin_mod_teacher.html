@@ -115,15 +115,37 @@
                               <input class="form-control"type="text"  value="{{xb}}" name="xb" >
                         </div>
 
-                            <div class="form-group col-md-3">
+                            {% comment %}<div class="form-group col-md-3">
                             <label class="control-label">职称</label>
                               <input class="form-control"type="text"  value="{{xl}}" name="xl" >
+                        </div>{% endcomment %}
+                          <div class="form-group col-md-3" >
+                            <label for="jsxh">学院</label>
+                            <select id="jsxy" class="form-control" name="mc" >
+                                <option value="01">计算机学院</option>
+                                <option value="02">通讯学院</option>
+                                <option value="03">材料学院</option>
+                                <option value="04">文学院</option>
+                                <option value="05">理学院</option>
+                                <option value="06">法学院</option>
+                            </select>
                         </div>
 
                             <div class="form-group col-md-3">
                             <label class="control-label">工资</label>
                               <input class="form-control"type="text"  value="{{jbgz}}" name="jbgz" >
                         </div>
+
+                          <div class="form-group col-md-3" >
+                            <label for="xl">职称</label>
+                            <select id="xl" class="form-control" name="xl" >
+                                <option value="讲师">讲师</option>
+                                <option value="副教授">副教授</option>
+                                <option value="教授">教授</option>
+                                <option value="研究员">研究员</option>
+                            </select>
+                        </div>
+
                         </div>
                      <button class="btn btn-primary"><i class="fa fa-fw fa-lg fa-check-circle"></i>提交 Submit</button>
                     </form>

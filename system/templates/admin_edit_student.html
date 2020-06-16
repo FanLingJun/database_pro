@@ -148,11 +148,13 @@
 
                         <div class="form-group col-md-3" >
                             <label for="xsxh">学院</label>
-                            <select id="xsxy" class="form-control" mutiple="" name="mc">
+                            <select id="xsxy" class="form-control" name="mc">
                                 <option value="01">计算机学院</option>
                                 <option value="02">通讯学院</option>
-                                <option value="03">理学院</option>
+                                <option value="03">材料学院</option>
                                 <option value="04">文学院</option>
+                                <option value="05">理学院</option>
+                                <option value="06">法学院</option>
                             </select>
                         </div>
 
@@ -239,9 +241,9 @@
       });
     </script>
     <!-- Data table plugin-->
-    <script type="text/javascript" src="{% static "js/plugins/jquery.dataTables.min.js" %}"></script>
+    {% comment %}<script type="text/javascript" src="{% static "js/plugins/jquery.dataTables.min.js" %}"></script>
     <script type="text/javascript" src="{% static "js/plugins/dataTables.bootstrap.min.js" %}"></script>
-    <script type="text/javascript">$('#sampleTable').DataTable();</script>
+    <script type="text/javascript">$('#sampleTable').DataTable();</script>{% endcomment %}
     <!-- Google analytics script-->
     <script type="text/javascript">
       if(document.location.hostname == 'pratikborsadiya.in') {

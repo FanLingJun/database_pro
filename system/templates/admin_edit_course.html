@@ -157,30 +157,33 @@
 
                             <div class="form-group col-md-3" >
                             <label for="xq">学期</label>
-                            <select id="xq" class="form-control" mutiple="" name="xq">
-                                <option value="01">2012-2013秋季</option>
-                                <option value="02">2012-2013冬季</option>
-                                <option value="03">2013-2014秋季</option>
-                                <option value="04">2013-2014冬季</option>
-                                <option value="05">2019-2020春季</option>
+                            <select id="xq" class="form-control" name="xq">
+                              <option value="2019-2020春季">2019-2020春季</option>
+                              <option value="2019-2020夏季">2019-2020夏季</option>
+                              <option value="2020-2021秋季">2020-2021秋季</option>
+                              <option value="2020-2021冬季">2020-2021冬季</option>
+                              <option value="2020-2021春季">2020-2021春季</option>
                             </select>
                         </div>
 
                             <div class="form-group col-md-3">
                             <label class="control-label">学时</label>
-                              <input class="form-control"type="text" placeholder="学时" name="xs" >
+                              <input class="form-control" type="text" placeholder="学时" name="xs" >
                         </div>
 
                       {% comment %}请在这里添加一个选择学院的checkbox{% endcomment %}
                         <div class="form-group col-md-3" >
-                            <label for="kcxy">学院</label>
-                            <select id="kcxy" class="form-control" mutiple="" name="mc">
+                            <label for="jsxh">学院</label>
+                            <select id="jsxy" class="form-control" name="mc">
                                 <option value="01">计算机学院</option>
                                 <option value="02">通讯学院</option>
-                                <option value="03">理学院</option>
+                                <option value="03">材料学院</option>
                                 <option value="04">文学院</option>
+                                <option value="05">理学院</option>
+                                <option value="06">法学院</option>
                             </select>
                         </div>
+
                         </div>
                       <button class="btn btn-primary"><i class="fa fa-fw fa-lg fa-check-circle"></i>提交 Submit</button>
                     </form>
@@ -202,9 +205,9 @@
     <script src="{% static "js/plugins/pace.min.js"%}"></script>
     <!-- Page specific javascripts-->
     <!-- Data table plugin-->
-    <script type="text/javascript" src="{% static "js/plugins/jquery.dataTables.min.js" %}"></script>
+    {% comment %}<script type="text/javascript" src="{% static "js/plugins/jquery.dataTables.min.js" %}"></script>
     <script type="text/javascript" src="{% static "js/plugins/dataTables.bootstrap.min.js" %}"></script>
-    <script type="text/javascript">$('#sampleTable').DataTable();</script>
+    <script type="text/javascript">$('#sampleTable').DataTable();</script>{% endcomment %}
     <!-- Google analytics script-->
     <script type="text/javascript">
       if(document.location.hostname == 'pratikborsadiya.in') {
