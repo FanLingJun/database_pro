@@ -41,9 +41,9 @@
 <!--      跳转到不同功能页面-->
            <ul class="app-menu">
                <li><a class="app-menu__item" href="/admin_index/"><i class="app-menu__icon fa fa-home"></i><span class="app-menu__label">管理员首页</span></a></li>
-               <li><a class="app-menu__item" href="/admin_edit_student/"><i class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">学生管理 Users Edit</span></a></li>
-               <li><a class="app-menu__item " href="/admin_edit_teacher/"><i class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">教师管理 Users Edit</span></a></li>
-               <li><a class="app-menu__item   active" href="/admin_edit_course/"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">开课管理 Courses Edit</span></a></li>
+               <li><a class="app-menu__item" href="/admin_edit_student/"><i class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">学生管理</span></a></li>
+               <li><a class="app-menu__item " href="/admin_edit_teacher/"><i class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">教师管理</span></a></li>
+               <li><a class="app-menu__item   active" href="/admin_edit_course/"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">开课管理</span></a></li>
            </ul>
     </aside>
 <!--    主要内容部分-->
@@ -63,7 +63,7 @@
               <div class="row">
         <div class="col-md-12">
           <div class="tile">
-            <h3 class="tile-tile">开课管理 Opened Courses</h3>
+            <h3 class="tile-tile">开课管理</h3>
             <div class="tile-body">
               <div class="table-responsive">
                 <table class="table table-hover table-bordered" id="sampleTable">
@@ -101,21 +101,13 @@
         </div>
         <div class="col-md-12">
           <div class="tile">
-            <h3 class="tile-title">新增课程 Add Course</h3>
+            <h3 class="tile-title">新增课程</h3>
             <div class="table-responsive">
               <table class="table">
                 <thead>
                   <tr>
                     <form method="POST">
                       {% csrf_token %}
-{#                      <input type="text" placeholder="课程号" name="kh" style="margin:10px 30px 10px 15px;border-width: 3px 0px 0px 0px;width:160px"></input>#}
-{#                      <input type="text" placeholder="课名" name="km" style="margin:10px 30px 10px 20px;border-width: 3px 0px 0px 0px;width:160px"></input>#}
-{#                      <input type="text" placeholder="学分" name="xf" style="margin:10px 30px 10px 20px;border-width: 3px 0px 0px 0px;width:160px"></input>#}
-{#                      <input type="text" placeholder="教师号" name="gh" style="margin:10px 40px 10px 20px;border-width: 3px 0px 0px 0px;width:160px"></input>#}
-{#                      <input type="text" placeholder="上课时间" name="sksj" style="margin:10px 40px 10px 20px;border-width: 3px 0px 0px 0px;width:160px"></input>#}
-{#                      <input type="text" placeholder="学期" name="xq" style="margin:10px 40px 10px 20px;border-width: 3px 0px 0px 0px;width:160px"></input>#}
-{#                      <input type="text" placeholder="学时" name="xs" style="margin:10px 40px 10px 20px;border-width: 3px 0px 0px 0px;width:160px"></input>#}
-
                         <div class="row">
                         <div class="form-group col-md-3">
                             <label class="control-label">课号</label>
@@ -172,7 +164,7 @@
                         </div>
 
                         </div>
-                      <button class="btn btn-primary"><i class="fa fa-fw fa-lg fa-check-circle"></i>提交 Submit</button>
+                      <button class="btn btn-primary">提交</button>
                     </form>
                   </tr>
                 </thead>

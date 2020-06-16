@@ -14,7 +14,7 @@
     <meta property="og:url" content="http://pratikborsadiya.in/blog/vali-admin">
     <meta property="og:image" content="http://pratikborsadiya.in/blog/vali-admin/hero-social.png">
     <meta property="og:description" content="Vali is a responsive and free admin theme built with Bootstrap 4, SASS and PUG.js. It's fully customizable and modular.">
-    <title>教务处管理员端-用户管理</title>
+    <title>教务处管理员端-学生管理</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -41,9 +41,9 @@
 <!--      跳转到不同功能页面-->
            <ul class="app-menu">
                <li><a class="app-menu__item" href="/admin_index/"><i class="app-menu__icon fa fa-home"></i><span class="app-menu__label">管理员首页</span></a></li>
-               <li><a class="app-menu__item  active" href="/admin_edit_student/"><i class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">学生管理 Users Edit</span></a></li>
-               <li><a class="app-menu__item " href="/admin_edit_teacher/"><i class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">教师管理 Users Edit</span></a></li>
-               <li><a class="app-menu__item" href="/admin_edit_course/"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">开课管理 Courses Edit</span></a></li>
+               <li><a class="app-menu__item  active" href="/admin_edit_student/"><i class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">学生管理</span></a></li>
+               <li><a class="app-menu__item " href="/admin_edit_teacher/"><i class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">教师管理</span></a></li>
+               <li><a class="app-menu__item" href="/admin_edit_course/"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">开课管理</span></a></li>
            </ul>
     </aside>
 <!--    主要内容部分-->
@@ -60,16 +60,9 @@
 {#      </div>#}
 <!--      内容显示-->
       <div class="clearfix"></div>
-{#      <div class="col-md-12">#}
-{#          <div class="tile">#}
-{#            <h3 class="tile-title">用户管理 User Edit</h3>#}
-{#          </div>#}
-{#      </div>#}
-
-
         <div class="col-md-12">
           <div class="tile">
-            <h3 class="tile-title">学生管理 Student Edit</h3>
+            <h3 class="tile-title">学生管理</h3>
 
 
             <div class="tile-body">
@@ -77,14 +70,14 @@
                 <table class="table table-hover table-bordered" id="sampleTable">
                   <thead>
                     <tr>
-                      <th>学号 Number</th>
-                      <th>姓名 Name</th>
-                        <th>学院 School</th>
-                      <th>性别 Sex</th>
-                      <th>出生日期 Age</th>
-                      <th>籍贯 Password</th>
-                      <th>手机号 sjhm</th>
-                      <th>操作 Opt</th>
+                      <th>学号</th>
+                      <th>姓名</th>
+                        <th>学院</th>
+                      <th>性别</th>
+                      <th>出生日期</th>
+                      <th>籍贯</th>
+                      <th>手机号</th>
+                      <th>操作</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -112,7 +105,7 @@
 
         <div class="col-md-12">
           <div class="tile">
-            <h3 class="tile-title">新增学生 Add Students</h3>
+            <h3 class="tile-title">新增学生</h3>
             <div class="table-responsive">
               <table class="table">
                 <thead>
@@ -122,15 +115,15 @@
                         <div class="row">
                         <div class="form-group col-md-3">
                             <label class="control-label">学号</label>
-                              <input class="form-control"type="text" placeholder="学号 number" name="xh" >
+                              <input class="form-control"type="text" placeholder="学号" name="xh" >
                         </div>
 
                         <div class="form-group col-md-3">
                             <label class="control-label">姓名</label>
-                              <input class="form-control"type="text" placeholder="姓名 name" name="xm" >
+                              <input class="form-control"type="text" placeholder="姓名" name="xm" >
                         </div>
 
-                      {% comment %}学院请做成checkbox{% endcomment %}
+
 {#                        xsxy学生学院#}
 
                         <div class="form-group col-md-3" >
@@ -150,7 +143,7 @@
 
                         <div class="form-group col-md-3">
                             <label class="control-label">出生日期</label>
-                                <input id="csrq" class="form-control" type="text" name="csrq" placeholder="Date of Birth">
+                                <input id="csrq" class="form-control" type="text" name="csrq" placeholder="出生日期">
                         </div>
                        </div>
 
@@ -177,20 +170,16 @@
 
                         <div class="form-group col-md-3">
                             <label class="control-label">籍贯</label>
-                              <input class="form-control" type="text" placeholder="籍贯 age" name="jg" >
+                              <input class="form-control" type="text" placeholder="籍贯" name="jg" >
                         </div>
 
                         <div class="form-group col-md-3">
                             <label class="control-label">手机号</label>
-                              <input class="form-control" type="text" placeholder="手机号 sjhm" name="sjhm" >
+                              <input class="form-control" type="text" placeholder="手机号" name="sjhm" >
                         </div>
 
                         </div>
-                          <button class="btn btn-primary " ><i class="fa fa-fw fa-lg fa-check-circle"></i>提交 Submit</button>
-
-
-{#                      <input type="text" placeholder="籍贯 age" name="jg" style="margin:10px 20px 10px 20px;border-width: 3px 0px 0px 0px;width:110px"></input>#}
-{#                      <input type="text" placeholder="手机号 sjhm" name="sjhm" style="margin:10px 40px 10px 20px;border-width: 3px 0px 0px 0px;width:110px"></input>#}
+                          <button class="btn btn-primary " ></i>提交</button>
 
                     </form>
                   </tr>

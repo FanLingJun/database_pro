@@ -42,13 +42,13 @@
 <!--      跳转到不同功能页面-->
       <ul class="app-menu">
            <li><a class="app-menu__item" href="/teacher_index/"><i class="app-menu__icon fa fa-home"></i><span class="app-menu__label">教师首页</span></a></li>
-        <li><a class="app-menu__item" href="/teacher_course/"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">我的课程 Teacher Courses</span></a></li>
-        <li><a class="app-menu__item  active" href="/teacher_edit_score/"><i class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">成绩录入 Score Editing</span></a></li>
+        <li><a class="app-menu__item" href="/teacher_course/"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">我的课程</span></a></li>
+        <li><a class="app-menu__item  active" href="/teacher_edit_score/"><i class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">成绩录入</span></a></li>
 
       </ul>
     </aside>
 <!--    主要内容部分-->
-    <div class="app-content">
+    <main class="app-content">
 <!--      头部-->
 {#      <div class="app-title">#}
 {#        <div>#}
@@ -60,41 +60,22 @@
 {#        </ul>#}
 {#      </div>#}
 <!--      内容显示-->
-      {% comment %}<div class="clearfix"></div>
-      <div class="col-md-12">
-          <div class="tile">
-            <h3 class="tile-title">成绩录入 Score Editing</h3>
-
-
-              <ul class="nav nav-pills">
-                <li class="nav-item"><a class="nav-link disabled">选择课程 Select Course</a></li>
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">——{{course_name}}——</a>
-                  <div class="dropdown-menu">
-                    {% for item in courses_data %}
-                    <a class="dropdown-item" href="/teacher_score_edit/?course_name={{item.course_name}}">{{ item.course_name }}</a>
-                    {% endfor %}
-                  </div>
-                </li>
-              </ul>
-
-          </div>
-      </div>{% endcomment %}
-
+     <div class="clearfix"></div>
           <div class="col-md-12">
           <div class="tile">
+              <h3 class="tile-title">我的学生</h3>
                <div class="table-responsive">
                 <table class="table table-hover table-bordered" id="sampleTable">
                   <thead>
                     <tr>
-                      <th>课程号</br>Course Id</th>
-                      <th>课程名</br>Course Name</th>
-                      <th>学生学号</br>Course Credit</th>
-                      <th>学生姓名</br>Student Number</th>
-                      <th>平时成绩</br>Student Name</th>
-                      <th>考试成绩</br>Student Score</th>
-                      <th>总评成绩</br>Score Edit</th>
-                      <th>编辑栏</br>Score Edit</th>
+                      <th>课程号</th>
+                      <th>课程名</th>
+                      <th>学生学号</th>
+                      <th>学生姓名</th>
+                      <th>平时成绩</th>
+                      <th>考试成绩</th>
+                      <th>总评成绩</th>
+                      <th>操作</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -108,20 +89,17 @@
                       <td>{{item.kscj}}</td>
                       <td>{{item.zpcj}}</td>
                       <td>
-        <a href="/teacher_mod_score/?kh={{item.kh}}&xh={{item.xh}}">录入</a>
+              <a href="/teacher_mod_score/?kh={{item.kh}}&xh={{item.xh}}">登记</a>
                       </td>
                     </tr>
                     {% endfor %}
                   </tbody>
                 </table>
-              </div>
 
           </div>
           </div>
         </div>
 
-    </div>
-    </div>
 
     </main>
     <!-- Essential javascripts for application to work-->
