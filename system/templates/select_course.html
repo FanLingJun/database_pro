@@ -26,7 +26,7 @@
   <body class="app sidebar-mini" style="background-color: #E5E5E5">
     <!-- Navbar顶部导航-->
     <header class="app-header">
-        <p class="nav-title">学生选课系统</p>
+        <p class="nav-title">学生选课系统<a class="logout" href="/logout/"><i class="fa fa-sign-out fa-lg"></i>退出</a></p>
     </header>
     <!-- Sidebar menu侧面导航-->
     <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
@@ -55,17 +55,21 @@
         <div class="col-md-12">
           <div class="tile">
               <h3 class="tile-tile">课程查询</h3>
-              <form method="post">
+              <form method="POST">
+                {% csrf_token %}
                   <div class="form-inline">
                       <input type="text" class="form-control" placeholder="请输入课名" name="km">
-                      <button type="button" class="btn btn-primary">搜索</button>
-                      <div style="padding-left: 275px;">
+                      <button type="submit" class="btn btn-primary">搜索</button>
+
+                      {% comment %}<div style="padding-left: 275px;">
                           <button type="button" class="btn btn-primary" onclick="show()">显示所有可选课程</button>
-                      </div>
-                       <div style="padding-left: 275px;">
+                      </div>{% endcomment %}
+
+                       {% comment %}<div style="padding-left: 275px;">
                            <button id="insertBtn" type="button" class="btn btn-primary" data-toggle="modal"
                 data-target="#insertLesson">选课</button>
-                       </div>
+                       </div>{% endcomment %}
+
                   </div>
               </form>
 
@@ -117,16 +121,16 @@
                           </tr>
                         </thead>
                         <tbody>
-{#                         {% for item in xxxxxx %}#}
+                        {% for item in course_data %}
                           <tr>
-                            <td>0830</td>
-                            <td>数据库</td>
-                            <td>1000</td>
-                            <td>王小明</td>
-                            <td>4</td>
-                            <td>周三3-4</td>
+                            <td>{{ item.kh }}</td>
+                            <td>{{ item.km }}</td>
+                            <td>{{ item.gh }}</td>
+                            <td>{{ item.xm }}</td>
+                            <td>{{ item.xf }}</td>
+                            <td>{{ item.sksj }}</td>
                           </tr>
-{#                        {% endfor %}#}
+                        {% endfor %}
                         </tbody>
                       </table>
                     </div>
@@ -166,41 +170,41 @@
               </div>
             </div>
           </div>
-        <div class="col-md-12">
-          <div class="tile">
-          <h3 class="tile-tile">课程查询</h3>
-            <div class="tile-body">
-              <div class="table-responsive">
-                <table class="table table-hover table-bordered" id="sampleTable1">
-                  <thead>
-                    <tr>
-                      <th>学期</th>
-                      <th>课号</th>
-                      <th>学分</th>
-                      <th>课号</th>
-                      <th>教师名</th>
-                      <th>教师工号</th>
-                      <th>上课时间</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {% for item in open_course %}
-                    <tr>
-                      <td>{{ item.xq}}</td>
-                      <td>{{item.km}}</td>
-                      <td>{{item.xf}}</td>
-                      <td>{{item.kh_id}}</td>
-                      <td>{{item.xm}}</td>
-                      <td>{{item.gh}}</td>
-                      <td>{{item.sksj}}</td>
-                    </tr>
-                    {% endfor %}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
+{#        <div class="col-md-12">#}
+{#          <div class="tile">#}
+{#          <h3 class="tile-tile">课程查询</h3>#}
+{#            <div class="tile-body">#}
+{#              <div class="table-responsive">#}
+{#                <table class="table table-hover table-bordered" id="sampleTable1">#}
+{#                  <thead>#}
+{#                    <tr>#}
+{#                      <th>学期</th>#}
+{#                      <th>课号</th>#}
+{#                      <th>学分</th>#}
+{#                      <th>课号</th>#}
+{#                      <th>教师名</th>#}
+{#                      <th>教师工号</th>#}
+{#                      <th>上课时间</th>#}
+{#                    </tr>#}
+{#                  </thead>#}
+{#                  <tbody>#}
+{#                    {% for item in open_course %}#}
+{#                    <tr>#}
+{#                      <td>{{ item.xq}}</td>#}
+{#                      <td>{{item.km}}</td>#}
+{#                      <td>{{item.xf}}</td>#}
+{#                      <td>{{item.kh_id}}</td>#}
+{#                      <td>{{item.xm}}</td>#}
+{#                      <td>{{item.gh}}</td>#}
+{#                      <td>{{item.sksj}}</td>#}
+{#                    </tr>#}
+{#                    {% endfor %}#}
+{#                  </tbody>#}
+{#                </table>#}
+{#              </div>#}
+{#            </div>#}
+{#          </div>#}
+{#        </div>#}
 
 {#        <div class="col-md-12">#}
 {#          <div class="tile">#}
