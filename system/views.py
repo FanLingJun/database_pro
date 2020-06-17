@@ -39,10 +39,10 @@ def login(request):
                 return redirect('/admin_index/')
             else:
                 # 密码错误
-                return render(request, 'login.html', {'script': "alert", 'wrong': '密码错误'})
+                return render(request, 'login.html', {"retcode": 1, "stderr": "用户名或密码不正确"})
         # 账号或密码不存在
         else:
-            return render(request, 'login.html', {'script': "alert", 'wrong': '账号或密码不存在'})
+            return render(request, 'login.html', {"retcode": 1, "stderr": "用户名或密码不存在"})
 
 
 def student_index(request):
@@ -81,8 +81,8 @@ def teacher_index(request):
 def admin_index(request):
   number = request.session.get('number')
   admin = models.admin.objects.filter(gh=number)
-  return render(request, 'admin_index.html', context={'gh': number, 'xm': admin[0].xm, 'xb': admin[0].xb
-                                                        })
+  return render(request, 'admin_index.html', context={'gh': number, 'xm': admin[0].xm, 'xb': admin[0].xb})
+
 
 def check_my_score(request):
   number = request.session.get('number')
@@ -159,7 +159,9 @@ def check_my_table(request):
     all.append(temp)
   return render(request, 'check_my_table.html', context={'xh': number, 'all_course':all})
 
+
 def select_course(request):
+
   number = request.session.get('number')
   cursor = connection.cursor()
   cursor.execute("select distinct xq,km,xf,kh_id,xm,gh,sksj "
@@ -189,6 +191,7 @@ def select_course(request):
     teacher_id = request.POST.get('teacher_id')
     print(teacher_id)
     if km:
+
       # 搜索课程
       cursor = connection.cursor()
       cursor.execute("select kh_id,km,gh_id,xm,xf,sksj "
@@ -210,9 +213,15 @@ def select_course(request):
         all_data.append(course)
       return render(request, 'select_course.html', context={'xh':number,'course_data': all_data, 'open_course': all})
     if course_id and teacher_id:
-      models.e_table.objects.create(xq='2020-2021秋季', xh_id=number, kh_id=course_id, gh_id=teacher_id)
-      # messages.success(request, '选课成功啦~~~~~~')
-      return redirect('/select_course/')
+      try:
+        models.e_table.objects.create(xq='2020-2021秋季', xh_id=number, kh_id=course_id, gh_id=teacher_id)
+        messages.success(request, '选课成功啦~~~~~~')
+        return redirect('/select_course/')
+      except:
+        messages.success(request, '选课失败啦！可能没有这门课或者这个老师哦~~~')
+        return redirect('/select_course/')
+
+
   else:
     return render(request, 'select_course.html', context={'xh':number,'open_course': all})
 
@@ -483,12 +492,22 @@ def admin_edit_course(request):
     yxh = request.POST.get('mc')
     if (models.course.objects.filter(kh=kh)):
       # 有这门课了
-      models.open_course.objects.create(xq=xq, kh_id=kh, gh_id=gh, sksj=sksj)
-      return redirect('/admin_edit_course/')
+      try:
+        models.open_course.objects.create(xq=xq, kh_id=kh, gh_id=gh, sksj=sksj)
+        messages.success(request, '已存在此课程，开课成功！')
+        return redirect('/admin_edit_course/')
+      except:
+        messages.success(request, '开课失败')
+        return redirect('/admin_edit_course/')
     else:
-      models.course.objects.create(kh=kh, km=km, xf=xf, xs=xs, yxh_id=yxh)
-      models.open_course.objects.create(xq=xq, kh_id=kh, gh_id=gh, sksj=sksj)
-      return redirect('/admin_edit_course/')
+      try:
+        models.course.objects.create(kh=kh, km=km, xf=xf, xs=xs, yxh_id=yxh)
+        models.open_course.objects.create(xq=xq, kh_id=kh, gh_id=gh, sksj=sksj)
+        messages.success(request, '创建新课程成功，开课成功！')
+        return redirect('/admin_edit_course/')
+      except:
+        messages.success(request, '开课失败！')
+        return redirect('/admin_edit_course/')
   else:
     return render(request, 'admin_edit_course.html', context={'gh':gh,'open_course': all})
 
