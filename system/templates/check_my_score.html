@@ -57,7 +57,7 @@
           <h3 class="tile-tile">成绩信息</h3>
             <div class="tile-body">
               <div class="table-responsive">
-                      <table class="table table-hover table-bordered">
+                      <table class="table table-hover table-bordered" id="datatable">
                         <thead>
                           <tr>
                             <th>课号</th>
@@ -83,9 +83,18 @@
           </div>
         </div>
       </div>
+
+        <div class="col-md-12">
+          <div class="tile">
+          <h3 class="tile-tile">绩点走势</h3>
+            <div class="tile-body">
+                <div id="container" style="max-width:800px;height:400px"></div>
+          </div>
+        </div>
+      </div>
+
       </div>
     </main>
-
     <!-- Essential javascripts for application to work-->
     <script src="{% static "js/jquery-3.3.1.min.js" %}"></script>
     <script src="{% static "js/popper.min.js" %}"></script>
@@ -99,6 +108,12 @@
     <script type="text/javascript" src="{% static "js/plugins/dataTables.bootstrap.min.js" %}"></script>
     <script type="text/javascript">$('#sampleTable1').DataTable();</script>
     <script type="text/javascript">$('#sampleTable2').DataTable();</script>
+    <script type="text/javascript" src="{% static "js/plugins/chart.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/highcharts.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/exporting.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/series-label.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/oldie.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/data.js.js" %}"></script>
     <!-- Google analytics script-->
     <script type="text/javascript">
       if(document.location.hostname == 'pratikborsadiya.in') {
@@ -110,5 +125,74 @@
       	ga('send', 'pageview');
       }
     </script>
+
+
+  <script>
+
+      (function () {
+
+          var km = [];
+          var gpa = [];
+          var tb=document.getElementById("datatable");    //获取table对像
+          var rows = tb.rows;
+          for (var i = 1; i < rows.length; i++) {    //--循环所有的行
+              var cells = rows[i].cells;　　// cells 集合返回表格中所有 <td> 或 <th> 元素。
+                for (var j = 0; j < cells.length; j++) {   //--循环所有的列，从第一列取数据，因为一般第一列都是标识，数据毫无意义。
+                    if (j==1){
+                        km.push(cells[j].innerHTML)
+                    }
+                    if (j==4){
+                        gpa.push(cells[j].innerHTML)
+                    }
+                }
+        }
+          console.log(km);
+          console.log(gpa);
+           var chart = Highcharts.chart('container', {
+	title: {
+		text: '绩点走势图'
+	},
+	yAxis: {
+		title: {
+			text: 'GPA'
+		}
+	},
+	legend: {
+		layout: 'vertical',
+		align: 'right',
+		verticalAlign: 'middle'
+	},
+	plotOptions: {
+		series: {
+			label: {
+				connectorAllowed: false
+			},
+			pointStart: 2010
+		}
+	},
+	series: [{
+		name: '绩点',
+		data: [3.3, 3.7, 3.7, 2.7, 4.0, 3.3, 2.0, 4.0]
+	}],
+	responsive: {
+		rules: [{
+			condition: {
+				maxWidth: 500
+			},
+			chartOptions: {
+				legend: {
+					layout: 'horizontal',
+					align: 'center',
+					verticalAlign: 'bottom'
+				}
+			}
+		}]
+	}
+});
+      })();
+
+  </script>
   </body>
 </html>
+
+

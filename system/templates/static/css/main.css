@@ -16889,3 +16889,14 @@ table.jambo_table tbody tr.selected td {
 .logout.active, .logout:hover, .logout:focus {
   color: #ffffff;
 }
+
+#datatable {
+	border: 1px solid #ccc;
+	border-collapse: collapse;
+	border-spacing: 0;
+	font-size: 12px;
+}
+td,th {
+	border: 1px solid #ccc;
+	padding: 4px 20px;
+}
