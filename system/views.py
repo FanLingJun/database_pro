@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from system import models # 引入对象模型
 from django.db import connection
-
+import sqlite3
 
 def page_not_found(request, **kwargs):
   return redirect('/login/')
@@ -270,6 +270,8 @@ def teacher_edit_score(request):
     temp['xq'] = item[7]
     teacher_student_data.append(temp)
   print(teacher_student_data)
+
+
   return render(request, 'teacher_edit_score.html',context={'gh':number,'student_data':teacher_student_data})
 
 def teacher_mod_score(request):
@@ -557,3 +559,5 @@ def admin_daily_post(request):
       all_teacher.append(temp)
     print (all_teacher)
     return render(request,'admin_daily_post.html',context={'gh':gh,'all_student':all_student,'all_teacher':all_teacher})
+
+
