@@ -482,10 +482,33 @@ def admin_mod_course(request):
   return render(request, 'admin_mod_course.html',context={'kh':kh,'km':course_info.km,'xf':course_info.xf,'xs':course_info.xs})
 
 def teacher_daily_post(request):
-    return render(request,'teacher_daily_post.html')
+  gh = request.session.get('number')
+  tea_info = models.teacher.objects.filter(gh=gh).first()
+  if request.method == 'POST':
+    bsrq = request.POST.get('bsrq')
+    zk = request.POST.get('zk')
+    tw = request.POST.get('tw')
+    print (gh, tea_info.xm, tea_info.yxh.yxh, bsrq, zk, tw)
+    models.tea_status.objects.create(gh_id=gh, xm=tea_info.xm, yxh_id=tea_info.yxh.yxh, bsrq=bsrq, zk=zk, tw=tw)
+    return redirect('/teacher_index/')
+  else:
+    return render(request, 'teacher_daily_post.html', context={'gh': tea_info.gh, 'xm': tea_info.xm})
 
 def student_daily_post(request):
-    return render(request,'student_daily_post.html')
+    # 不需要学生写学号姓名这些信息了
+    xh = request.session.get('number')
+    stu_info = models.student.objects.filter(xh=xh).first()
+    if request.method == 'POST':
+      bsrq = request.POST.get('bsrq')
+      zk = request.POST.get('zk')
+      tw = request.POST.get('tw')
+      print (xh,stu_info.xm,stu_info.yxh.yxh,bsrq,zk,tw)
+      models.stu_status.objects.create(xh_id=xh,xm=stu_info.xm,yxh_id=stu_info.yxh.yxh,bsrq=bsrq,zk=zk,tw=tw)
+      return redirect('/student_index/')
+    else:
+      return render(request,'student_daily_post.html',context={'xh':stu_info.xh,'xm':stu_info.xm})
 
 def admin_daily_post(request):
+    # 管理员不需要报送体温
+    # 管理员需要查看体温不正常的人群，过高或者过低
     return render(request,'admin_daily_post.html')

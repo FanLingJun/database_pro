@@ -55,5 +55,21 @@ class open_course(models.Model):
   gh = models.ForeignKey(to = teacher, on_delete=models.CASCADE)
   sksj = models.CharField(max_length=20)
 
+class stu_status(models.Model):
+  xh = models.ForeignKey(to = student, on_delete=models.CASCADE)
+  xm = models.CharField(max_length=20)
+  yxh = models.ForeignKey(to=department, on_delete=models.CASCADE)
+  bsrq = models.DateField(max_length=12)
+  zk = models.CharField(max_length=10)
+  tw = models.CharField(max_length=5)
 
+
+class tea_status(models.Model):
+  gh = models.ForeignKey(to = teacher, on_delete=models.CASCADE)
+  xm = models.CharField(max_length=20)
+  yxh = models.ForeignKey(to=department, on_delete=models.CASCADE)
+  bsrq = models.DateField(max_length=12)
+  zk = models.CharField(max_length=10)
+  tw = models.CharField(max_length=5)
+  
 
