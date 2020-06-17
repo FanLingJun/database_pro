@@ -14,7 +14,7 @@
     <meta property="og:url" content="http://pratikborsadiya.in/blog/vali-admin">
     <meta property="og:image" content="http://pratikborsadiya.in/blog/vali-admin/hero-social.png">
     <meta property="og:description" content="Vali is a responsive and free admin theme built with Bootstrap 4, SASS and PUG.js. It's fully customizable and modular.">
-    <title>教务处教师端-课程管理</title>
+    <title>教务处管理员端-每日一报管理</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -26,25 +26,26 @@
   <body class="app sidebar-mini" style="background-color: #E5E5E5">
     <!-- Navbar顶部导航-->
     <header class="app-header">
-        <p class="nav-title">系统教师端<a class="logout" href="/logout/"><i class="fa fa-sign-out fa-lg"></i>退出</a></p>
+        <p class="nav-title">系统管理员端<a class="logout" href="/logout/"><i class="fa fa-sign-out fa-lg"></i>退出</a></p>
     </header>
     <!-- Sidebar menu侧面导航-->
     <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
     <aside class="app-sidebar">
       <div class="app-sidebar__user">
-        <img style="height:60px;margin-right:15px;" src="{% static "images/jiaoshi.png" %}" alt="User Image">
+        <img style="height:60px;margin-right:15px;" src="{% static "images/guanliyuan.png" %}" alt="User Image">
         <div>
           <p class="app-sidebar__user-name">姓名：{{xm}}</p>
-            <p class="app-sidebar__user-designation">工号：{{gh}}</p>
+          <p class="app-sidebar__user-designation">工号：{{gh}}</p>
         </div>
       </div>
         <div class="divider"></div>
 <!--      跳转到不同功能页面-->
            <ul class="app-menu">
-              <li><a class="app-menu__item active" href="/teacher_index/"><i class="app-menu__icon fa fa-home"></i><span class="app-menu__label">教师首页</span></a></li>
-               <li><a class="app-menu__item" href="/teacher_course/"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">我的课程</span></a></li>
-               <li><a class="app-menu__item" href="/teacher_edit_score/"><i class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">成绩录入</span></a></li>
-               <li><a class="app-menu__item" href="/teacher_daily_post/"><i class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">每日一报</span></a></li>
+               <li><a class="app-menu__item" href="/admin_index/"><i class="app-menu__icon fa fa-home"></i><span class="app-menu__label">管理员首页</span></a></li>
+               <li><a class="app-menu__item" href="/admin_edit_student/"><i class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">学生管理</span></a></li>
+               <li><a class="app-menu__item " href="/admin_edit_teacher/"><i class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">教师管理</span></a></li>
+               <li><a class="app-menu__item" href="/admin_edit_course/"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">开课管理</span></a></li>
+               <li><a class="app-menu__item active" href="/admin_daily_post/"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">每日一报管理</span></a></li>
            </ul>
     </aside>
 <!--    主要内容部分-->
@@ -60,27 +61,32 @@
 {#        </ul>#}
 {#      </div>#}
 <!--      内容显示-->
-
       <div class="clearfix"></div>
-      <div class="col-md-12">
+        <div class="col-md-12">
           <div class="tile">
-            <h3 class="tile-title">我的课程</h3>
-
+            <h3 class="tile-title">每日一报管理-学生(体温大于37.5)</h3>
+            <div class="tile-body">
               <div class="table-responsive">
                 <table class="table table-hover table-bordered" id="sampleTable">
                   <thead>
                     <tr>
-                      <th>课程号</th>
-                      <th>课程名</th>
-                      <th>课程学分</th>
+                      <th>学号</th>
+                      <th>姓名</th>
+                        <th>学院</th>
+                      <th>报送日期</th>
+                      <th>身体状况</th>
+                      <th>体温</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {% for item in courses_data %}
+                    {% for item in all_student %}
                     <tr>
-                      <td>{{item.kh}}</td>
-                      <td>{{item.km}}</td>
-                      <td>{{item.xf}}</td>
+                      <td>{{item.xh}}</td>
+                      <td>{{item.xm}}</td>
+                        <td>{{item.mc}}</td>
+                      <td>{{item.bsrq}}</td>
+                      <td>{{item.zk}}</td>
+                      <td>{{item.tw}}</td>
                     </tr>
                     {% endfor %}
                   </tbody>
@@ -90,18 +96,69 @@
           </div>
         </div>
 
+        <div class="col-md-12">
+          <div class="tile">
+            <h3 class="tile-title">每日一报管理-教师(体温大于37.5)</h3>
+            <div class="tile-body">
+              <div class="table-responsive">
+                <table class="table table-hover table-bordered" id="sampleTable">
+                  <thead>
+                    <tr>
+                      <th>学号</th>
+                      <th>姓名</th>
+                        <th>学院</th>
+                      <th>报送日期</th>
+                      <th>身体状况</th>
+                      <th>体温</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for item in all_student %}
+                    <tr>
+                      <td>{{item.xh}}</td>
+                      <td>{{item.xm}}</td>
+                        <td>{{item.mc}}</td>
+                      <td>{{item.bsrq}}</td>
+                      <td>{{item.zk}}</td>
+                      <td>{{item.tw}}</td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
 
     </main>
     <!-- Essential javascripts for application to work-->
-      <script src="{% static "js/jquery-3.3.1.min.js" %}"></script>
+
+    <script src="{% static "js/jquery-3.3.1.min.js" %}"></script>
     <script src="{% static "js/popper.min.js" %}"></script>
     <script src="{% static "js/bootstrap.min.js" %}"></script>
     <script src="{% static "js/main.js" %}"></script>
     <!-- The javascript plugin to display page loading on top-->
     <script src="{% static "js/plugins/pace.min.js"%}"></script>
     <!-- Page specific javascripts-->
-    {% comment %}<!-- Data table plugin-->
-    <script type="text/javascript" src="{% static "js/plugins/jquery.dataTables.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/plugins/bootstrap-datepicker.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/plugins/select2.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/plugins/bootstrap-datepicker.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/plugins/dropzone.js" %}"></script>
+
+     <script type="text/javascript">
+      $('#csrq').datepicker({
+      	format: "yyyy-mm-dd",
+      	autoclose: true,
+      	todayHighlight: true
+      });
+      $('#nl').datepicker({
+      	format: "yyyy-mm-dd",
+      	autoclose: true,
+      	todayHighlight: true
+      });
+    </script>
+    <!-- Data table plugin-->
+    {% comment %}<script type="text/javascript" src="{% static "js/plugins/jquery.dataTables.min.js" %}"></script>
     <script type="text/javascript" src="{% static "js/plugins/dataTables.bootstrap.min.js" %}"></script>
     <script type="text/javascript">$('#sampleTable').DataTable();</script>{% endcomment %}
     <!-- Google analytics script-->
@@ -114,7 +171,6 @@
       	ga('create', 'UA-72504830-1', 'auto');
       	ga('send', 'pageview');
       }
-
     </script>
   </body>
 </html>
