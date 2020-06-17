@@ -34,7 +34,7 @@
       <div class="app-sidebar__user">
         <img style="height:60px;margin-right:15px;" src="{% static "images/guanliyuan.png" %}" alt="User Image">
         <div>
-          <p class="app-sidebar__user-name">姓名：{{xm}}</p>
+          {% comment %}<p class="app-sidebar__user-name">姓名：{{xm}}</p>{% endcomment %}
           <p class="app-sidebar__user-designation">工号：{{gh}}</p>
         </div>
       </div>
@@ -64,7 +64,7 @@
       <div class="clearfix"></div>
         <div class="col-md-12">
           <div class="tile">
-            <h3 class="tile-title">每日一报管理-学生(体温大于37.5)</h3>
+            <h3 class="tile-title">每日一报管理-学生(仅显示状况异常)</h3>
             <div class="tile-body">
               <div class="table-responsive">
                 <table class="table table-hover table-bordered" id="sampleTable">
@@ -83,7 +83,7 @@
                     <tr>
                       <td>{{item.xh}}</td>
                       <td>{{item.xm}}</td>
-                        <td>{{item.mc}}</td>
+                      <td>{{item.mc}}</td>
                       <td>{{item.bsrq}}</td>
                       <td>{{item.zk}}</td>
                       <td>{{item.tw}}</td>
@@ -98,7 +98,7 @@
 
         <div class="col-md-12">
           <div class="tile">
-            <h3 class="tile-title">每日一报管理-教师(体温大于37.5)</h3>
+            <h3 class="tile-title">每日一报管理-教师(仅显示状况异常)</h3>
             <div class="tile-body">
               <div class="table-responsive">
                 <table class="table table-hover table-bordered" id="sampleTable">
@@ -113,9 +113,9 @@
                     </tr>
                   </thead>
                   <tbody>
-                    {% for item in all_student %}
+                    {% for item in all_teacher %}
                     <tr>
-                      <td>{{item.xh}}</td>
+                      <td>{{item.gh}}</td>
                       <td>{{item.xm}}</td>
                         <td>{{item.mc}}</td>
                       <td>{{item.bsrq}}</td>
