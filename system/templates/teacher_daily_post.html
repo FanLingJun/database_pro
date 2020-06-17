@@ -14,7 +14,7 @@
     <meta property="og:url" content="http://pratikborsadiya.in/blog/vali-admin">
     <meta property="og:image" content="http://pratikborsadiya.in/blog/vali-admin/hero-social.png">
     <meta property="og:description" content="Vali is a responsive and free admin theme built with Bootstrap 4, SASS and PUG.js. It's fully customizable and modular.">
-    <title>教务处教师端-课程管理</title>
+    <title>教务处教师端-每日一报</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -60,48 +60,112 @@
 {#        </ul>#}
 {#      </div>#}
 <!--      内容显示-->
-
       <div class="clearfix"></div>
-      <div class="col-md-12">
-          <div class="tile">
-            <h3 class="tile-title">我的课程</h3>
 
-              <div class="table-responsive">
-                <table class="table table-hover table-bordered" id="sampleTable">
-                  <thead>
-                    <tr>
-                      <th>课程号</th>
-                      <th>课程名</th>
-                      <th>课程学分</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {% for item in courses_data %}
-                    <tr>
-                      <td>{{item.kh}}</td>
-                      <td>{{item.km}}</td>
-                      <td>{{item.xf}}</td>
-                    </tr>
-                    {% endfor %}
-                  </tbody>
-                </table>
-              </div>
+        <div class="col-md-12">
+          <div class="tile">
+            <h3 class="tile-title">每日一报-教师</h3>
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <form class="row" method="POST">
+                      {% csrf_token %}
+                        <div class="row">
+                        <div class="form-group col-md-3">
+                            <label class="control-label">工号</label>
+                              <input class="form-control"type="text" placeholder="工号" name="gh" >
+                        </div>
+
+                        <div class="form-group col-md-3">
+                            <label class="control-label">姓名</label>
+                              <input class="form-control"type="text" placeholder="姓名" name="xm" >
+                        </div>
+
+
+                        <div class="form-group col-md-3" >
+                            <label for="jsxh">学院</label>
+                            <select id="jsxy" class="form-control" name="mc">
+                                <option value="01">计算机学院</option>
+                                <option value="02">通讯学院</option>
+                                <option value="03">材料学院</option>
+                                <option value="04">文学院</option>
+                                <option value="05">理学院</option>
+                                <option value="06">法学院</option>
+                            </select>
+                        </div>
+
+                      {% comment %}出生日期请做成日历模式
+                      性别请做成选择模式{% endcomment %}
+
+                        <div class="form-group col-md-3">
+                            <label class="control-label">报送日期</label>
+                                <input id="bsrq" class="form-control" type="text" name="bsrq" placeholder="报送日期">
+                        </div>
+                       </div>
+
+                        <div class="row">
+                        <div class="form-group col-md-3"  >
+                            <label class="control-label">当前身体状况</label>
+
+                            <div class="row">
+                            <div class="form-check" style="margin-left: 20px">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" type="radio" value = "良好" name="zk" >
+                                    良好
+                                </label>
+                            </div>
+                            <div class="form-check" style="margin-left: 20px">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" type="radio" value = "不适" name="zq">
+                                    不适
+                                </label>
+                            </div>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group col-md-3">
+                            <label class="control-label">体温</label>
+                              <input class="form-control" type="text" placeholder="体温xx℃" name="tw" >
+                        </div>
+
+
+                        </div>
+                          <button class="btn btn-primary " ></i>提交</button>
+
+                    </form>
+                  </tr>
+                </thead>
+              </table>
             </div>
           </div>
         </div>
 
-
     </main>
     <!-- Essential javascripts for application to work-->
-      <script src="{% static "js/jquery-3.3.1.min.js" %}"></script>
+
+    <script src="{% static "js/jquery-3.3.1.min.js" %}"></script>
     <script src="{% static "js/popper.min.js" %}"></script>
     <script src="{% static "js/bootstrap.min.js" %}"></script>
     <script src="{% static "js/main.js" %}"></script>
     <!-- The javascript plugin to display page loading on top-->
     <script src="{% static "js/plugins/pace.min.js"%}"></script>
     <!-- Page specific javascripts-->
-    {% comment %}<!-- Data table plugin-->
-    <script type="text/javascript" src="{% static "js/plugins/jquery.dataTables.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/plugins/bootstrap-datepicker.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/plugins/select2.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/plugins/bootstrap-datepicker.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/plugins/dropzone.js" %}"></script>
+
+     <script type="text/javascript">
+      $('#bsrq').datepicker({
+      	format: "yyyy-mm-dd",
+      	autoclose: true,
+      	todayHighlight: true
+      });
+    </script>
+    <!-- Data table plugin-->
+    {% comment %}<script type="text/javascript" src="{% static "js/plugins/jquery.dataTables.min.js" %}"></script>
     <script type="text/javascript" src="{% static "js/plugins/dataTables.bootstrap.min.js" %}"></script>
     <script type="text/javascript">$('#sampleTable').DataTable();</script>{% endcomment %}
     <!-- Google analytics script-->
@@ -114,7 +178,6 @@
       	ga('create', 'UA-72504830-1', 'auto');
       	ga('send', 'pageview');
       }
-
     </script>
   </body>
 </html>

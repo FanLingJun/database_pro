@@ -481,3 +481,11 @@ def admin_mod_course(request):
 
   return render(request, 'admin_mod_course.html',context={'kh':kh,'km':course_info.km,'xf':course_info.xf,'xs':course_info.xs})
 
+def teacher_daily_post(request):
+    return render(request,'teacher_daily_post.html')
+
+def student_daily_post(request):
+    return render(request,'student_daily_post.html')
+
+def admin_daily_post(request):
+    return render(request,'admin_daily_post.html')
