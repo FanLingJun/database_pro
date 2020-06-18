@@ -122,7 +122,6 @@
           </div>
         </div>
       </div>
-        <div class="col-md-12" style="display: block" >
           <div class="tile">
           <h3 class="tile-tile">可选课程</h3>
             <div class="tile-body">
@@ -208,29 +207,6 @@
       	ga('create', 'UA-72504830-1', 'auto');
       	ga('send', 'pageview');
       }
-    </script>
-  <script type="text/javascript">
-        function show (event) {
-        //取消冒泡
-        let oevent = event || window.event
-        if (document.all) {
-            oevent.cancelBubble = true
-        } else {
-            oevent.stopPropagation()
-        }
-        if (document.getElementById('div').style.display === 'none' || document.getElementById('div').style.display === '') {
-            document.getElementById('div').style.display = 'block'
-        } else {
-            document.getElementById('div').style.display = 'none'
-        }
-    }
-    document.onclick = function () {
-        document.getElementById('div').style.display = 'none'
-    }
-    document.getElementById('div').onclick = function (event) {
-        let oevent = event || window.event
-        oevent.stopPropagation()
-    }
     </script>
   </body>
 </html>
