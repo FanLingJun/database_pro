@@ -34,7 +34,6 @@
       <div class="app-sidebar__user">
         <img style="height:60px;margin-right:15px;" src="{% static "images/guanliyuan.png" %}" alt="User Image">
         <div>
-          {% comment %}<p class="app-sidebar__user-name">姓名：{{xm}}</p>{% endcomment %}
           <p class="app-sidebar__user-designation">工号：{{gh}}</p>
         </div>
       </div>
@@ -50,18 +49,7 @@
     </aside>
 <!--    主要内容部分-->
     <main class="app-content">
-<!--      头部-->
-{#      <div class="app-title">#}
-{#        <div>#}
-{#          <h1 style="font-size:20px">上海大学选课系统</h1>#}
-{#        </div>#}
-{#        <ul class="app-breadcrumb breadcrumb">#}
-{#          <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>#}
-{#          <li class="breadcrumb-item"><a style="font-size:13px;" href="#">个人信息 Student Data</a></li>#}
-{#        </ul>#}
-{#      </div>#}
 <!--      内容显示-->
-
               <div class="row">
         <div class="col-md-12">
           <div class="tile">
@@ -117,27 +105,22 @@
                             <label class="control-label">课号</label>
                               <input class="form-control"type="text" placeholder="课号" name="kh" >
                         </div>
-
                         <div class="form-group col-md-3">
                             <label class="control-label">课名</label>
                               <input class="form-control" type="text" placeholder="课名" name="km" >
                         </div>
-
                             <div class="form-group col-md-3">
                             <label class="control-label">学分</label>
                               <input class="form-control" type="text" placeholder="学分" name="xf" >
                         </div>
-
                             <div class="form-group col-md-3">
                             <label class="control-label">教师号</label>
                               <input class="form-control"type="text" placeholder="教师号" name="gh" >
                         </div>
-
                             <div class="form-group col-md-3">
                             <label class="control-label">上课时间</label>
                               <input class="form-control"type="text" placeholder="上课时间" name="sksj" >
                         </div>
-
                             <div class="form-group col-md-3" >
                             <label for="xq">学期</label>
                             <select id="xq" class="form-control" name="xq">
@@ -148,13 +131,10 @@
                               <option value="2020-2021春季">2021-2022春季</option>
                             </select>
                         </div>
-
                             <div class="form-group col-md-3">
                             <label class="control-label">学时</label>
                               <input class="form-control" type="text" placeholder="学时" name="xs" >
                         </div>
-
-                      {% comment %}请在这里添加一个选择学院的checkbox{% endcomment %}
                         <div class="form-group col-md-3" >
                             <label for="jsxh">学院</label>
                             <select id="jsxy" class="form-control" name="mc">
@@ -166,7 +146,6 @@
                                 <option value="06">法学院</option>
                             </select>
                         </div>
-
                         </div>
                       <button class="btn btn-primary">提交</button>
                       {% if messages %}
@@ -184,7 +163,6 @@
           </div>
         </div>
       </div>
-
     </main>
     <!-- Essential javascripts for application to work-->
     <script src="{% static "js/jquery-3.3.1.min.js" %}"></script>
@@ -193,11 +171,6 @@
     <script src="{% static "js/main.js" %}"></script>
     <!-- The javascript plugin to display page loading on top-->
     <script src="{% static "js/plugins/pace.min.js"%}"></script>
-    <!-- Page specific javascripts-->
-    <!-- Data table plugin-->
-    {% comment %}<script type="text/javascript" src="{% static "js/plugins/jquery.dataTables.min.js" %}"></script>
-    <script type="text/javascript" src="{% static "js/plugins/dataTables.bootstrap.min.js" %}"></script>
-    <script type="text/javascript">$('#sampleTable').DataTable();</script>{% endcomment %}
     <!-- Google analytics script-->
     <script type="text/javascript">
       if(document.location.hostname == 'pratikborsadiya.in') {

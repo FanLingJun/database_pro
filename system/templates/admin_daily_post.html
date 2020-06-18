@@ -34,7 +34,6 @@
       <div class="app-sidebar__user">
         <img style="height:60px;margin-right:15px;" src="{% static "images/guanliyuan.png" %}" alt="User Image">
         <div>
-          {% comment %}<p class="app-sidebar__user-name">姓名：{{xm}}</p>{% endcomment %}
           <p class="app-sidebar__user-designation">工号：{{gh}}</p>
         </div>
       </div>
@@ -50,16 +49,6 @@
     </aside>
 <!--    主要内容部分-->
     <main class="app-content">
-<!--      头部-->
-{#      <div class="app-title">#}
-{#        <div>#}
-{#          <h1 style="font-size:20px">上海大学选课系统</h1>#}
-{#        </div>#}
-{#        <ul class="app-breadcrumb breadcrumb">#}
-{#          <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>#}
-{#          <li class="breadcrumb-item"><a style="font-size:13px;" href="#">个人信息 Student Data</a></li>#}
-{#        </ul>#}
-{#      </div>#}
 <!--      内容显示-->
       <div class="clearfix"></div>
         <div class="col-md-12">
@@ -95,7 +84,6 @@
             </div>
           </div>
         </div>
-
         <div class="col-md-12">
           <div class="tile">
             <h3 class="tile-title">每日一报管理-教师(仅显示状况异常)</h3>
@@ -129,10 +117,8 @@
             </div>
           </div>
         </div>
-
     </main>
     <!-- Essential javascripts for application to work-->
-
     <script src="{% static "js/jquery-3.3.1.min.js" %}"></script>
     <script src="{% static "js/popper.min.js" %}"></script>
     <script src="{% static "js/bootstrap.min.js" %}"></script>
@@ -144,7 +130,6 @@
     <script type="text/javascript" src="{% static "js/plugins/select2.min.js" %}"></script>
     <script type="text/javascript" src="{% static "js/plugins/bootstrap-datepicker.min.js" %}"></script>
     <script type="text/javascript" src="{% static "js/plugins/dropzone.js" %}"></script>
-
      <script type="text/javascript">
       $('#csrq').datepicker({
       	format: "yyyy-mm-dd",
@@ -157,11 +142,6 @@
       	todayHighlight: true
       });
     </script>
-    <!-- Data table plugin-->
-    {% comment %}<script type="text/javascript" src="{% static "js/plugins/jquery.dataTables.min.js" %}"></script>
-    <script type="text/javascript" src="{% static "js/plugins/dataTables.bootstrap.min.js" %}"></script>
-    <script type="text/javascript">$('#sampleTable').DataTable();</script>{% endcomment %}
-    <!-- Google analytics script-->
     <script type="text/javascript">
       if(document.location.hostname == 'pratikborsadiya.in') {
       	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
