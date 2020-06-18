@@ -170,71 +170,6 @@
               </div>
             </div>
           </div>
-{#        <div class="col-md-12">#}
-{#          <div class="tile">#}
-{#          <h3 class="tile-tile">课程查询</h3>#}
-{#            <div class="tile-body">#}
-{#              <div class="table-responsive">#}
-{#                <table class="table table-hover table-bordered" id="sampleTable1">#}
-{#                  <thead>#}
-{#                    <tr>#}
-{#                      <th>学期</th>#}
-{#                      <th>课号</th>#}
-{#                      <th>学分</th>#}
-{#                      <th>课号</th>#}
-{#                      <th>教师名</th>#}
-{#                      <th>教师工号</th>#}
-{#                      <th>上课时间</th>#}
-{#                    </tr>#}
-{#                  </thead>#}
-{#                  <tbody>#}
-{#                    {% for item in open_course %}#}
-{#                    <tr>#}
-{#                      <td>{{ item.xq}}</td>#}
-{#                      <td>{{item.km}}</td>#}
-{#                      <td>{{item.xf}}</td>#}
-{#                      <td>{{item.kh_id}}</td>#}
-{#                      <td>{{item.xm}}</td>#}
-{#                      <td>{{item.gh}}</td>#}
-{#                      <td>{{item.sksj}}</td>#}
-{#                    </tr>#}
-{#                    {% endfor %}#}
-{#                  </tbody>#}
-{#                </table>#}
-{#              </div>#}
-{#            </div>#}
-{#          </div>#}
-{#        </div>#}
-
-{#        <div class="col-md-12">#}
-{#          <div class="tile">#}
-{#          <h3 class="tile-tile">已选课程 Selected Courses</h3>#}
-{#            <div class="tile-body">#}
-{#              <div class="table-responsive">#}
-{#                <table class="table table-hover table-bordered" id="sampleTable2">#}
-{#                  <thead>#}
-{#                    <tr>#}
-{#                      <th>课程号 Course Id</th>#}
-{#                      <th>课程名 Course Name</th>#}
-{#                      <th>学分 Course Credit</th>#}
-{#                      <th>教师 Teacher Name</th>#}
-{#                    </tr>#}
-{#                  </thead>#}
-{#                  <tbody>#}
-{#                    {% for item in selected_courses %}#}
-{#                    <tr>#}
-{#                      <td>{{item.course_id}}</td>#}
-{#                      <td>{{item.course_name}}</td>#}
-{#                      <td>{{item.course_credit}}</td>#}
-{#                      <td>{{item.teacher_name}}</td>#}
-{#                    </tr>#}
-{#                    {% endfor %}#}
-{#                  </tbody>#}
-{#                </table>#}
-{#              </div>#}
-{#            </div>#}
-{#          </div>#}
-{#        </div>#}
 
         <div class="col-md-12">
           <div class="tile">
@@ -253,15 +188,6 @@
                 <div class="form-group col-md-4 align-self-end">
                   <button class="btn btn-primary">选课</button>
                 </div>
-<!--                这是啥意思？-->
-                {% if messages %}
-                  <script>
-                    {% for msg in messages %}
-                        alert('{{msg.message}}');
-                     {% endfor %}
-                  </script>
-                {% endif %}
-
               </form>
             </div>
           </div>
