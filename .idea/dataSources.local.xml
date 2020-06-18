@@ -8,7 +8,14 @@
       <case-sensitivity plain-identifiers="mixed" quoted-identifiers="mixed" />
       <secret-storage>master_key</secret-storage>
       <auth-required>false</auth-required>
-      <introspection-schemas>*:@,main</introspection-schemas>
+      <schema-mapping>
+        <introspection-scope>
+          <node kind="schema">
+            <name qname="@" />
+            <name qname="main" />
+          </node>
+        </introspection-scope>
+      </schema-mapping>
     </data-source>
   </component>
 </project>
