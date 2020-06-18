@@ -188,6 +188,13 @@
                 <div class="form-group col-md-4 align-self-end">
                   <button class="btn btn-primary">选课</button>
                 </div>
+                {% if messages %}
+                  <script>
+                    {% for msg in messages %}
+                        alert('{{msg.message}}');
+                     {% endfor %}
+                  </script>
+                {% endif %}
               </form>
             </div>
           </div>
