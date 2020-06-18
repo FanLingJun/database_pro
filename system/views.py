@@ -213,6 +213,9 @@ def select_course(request):
         all_data.append(course)
       return render(request, 'select_course.html', context={'xh':number,'course_data': all_data, 'open_course': all})
     if course_id and teacher_id:
+      if models.e_table.objects.filter(xq='2020-2021秋季', xh_id=number, kh_id=course_id, gh_id=teacher_id):
+        messages.success(request, '选课失败啦！已经选过这门课了~~~')
+        return redirect('/select_course/')
       try:
         models.e_table.objects.create(xq='2020-2021秋季', xh_id=number, kh_id=course_id, gh_id=teacher_id)
         messages.success(request, '选课成功啦~~~~~~')
@@ -220,8 +223,6 @@ def select_course(request):
       except:
         messages.success(request, '选课失败啦！可能没有这门课或者这个老师哦~~~')
         return redirect('/select_course/')
-
-
   else:
     return render(request, 'select_course.html', context={'xh':number,'open_course': all})
 
