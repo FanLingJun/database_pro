@@ -273,7 +273,7 @@ def teacher_course(request):
   cursor.execute(
     "select distinct kh,km,xf from system_course,system_e_table "
     "where system_e_table.kh_id = system_course.kh"
-    " and zpcj is null")
+    " and zpcj is null and system_e_table.gh_id = %s",[number])
   all_info = cursor.fetchall()  # 读取所有
   courses_data = []
   for item in all_info:
