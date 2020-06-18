@@ -143,7 +143,7 @@ def check_my_table(request):
                  "and system_course.kh = system_e_table.kh_id "
                  "and system_open_course.kh_id =  system_e_table.kh_id "
                  "and system_teacher.gh = system_e_table.gh_id "
-                 "and zpcj is null",[number])
+                 "and zpcj is null and system_open_course.gh_id = system_e_table.gh_id",[number])
   info = cursor.fetchall()
   all = []
   for item in info:
@@ -503,7 +503,6 @@ def admin_edit_course(request):
         return redirect('/admin_edit_course/')
     else:
       try:
-        print('创建新课程成功，开课成功！')
         models.course.objects.create(kh=kh, km=km, xf=xf, xs=xs, yxh_id=yxh)
         models.open_course.objects.create(xq=xq, kh_id=kh, gh_id=gh, sksj=sksj)
         print('创建新课程成功，开课成功！')
