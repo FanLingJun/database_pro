@@ -9,7 +9,6 @@
     <link rel="stylesheet" type="text/css" href=" {% static "css/main.css" %} ">
     <!-- Font-icon css-->
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
     <title>登录选课系统</title>
   </head>
   <body>
@@ -31,54 +30,19 @@
                       <p>{{ stderr }}</p>
                   {% endif %}
           </div>
-{#          <div class="form-group">#}
-{#            <div class="utility">#}
-{#              <div class="animated-checkbox">#}
-{#                <label>#}
-{#                  <input type="checkbox"><span class="label-text">Stay Signed in</span>#}
-{#                </label>#}
-{#              </div>#}
-{#              <p class="semibold-text mb-2"><a href="#" data-toggle="flip">Forgot Password ?</a></p>#}
-{#            </div>#}
-{#          </div>#}
           <div class="form-group btn-container">
             <button class="btn btn-primary btn-block">登录/Login</button>
           </div>
         </form>
-{#        <form class="forget-form">#}
-{#          <h3 class="login-head"><i class="fa fa-lg fa-fw fa-lock"></i>Forgot Password ?</h3>#}
-{#          <h3 class="login-head">请到教务处联系管理老师修改密码</h3>#}
-{#          <div class="form-group mt-3">#}
-{#            <p class="semibold-text mb-0"><a href="#" data-toggle="flip"><i class="fa fa-angle-left fa-fw"></i> Back to Login</a></p>#}
-{#          </div>#}
-{#          {% if messages %}#}
-{#            <script>#}
-{#              {% for msg in messages %}#}
-{#                  alert('{{msg.message}}');#}
-{#               {% endfor %}#}
-{#            </script>#}
-{#          {% endif %}#}
-{#        </form>#}
       </div>
     </section>
-    {% comment %}报错处理{% endcomment %}
-    {% comment %}<script type="text/javascript">{{script}}('{{wrong}}')</script>{% endcomment %}
     <!-- Essential javascripts for application to work-->
-
     <script src="{% static "js/jquery-3.3.1.min.js" %}"></script>
     <script src="{% static "js/popper.min.js" %}"></script>
     <script src="{% static "js/bootstrap.min.js" %}"></script>
     <script src="{% static "js/main.js" %}"></script>
     <!-- The javascript plugin to display page loading on top-->
     <script src="{% static "js/plugins/pace.min.js" %}"></script>
-{#    <script type="text/javascript">#}
-{#      // Login Page Flipbox control#}
-{#      $('.login-content [data-toggle="flip"]').click(function() {#}
-{#      	$('.login-box').toggleClass('flipped');#}
-{#      	return false;#}
-{#      });#}
-{#    </script>#}
   </body>
 </html>
 
-{#问题：提示密码错误54-56行代码应该放在哪里？#}
