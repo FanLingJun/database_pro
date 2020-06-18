@@ -34,7 +34,6 @@
       <div class="app-sidebar__user">
         <img style="height:60px;margin-right:15px;" src="{% static "images/jiaoshi.png" %}" alt="User Image">
         <div>
-          {% comment %}<p class="app-sidebar__user-name">姓名：{{xm}}</p>{% endcomment %}
             <p class="app-sidebar__user-designation">工号：{{gh}}</p>
         </div>
       </div>
@@ -49,22 +48,10 @@
     </aside>
 <!--    主要内容部分-->
     <main class="app-content">
-<!--      头部-->
-{#      <div class="app-title">#}
-{#        <div>#}
-{#          <h1 style="font-size:20px">上海大学选课系统</h1>#}
-{#        </div>#}
-{#        <ul class="app-breadcrumb breadcrumb">#}
-{#          <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>#}
-{#          <li class="breadcrumb-item"><a style="font-size:13px;" href="#">个人信息 Student Data</a></li>#}
-{#        </ul>#}
-{#      </div>#}
 <!--      内容显示-->
       <div class="clearfix"></div>
-
         <div class="col-md-12">
           <div class="tile">
-{#          后端要传给前端 xh xm km#}
             <h3 class="tile-title">提交成绩：{{xh}}——{{xm}}——{{km}}</h3>
             <div class="tile-body">
               <form class="row" method="POST">
@@ -73,17 +60,10 @@
                   <label class="control-label">平时成绩： </label>
                   <input class="form-control" type="text" placeholder="平时成绩" name="pscj">
                 </div>
-
               <div class="form-group col-md-3">
                   <label class="control-label">考试成绩： </label>
                   <input class="form-control" type="text" placeholder="考试成绩" name="kscj">
                 </div>
-
-{#              <div class="form-group col-md-3">#}
-{#                  <label class="control-label">总评成绩： </label>#}
-{#                  <input class="form-control" type="text" placeholder="总评成绩" name="zpcj">#}
-{#                </div>#}
-
                 <div class="form-group col-md-4 align-self-end">
                   <button class="btn btn-primary"></i>提交</button>
                 </div>
@@ -125,4 +105,3 @@
   </body>
 </html>
 
-<!--  该页面相当于系统教师首页-->

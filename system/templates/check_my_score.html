@@ -35,7 +35,6 @@
           <img style="height:60px;margin-right:15px;" src="{% static "images/student2.png" %}">
         <div>
           <p class="app-sidebar__user-designation">学号：{{xh}}</p>
-          {% comment %}<p class="app-sidebar__user-name">姓名：{{xm}}</p>{% endcomment %}
         </div>
       </div>
       <div class="divider"></div>
@@ -49,10 +48,8 @@
           <li><a class="app-menu__item" href="/student_daily_post/"><i class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">每日一报</span></a></li>
       </ul>
     </aside>
-
     <main class="app-content">
         <div class="row">
-
         <div class="col-md-12">
           <div class="tile">
           <h3 class="tile-tile">成绩信息</h3>
@@ -84,7 +81,6 @@
           </div>
         </div>
       </div>
-
         <div class="col-md-12">
           <div class="tile">
           <h3 class="tile-tile">绩点走势</h3>
@@ -93,7 +89,6 @@
           </div>
         </div>
       </div>
-
       </div>
     </main>
     <!-- Essential javascripts for application to work-->
@@ -126,12 +121,8 @@
       	ga('send', 'pageview');
       }
     </script>
-
-
   <script>
-
       (function () {
-
           var km = [];
           var gpa = [];
           var tb=document.getElementById("datatable");    //获取table对像
@@ -163,24 +154,14 @@
                   text:'课程名'
                 },
                 categories: km
-                //categories: ['a','b','c']
               },
               legend: {
                 layout: 'vertical',
                 align: 'right',
                 verticalAlign: 'middle'
               },
-              {% comment %}plotOptions: {
-                series: {
-                  label: {
-                    connectorAllowed: false
-                  },
-                  //pointStart: 2010
-                }
-              },{% endcomment %}
               series: [{
                 name: '绩点',
-                //data: [3.3, 3.7, 3.7]
                 data: gpa
               }],
               responsive: {
@@ -199,7 +180,6 @@
               }
             });
       })();
-
   </script>
   </body>
 </html>
