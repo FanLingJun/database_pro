@@ -115,6 +115,7 @@ def check_my_score(request):
     all_s.append(scores)
   return render(request, 'check_my_score.html', context={'xh': number, 'scores': all_s})
 
+'''
 def check_my_table(request):
   # 判断逻辑，根据e表，如果匹配到学号且总评成绩为null则为这个学期选的课
   number = request.session.get('number')
@@ -131,7 +132,32 @@ def check_my_table(request):
   all_course = models.course.objects.filter(kh__in=num_list)
   print(all_course)
   return render(request, 'check_my_table.html', context={'xh':number,'xm':student[0].xm,'all_course':all_course})
+'''
 
+def check_my_table(request):
+  number = request.session.get('number')
+  cursor = connection.cursor()
+  cursor.execute("select distinct kh,km,xf,sksj,system_e_table.xq,system_e_table.gh_id,xs,xm "
+                 "from system_course,system_e_table,system_open_course,system_teacher "
+                 "where xh_id = %s "
+                 "and system_course.kh = system_e_table.kh_id "
+                 "and system_open_course.kh_id =  system_e_table.kh_id "
+                 "and system_teacher.gh = system_e_table.gh_id "
+                 "and zpcj is null",[number])
+  info = cursor.fetchall()
+  all = []
+  for item in info:
+    temp = dict()  # 注意这里一定要放在循环之内！！！！！！！！！！！！
+    temp['kh'] = item[0]
+    temp['km'] = item[1]
+    temp['xf'] = item[2]
+    temp['sksj'] = item[3]
+    temp['xq'] = item[4]
+    temp['gh'] = item[5]
+    temp['xs'] = item[6]
+    temp['xm'] = item[7]
+    all.append(temp)
+  return render(request, 'check_my_table.html', context={'xh': number, 'all_course':all})
 
 def select_course(request):
   number = request.session.get('number')
@@ -254,8 +280,8 @@ def teacher_edit_score(request):
   # 查询这个老师教的学生的成绩
   cursor.execute(
     "select distinct kh,km,xh,xm,pscj,kscj,zpcj,xq from system_course,system_e_table,system_student "
-    "where system_e_table.kh_id = system_course.kh and system_student.xh = system_e_table.xh_id"
-    " and xq='2020-2021春季' and system_e_table.gh_id = %s", [number])
+    "where system_e_table.kh_id = system_course.kh and system_student.xh = system_e_table.xh_id "
+    "and system_e_table.gh_id = %s", [number])
   all_info = cursor.fetchall()  # 读取所有
   teacher_student_data = []
   for item in all_info:
@@ -430,7 +456,7 @@ def admin_mod_teacher(request):
 def admin_edit_course(request):
   gh = request.session.get('number')
   cursor = connection.cursor()
-  cursor.execute("select distinct xq,km,xf,kh_id,xm,gh,sksj "
+  cursor.execute("select distinct xq,km,xf,kh_id,xm,gh,sksj,xq "
                  "from system_open_course,system_teacher,system_course "
                  "where system_open_course.gh_id = system_teacher.gh "
                  "and system_open_course.kh_id = system_course.kh")
@@ -446,6 +472,7 @@ def admin_edit_course(request):
     course['xm'] = item[4]
     course['gh'] = item[5]
     course['sksj'] = item[6]
+    course['xq'] = item[7]
     all.append(course)
   if request.method == 'POST':
     kh = request.POST.get('kh')
