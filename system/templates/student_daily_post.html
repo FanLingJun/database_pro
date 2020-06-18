@@ -51,19 +51,8 @@
     </aside>
 <!--    主要内容部分-->
     <main class="app-content">
-<!--      头部-->
-{#      <div class="app-title">#}
-{#        <div>#}
-{#          <h1 style="font-size:20px">上海大学选课系统</h1>#}
-{#        </div>#}
-{#        <ul class="app-breadcrumb breadcrumb">#}
-{#          <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>#}
-{#          <li class="breadcrumb-item"><a style="font-size:13px;" href="#">个人信息 Student Data</a></li>#}
-{#        </ul>#}
-{#      </div>#}
 <!--      内容显示-->
       <div class="clearfix"></div>
-
         <div class="col-md-12">
           <div class="tile">
             <h3 class="tile-title">每日一报-学生</h3>
@@ -78,38 +67,18 @@
                             <label class="control-label">学号</label>
                               <input class="form-control" type="text" placeholder="学号" value="{{ xh }}" name="xh" >
                         </div>
-
                         <div class="form-group col-md-3">
                             <label class="control-label">姓名</label>
                               <input class="form-control" type="text" placeholder="姓名" value="{{ xm }}" name="xm" >
                         </div>
-
-
-                        {% comment %}<div class="form-group col-md-3" >
-                            <label for="xsxh">学院</label>
-                            <select id="xsxy" class="form-control" name="mc">
-                                <option value="01">计算机学院</option>
-                                <option value="02">通讯学院</option>
-                                <option value="03">材料学院</option>
-                                <option value="04">文学院</option>
-                                <option value="05">理学院</option>
-                                <option value="06">法学院</option>
-                            </select>
-                        </div>{% endcomment %}
-
-                      {% comment %}出生日期请做成日历模式
-                      性别请做成选择模式{% endcomment %}
-
                         <div class="form-group col-md-3">
                             <label class="control-label">报送日期</label>
                                 <input id="bsrq" class="form-control" type="text" name="bsrq" placeholder="报送日期">
                         </div>
                        </div>
-
                         <div class="row">
                         <div class="form-group col-md-3"  >
                             <label class="control-label">当前身体状况</label>
-
                             <div class="row">
                             <div class="form-check" style="margin-left: 20px">
                                 <label class="form-check-label">
@@ -124,18 +93,13 @@
                                 </label>
                             </div>
                             </div>
-
                         </div>
-
                         <div class="form-group col-md-3">
                             <label class="control-label">体温</label>
                               <input class="form-control" type="text" placeholder="体温xx℃" name="tw" >
                         </div>
-
-
                         </div>
                           <button type="submit" class="btn btn-primary " ></i>提交</button>
-
                     </form>
                   </tr>
                 </thead>
@@ -143,10 +107,8 @@
             </div>
           </div>
         </div>
-
     </main>
     <!-- Essential javascripts for application to work-->
-
     <script src="{% static "js/jquery-3.3.1.min.js" %}"></script>
     <script src="{% static "js/popper.min.js" %}"></script>
     <script src="{% static "js/bootstrap.min.js" %}"></script>
@@ -158,7 +120,6 @@
     <script type="text/javascript" src="{% static "js/plugins/select2.min.js" %}"></script>
     <script type="text/javascript" src="{% static "js/plugins/bootstrap-datepicker.min.js" %}"></script>
     <script type="text/javascript" src="{% static "js/plugins/dropzone.js" %}"></script>
-
      <script type="text/javascript">
       $('#bsrq').datepicker({
       	format: "yyyy-mm-dd",
@@ -166,11 +127,6 @@
       	todayHighlight: true
       });
     </script>
-    <!-- Data table plugin-->
-    {% comment %}<script type="text/javascript" src="{% static "js/plugins/jquery.dataTables.min.js" %}"></script>
-    <script type="text/javascript" src="{% static "js/plugins/dataTables.bootstrap.min.js" %}"></script>
-    <script type="text/javascript">$('#sampleTable').DataTable();</script>{% endcomment %}
-    <!-- Google analytics script-->
     <script type="text/javascript">
       if(document.location.hostname == 'pratikborsadiya.in') {
       	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

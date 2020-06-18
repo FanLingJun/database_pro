@@ -34,7 +34,6 @@
       <div class="app-sidebar__user">
         <img style="height:60px;margin-right:15px;" src="{% static "images/jiaoshi.png" %}" alt="User Image">
         <div>
-          {% comment %}<p class="app-sidebar__user-name">姓名：{{xm}}</p>{% endcomment %}
             <p class="app-sidebar__user-designation">工号：{{gh}}</p>
         </div>
       </div>
@@ -49,23 +48,11 @@
     </aside>
 <!--    主要内容部分-->
     <main class="app-content">
-<!--      头部-->
-{#      <div class="app-title">#}
-{#        <div>#}
-{#          <h1 style="font-size:20px">上海大学选课系统</h1>#}
-{#        </div>#}
-{#        <ul class="app-breadcrumb breadcrumb">#}
-{#          <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>#}
-{#          <li class="breadcrumb-item"><a style="font-size:13px;" href="#">个人信息 Student Data</a></li>#}
-{#        </ul>#}
-{#      </div>#}
 <!--      内容显示-->
-
       <div class="clearfix"></div>
       <div class="col-md-12">
           <div class="tile">
             <h3 class="tile-title">我的课程</h3>
-
               <div class="table-responsive">
                 <table class="table table-hover table-bordered" id="sampleTable">
                   <thead>
@@ -99,11 +86,6 @@
     <script src="{% static "js/main.js" %}"></script>
     <!-- The javascript plugin to display page loading on top-->
     <script src="{% static "js/plugins/pace.min.js"%}"></script>
-    <!-- Page specific javascripts-->
-    {% comment %}<!-- Data table plugin-->
-    <script type="text/javascript" src="{% static "js/plugins/jquery.dataTables.min.js" %}"></script>
-    <script type="text/javascript" src="{% static "js/plugins/dataTables.bootstrap.min.js" %}"></script>
-    <script type="text/javascript">$('#sampleTable').DataTable();</script>{% endcomment %}
     <!-- Google analytics script-->
     <script type="text/javascript">
       if(document.location.hostname == 'pratikborsadiya.in') {
@@ -114,7 +96,6 @@
       	ga('create', 'UA-72504830-1', 'auto');
       	ga('send', 'pageview');
       }
-
     </script>
   </body>
 </html>

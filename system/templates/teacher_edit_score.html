@@ -34,7 +34,6 @@
       <div class="app-sidebar__user">
         <img style="height:60px;margin-right:15px;" src="{% static "images/jiaoshi.png" %}" alt="User Image">
         <div>
-          {% comment %}<p class="app-sidebar__user-name">姓名：{{xm}}</p>{% endcomment %}
             <p class="app-sidebar__user-designation">工号：{{gh}}</p>
         </div>
       </div>
@@ -49,16 +48,6 @@
     </aside>
 <!--    主要内容部分-->
     <main class="app-content">
-<!--      头部-->
-{#      <div class="app-title">#}
-{#        <div>#}
-{#          <h1 style="font-size:20px">上海大学选课系统</h1>#}
-{#        </div>#}
-{#        <ul class="app-breadcrumb breadcrumb">#}
-{#          <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>#}
-{#          <li class="breadcrumb-item"><a style="font-size:13px;" href="#">个人信息 Student Data</a></li>#}
-{#        </ul>#}
-{#      </div>#}
 <!--      内容显示-->
      <div class="clearfix"></div>
           <div class="col-md-12">
@@ -97,7 +86,6 @@
                     {% endfor %}
                   </tbody>
                 </table>
-
           </div>
           </div>
         </div>
@@ -105,9 +93,6 @@
     <div class="row" style="margin-left: 0.5em">
         <div class="col-md-8">
           <div class="tile">
-
-{#            <div class="embed-responsive embed-responsive-16by9">#}
-{#              <canvas class="embed-responsive-item" id="doughnutChartDemo"></canvas>#}
          <div id="container" style="width: 550px; height: 400px; margin: 0 auto"></div>
             </div>
           </div>
@@ -123,13 +108,7 @@
     <!-- The javascript plugin to display page loading on top-->
     <script src="{% static "js/plugins/pace.min.js"%}"></script>
    <script type="text/javascript" src="{% static "js/highcharts.js" %}"></script>
-    <!-- Page specific javascripts-->
-
-    {% comment %}<!-- Data table plugin-->
-    <script type="text/javascript" src="{% static "js/plugins/jquery.dataTables.min.js" %}"></script>
-    <script type="text/javascript" src="{% static "js/plugins/dataTables.bootstrap.min.js" %}"></script>
-    <script type="text/javascript">$('#sampleTable').DataTable();</script>{% endcomment %}
-
+    <!-- Page specific javascripts-->%}
       <script type="text/javascript" src="{% static "js/plugins/chart.js" %}"></script>
    <script type="text/javascript">
 $(document).ready(function() {
@@ -157,7 +136,6 @@ $(document).ready(function() {
          }
       }
    };
-
           var you=0;
           var liang=0;
           var zhong=0;
@@ -207,7 +185,6 @@ $(document).ready(function() {
                     console.log(fail);
               }
           }
-
    var series= [{
       type: 'pie',
       name: '总评成绩分布',
@@ -224,7 +201,6 @@ $(document).ready(function() {
          ['不合格:低于60分',  fail],
       ]
    }];
-
    var json = {};
    json.chart = chart;
    json.title = title;
@@ -234,66 +210,6 @@ $(document).ready(function() {
    $('#container').highcharts(json);
 });
 </script>
-{#    <script type="text/javascript">#}
-      {#90~100 优秀#}
-      {#80~90  良#}
-      {#70~80 中#}
-      {#60~70 及格#}
-      {#<60 不及格#}
-{#      var ctxd = $("#doughnutChartDemo").get(0).getContext("2d");#}
-{#      var doughnutChart = new Chart(ctxd).Doughnut(function () {#}
-{##}
-{#          var you=0;#}
-{#          var liang=0;#}
-{#          var zhong=0;#}
-{#          var hege=0;#}
-{#          var fail=0;#}
-{#          var zpcj = [];#}
-{#          var tb=document.getElementById("sampleTable");    //获取table对像#}
-{#          var rows = tb.rows;#}
-{#          for (var i = 1; i < rows.length; i++) {    //--循环所有的行#}
-{#              var cells = rows[i].cells;　　// cells 集合返回表格中所有 <td> 或 <th> 元素。#}
-{#                for (var j = 0; j < cells.length; j++) {   //--循环所有的列，从第一列取数据，因为一般第一列都是标识，数据毫无意义。#}
-{#                    if (j==7){#}
-{#                        zpcj.push(cells[j].innerHTML)#}
-{#                    }#}
-{#                }#}
-{#        }#}
-{#          console.log(zpcj);#}
-{#          for(i=1;i<zpcj.length;i++)#}
-{#          {#}
-{#              if(90<=parseInt(zpcj[i]) <=100)#}
-{#              {#}
-{#                  you++;#}
-{#              }#}
-{#          }#}
-{##}
-{#           var pdata = [#}
-{#      	{#}
-{#      		value: you,#}
-{#      		color:"#F7464A",#}
-{#      		highlight: "#FF5A5E",#}
-{#      		label: "优秀"#}
-{#      	},#}
-{#      	{#}
-{#      		value: 50,#}
-{#      		color: "#46BFBD",#}
-{#      		highlight: "#5AD3D1",#}
-{#      		label: "Green"#}
-{#      	},#}
-{#      	{#}
-{#      		value: 100,#}
-{#      		color: "#FDB45C",#}
-{#      		highlight: "#FFC870",#}
-{#      		label: "Yellow"#}
-{#      	}#}
-{#      ]#}
-{#             return pdata;#}
-{#      });#}
-{#    </script>#}
-    <!-- Google analytics script-->
-
-
     <script type="text/javascript">
       if(document.location.hostname == 'pratikborsadiya.in') {
       	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -303,10 +219,7 @@ $(document).ready(function() {
       	ga('create', 'UA-72504830-1', 'auto');
       	ga('send', 'pageview');
       }
-
     </script>
-
   </body>
 </html>
 
-<!--  该页面相当于系统教师首页-->
