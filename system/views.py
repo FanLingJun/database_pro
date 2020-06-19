@@ -256,17 +256,6 @@ def delete_course(request):
 
     return render(request, 'delete_course.html', context={'xh':number,'selected_course': selected_c})
 
-'''
-    if request.method == 'GET':
-      return render(request, 'delete_course.html', context={'selected_course': selected_c})
-    else:
-      course_id = request.POST.get('course_id')
-      # 先选中，再删除
-      models.e_table.objects.filter(xh_id=number, kh_id=course_id).delete()
-      # messages.success(request, '退课成功啦~~~~~~')
-      return redirect('/delete_course/')
-'''
-
 def teacher_course(request):
   number = request.session.get('number')
   cursor = connection.cursor()
