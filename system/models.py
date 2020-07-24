@@ -40,9 +40,15 @@ class course(models.Model):
   xs = models.IntegerField()
   yxh = models.ForeignKey(to=department, on_delete=models.CASCADE)
 
+class term_status(models.Model):
+  id = models.CharField(primary_key=True,max_length=8)
+  name = models.CharField(max_length=20)
+  status = models.IntegerField()
+
+
 class e_table(models.Model):
   xh = models.ForeignKey(to = student, on_delete=models.CASCADE)
-  xq = models.CharField(max_length=20)
+  xq = models.ForeignKey(to = term_status,on_delete= models.CASCADE,default=1)
   kh = models.ForeignKey(to = course, on_delete=models.CASCADE)
   gh = models.ForeignKey(to = teacher, on_delete=models.CASCADE)
   pscj = models.CharField(max_length=10,null=True)
@@ -50,7 +56,7 @@ class e_table(models.Model):
   zpcj = models.CharField(max_length=10,null=True)
 
 class open_course(models.Model):
-  xq = models.CharField(max_length=20)
+  xq = models.ForeignKey(to=term_status, on_delete=models.CASCADE,default=1)
   kh = models.ForeignKey(to = course, on_delete=models.CASCADE)
   gh = models.ForeignKey(to = teacher, on_delete=models.CASCADE)
   sksj = models.CharField(max_length=20)
