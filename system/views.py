@@ -273,31 +273,63 @@ def teacher_course(request):
     courses_data.append(temp)
   return render(request, 'teacher_course.html',context={'gh':number,'courses_data':courses_data})
 
+
 def teacher_edit_score(request):
-  number = request.session.get('number')
-  cursor = connection.cursor()
-  # 查询这个老师教的学生的成绩
-  cursor.execute(
-    "select distinct kh,km,xh,xm,pscj,kscj,zpcj,xq from system_course,system_e_table,system_student "
-    "where system_e_table.kh_id = system_course.kh and system_student.xh = system_e_table.xh_id "
-    "and system_e_table.gh_id = %s", [number])
-  all_info = cursor.fetchall()  # 读取所有
-  teacher_student_data = []
-  for item in all_info:
-    temp = dict()  # 注意这里一定要放在循环之内！！！！！！！！！！！！
-    temp['kh'] = item[0]
-    temp['km'] = item[1]
-    temp['xh'] = item[2]
-    temp['xm'] = item[3]
-    temp['pscj'] = item[4]
-    temp['kscj'] = item[5]
-    temp['zpcj'] = item[6]
-    temp['xq'] = item[7]
-    teacher_student_data.append(temp)
-  print(teacher_student_data)
+    course_name = request.GET.get('course_name')
+    number = request.session.get('number')
+    cursor = connection.cursor()
 
+    # 查询这个老师教的学生的成绩
+    cursor.execute(
+        "select distinct kh,km,xh,xm,pscj,kscj,zpcj,xq from system_course,system_e_table,system_student "
+        "where system_e_table.kh_id = system_course.kh and system_student.xh = system_e_table.xh_id "
+        "and system_e_table.gh_id = %s", [number])
+    all_info = cursor.fetchall()  # 读取所有
+    print(all_info)
+    teacher_student_data = []
+    temp2 = []
+    for item in all_info:
+        temp = dict()  # 注意这里一定要放在循环之内！！！！！！！！！！！！
+        temp['kh'] = item[0]
+        temp['km'] = item[1]
+        temp['xh'] = item[2]
+        temp['xm'] = item[3]
+        temp['pscj'] = item[4]
+        temp['kscj'] = item[5]
+        temp['zpcj'] = item[6]
+        temp['xq'] = item[7]
+        teacher_student_data.append(temp)
+        temp2.append(item[1])
+    print("teacher_student_data:", teacher_student_data)
+    courses_data = sorted(set(temp2), key=temp2.index)
+    print(courses_data)
 
-  return render(request, 'teacher_edit_score.html',context={'gh':number,'student_data':teacher_student_data})
+    if course_name:
+        teacher_student_data = []
+        print("before_teacher_student_data:\n", teacher_student_data)
+        for item in all_info:
+            if item[1] == course_name:
+                temp3 = dict()
+                temp3['kh'] = item[0]
+                temp3['km'] = item[1]
+                temp3['xh'] = item[2]
+                temp3['xm'] = item[3]
+                temp3['pscj'] = item[4]
+                temp3['kscj'] = item[5]
+                temp3['zpcj'] = item[6]
+                temp3['xq'] = item[7]
+                teacher_student_data.append(temp3)
+        print("new_teacher_student_data:\n", teacher_student_data)
+
+        return render(request, 'teacher_edit_score.html',
+                      context={'gh': number, 'student_data': teacher_student_data,
+                               'course_name': course_name, 'courses_data': courses_data})
+    else:  # 下拉框已选课程
+        course_name = '未选择课程'
+        return render(request, 'teacher_edit_score.html',
+                      context={'gh': number, 'student_data': teacher_student_data,
+                               'course_name': course_name, 'courses_data': courses_data})
+
 
 def teacher_mod_score(request):
   # 教师提交学生成绩
