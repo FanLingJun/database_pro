@@ -51,11 +51,26 @@
     <main class="app-content">
         <div class="row">
         <div class="col-md-12">
+        <div class="bs-component">
+            <ul class="nav nav-pills" style="font-size: 20px; font-weight: bolder;">
+                <li class="nav-item"><a class="nav-link disabled">选择学期</a></li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">——{{term_name}}——</a>
+                  <div class="dropdown-menu">
+                    {% for item in terms %}
+                    <a class="dropdown-item" href="/check_my_score/?term_name={{item.xq}}">{{ item.xq }}</a>
+                    {% endfor %}
+                  </div>
+                </li>
+              </ul>
+        </div>
+        </div>
+        <div class="col-md-12">
           <div class="tile">
           <h3 class="tile-tile">成绩信息</h3>
             <div class="tile-body">
               <div class="table-responsive">
-                      <table class="table table-hover table-bordered" id="datatable">
+                      <table class="table table-hover table-bordered" id="sampleTable1">
                         <thead>
                           <tr>
                             <th>课号</th>
@@ -100,10 +115,6 @@
     <script src="{% static "js/plugins/pace.min.js"%}"></script>
     <!-- Page specific javascripts-->
     <!-- Data table plugin-->
-    <script type="text/javascript" src="{% static "js/plugins/jquery.dataTables.min.js" %}"></script>
-    <script type="text/javascript" src="{% static "js/plugins/dataTables.bootstrap.min.js" %}"></script>
-    <script type="text/javascript">$('#sampleTable1').DataTable();</script>
-    <script type="text/javascript">$('#sampleTable2').DataTable();</script>
     <script type="text/javascript" src="{% static "js/plugins/chart.js" %}"></script>
     <script type="text/javascript" src="{% static "js/highcharts.js" %}"></script>
     <script type="text/javascript" src="{% static "js/exporting.js" %}"></script>
@@ -125,7 +136,7 @@
       (function () {
           var km = [];
           var gpa = [];
-          var tb=document.getElementById("datatable");    //获取table对像
+          var tb=document.getElementById("sampleTable1");    //获取table对像
           var rows = tb.rows;
           for (var i = 1; i < rows.length; i++) {    //--循环所有的行
               var cells = rows[i].cells;　　// cells 集合返回表格中所有 <td> 或 <th> 元素。

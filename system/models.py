@@ -42,7 +42,7 @@ class course(models.Model):
 
 class term_status(models.Model):
   id = models.CharField(primary_key=True,max_length=8)
-  name = models.CharField(max_length=20)
+  xq = models.CharField(max_length=20)
   status = models.IntegerField()
 
 

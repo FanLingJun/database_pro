@@ -56,7 +56,7 @@
             <h3 class="tile-title">每日一报管理-学生(仅显示状况异常)</h3>
             <div class="tile-body">
               <div class="table-responsive">
-                <table class="table table-hover table-bordered" id="sampleTable">
+                <table class="table table-hover table-bordered" id="sampleTable1">
                   <thead>
                     <tr>
                       <th>学号</th>
@@ -89,7 +89,7 @@
             <h3 class="tile-title">每日一报管理-教师(仅显示状况异常)</h3>
             <div class="tile-body">
               <div class="table-responsive">
-                <table class="table table-hover table-bordered" id="sampleTable">
+                <table class="table table-hover table-bordered" id="sampleTable2">
                   <thead>
                     <tr>
                       <th>学号</th>
@@ -125,6 +125,12 @@
     <script src="{% static "js/main.js" %}"></script>
     <!-- The javascript plugin to display page loading on top-->
     <script src="{% static "js/plugins/pace.min.js"%}"></script>
+
+    <script type="text/javascript" src="{% static "js/plugins/jquery.dataTables.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/plugins/dataTables.bootstrap.min.js" %}"></script>
+    <script type="text/javascript">$('#sampleTable1').DataTable();</script>
+    <script type="text/javascript">$('#sampleTable2').DataTable();</script>
+
     <!-- Page specific javascripts-->
     <script type="text/javascript" src="{% static "js/plugins/bootstrap-datepicker.min.js" %}"></script>
     <script type="text/javascript" src="{% static "js/plugins/select2.min.js" %}"></script>

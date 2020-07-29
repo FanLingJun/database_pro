@@ -85,35 +85,85 @@ def admin_index(request):
 
 
 def check_my_score(request):
-  number = request.session.get('number')
-  cursor = connection.cursor()
-  cursor.execute("select kh,km,xf,zpcj from system_course,system_e_table "
-                 "where system_e_table.kh_id = system_course.kh "
-                 "and xh_id = %s and zpcj is not null and zpcj != ''", [number])
-  all_scores = cursor.fetchall()  # 读取所有
-  print(all_scores, type(all_scores))
-  all_s = []
-  for item in all_scores:
-    scores = dict()  # 注意这里一定要放在循环之内！！！！！！！！！！！！
-    scores['kh'] = item[0]
-    scores['km'] = item[1]
-    scores['xf'] = item[2]
-    scores['zpcj'] = item[3]
-    if item[3] != '':
-      if int(item[3]) > 89:
-        scores['gpa'] = 4.0
-      elif int(item[3]) > 84:
-        scores['gpa'] = 3.7
-      elif int(item[3]) > 79:
-        scores['gpa'] = 3.0
-      elif int(item[3]) > 69:
-        scores['gpa'] = 2.0
-      elif int(item[3]) > 59:
-        scores['gpa'] = 1.0
-      else:
-        scores['gpa'] = 0.0
-    all_s.append(scores)
-  return render(request, 'check_my_score.html', context={'xh': number, 'scores': all_s})
+    number = request.session.get('number')
+    term_name = request.GET.get('term_name')
+    print('term_name1:\n',term_name)
+    cursor = connection.cursor()
+    cursor.execute("select system_term_status.name from system_term_status ")
+    all_terms = cursor.fetchall()  # 读取所有
+    print(all_terms, type(all_terms))
+    all_t = []
+    for item in all_terms:
+        terms = dict()  # 注意这里一定要放在循环之内！！！！！！！！！！！！
+        terms['xq'] = item[0]
+        all_t.append(terms)
+    print(terms)
+
+    if term_name:
+        print('term_name2:\n', term_name)
+        cursor.execute("select kh,km,xf,zpcj from system_course,system_e_table,system_term_status "
+                       "where system_e_table.kh_id = system_course.kh "
+                       "and system_e_table.xq_id = system_term_status.id "
+                       "and system_term_status.name = %s " 
+                       "and xh_id = %s and zpcj is not null and zpcj != ''", [term_name, number])
+        all_scores = cursor.fetchall()  # 读取所有
+        print(all_scores, type(all_scores))
+        all_s = []
+        for item in all_scores:
+            scores = dict()  # 注意这里一定要放在循环之内！！！！！！！！！！！！
+            scores['kh'] = item[0]
+            scores['km'] = item[1]
+            scores['xf'] = item[2]
+            scores['zpcj'] = item[3]
+            if item[3] != '':
+                if int(item[3]) > 89:
+                    scores['gpa'] = 4.0
+                elif int(item[3]) > 84:
+                    scores['gpa'] = 3.7
+                elif int(item[3]) > 79:
+                    scores['gpa'] = 3.0
+                elif int(item[3]) > 69:
+                    scores['gpa'] = 2.0
+                elif int(item[3]) > 59:
+                    scores['gpa'] = 1.0
+                else:
+                    scores['gpa'] = 0.0
+            all_s.append(scores)
+        return render(request, 'check_my_score.html', context={'xh': number, 'scores': all_s, "terms":all_t, "term_name":term_name})
+    else:
+        term_name = '2018-2019学年秋季学期'
+        print('term_name3:\n', term_name)
+        cursor.execute("select kh,km,xf,zpcj from system_course,system_e_table,system_term_status "
+                       "where system_e_table.kh_id = system_course.kh "
+                       "and system_e_table.xq_id = system_term_status.id "
+                       "and system_term_status.name = '2018-2019学年秋季学期' "
+                       "and xh_id = %s and zpcj is not null and zpcj != ''", [number])
+        all_scores = cursor.fetchall()  # 读取所有
+        print(all_scores, type(all_scores))
+        all_s = []
+        for item in all_scores:
+            scores = dict()  # 注意这里一定要放在循环之内！！！！！！！！！！！！
+            scores['kh'] = item[0]
+            scores['km'] = item[1]
+            scores['xf'] = item[2]
+            scores['zpcj'] = item[3]
+            if item[3] != '':
+                if int(item[3]) > 89:
+                    scores['gpa'] = 4.0
+                elif int(item[3]) > 84:
+                    scores['gpa'] = 3.7
+                elif int(item[3]) > 79:
+                    scores['gpa'] = 3.0
+                elif int(item[3]) > 69:
+                    scores['gpa'] = 2.0
+                elif int(item[3]) > 59:
+                    scores['gpa'] = 1.0
+                else:
+                    scores['gpa'] = 0.0
+            all_s.append(scores)
+        return render(request, 'check_my_score.html', context={'xh': number, 'scores': all_s, "terms":all_t, "term_name":term_name})
+
+
 
 '''
 def check_my_table(request):
@@ -137,12 +187,14 @@ def check_my_table(request):
 def check_my_table(request):
   number = request.session.get('number')
   cursor = connection.cursor()
-  cursor.execute("select distinct kh,km,xf,sksj,system_e_table.xq,system_e_table.gh_id,xs,xm "
-                 "from system_course,system_e_table,system_open_course,system_teacher "
+  cursor.execute("select distinct kh,km,xf,sksj,system_term_status.name,system_e_table.gh_id,xs,xm "
+                 "from system_course,system_e_table,system_open_course,system_teacher,system_term_status "
                  "where xh_id = %s "
                  "and system_course.kh = system_e_table.kh_id "
                  "and system_open_course.kh_id =  system_e_table.kh_id "
                  "and system_teacher.gh = system_e_table.gh_id "
+                 "and system_e_table.xq_id = system_term_status.id "
+                 "and system_term_status.status = 'next' "
                  "and zpcj is null and system_open_course.gh_id = system_e_table.gh_id",[number])
   info = cursor.fetchall()
   all = []
@@ -164,11 +216,12 @@ def select_course(request):
 
   number = request.session.get('number')
   cursor = connection.cursor()
-  cursor.execute("select distinct xq,km,xf,kh_id,xm,gh,sksj "
-                 "from system_open_course,system_teacher,system_course "
+  cursor.execute("select distinct system_term_status.name,km,xf,kh_id,xm,gh,sksj "
+                 "from system_open_course,system_teacher,system_course,system_term_status "
                  "where system_open_course.gh_id = system_teacher.gh "
                  "and system_open_course.kh_id = system_course.kh "
-                 "and xq='2020-2021秋季'")
+                 "and system_open_course.xq_id = system_term_status.id "
+                 "and system_term_status.status='next'")
   open_course = cursor.fetchall()
   print(open_course)
   all = []
@@ -195,10 +248,11 @@ def select_course(request):
       # 搜索课程
       cursor = connection.cursor()
       cursor.execute("select kh_id,km,gh_id,xm,xf,sksj "
-                     "from system_open_course,system_teacher,system_course "
+                     "from system_open_course,system_teacher,system_course,system_term_status "
                      "where system_open_course.gh_id = system_teacher.gh "
                      "and system_open_course.kh_id = system_course.kh and km = %s "
-                     "and xq='2020-2021秋季'", [km])
+                     "and system_open_course.xq_id = system_term_status.id "
+                     "and system_term_status.status='next'", [km])
       course_data = cursor.fetchall()
       print(course_data)
       all_data = []
@@ -213,11 +267,11 @@ def select_course(request):
         all_data.append(course)
       return render(request, 'select_course.html', context={'xh':number,'course_data': all_data, 'open_course': all})
     if course_id and teacher_id:
-      if models.e_table.objects.filter(xq='2020-2021秋季', xh_id=number, kh_id=course_id, gh_id=teacher_id):
+      if models.e_table.objects.filter(xh_id=number, kh_id=course_id, gh_id=teacher_id, xq_id='9'):  #xq_id插入值
         messages.success(request, '选课失败啦！已经选过这门课了~~~')
         return redirect('/select_course/')
       try:
-        models.e_table.objects.create(xq='2020-2021秋季', xh_id=number, kh_id=course_id, gh_id=teacher_id)
+        models.e_table.objects.create(xh_id=number, kh_id=course_id, gh_id=teacher_id, xq_id='9')
         messages.success(request, '选课成功啦~~~~~~')
         return redirect('/select_course/')
       except:
@@ -232,9 +286,11 @@ def delete_course(request):
     cursor = connection.cursor()
     cursor.execute(
       "select kh,km,gh,xm,xf "
-      "from system_course,system_e_table,system_teacher "
+      "from system_course,system_e_table,system_teacher,system_term_status "
       "where system_e_table.kh_id = system_course.kh "
       "and system_e_table.gh_id = system_teacher.gh "
+      "and system_e_table.xq_id = system_term_status.id "
+      "and system_term_status.status = 'next' "
       "and xh_id = %s and zpcj is null",
       [number])
     all_course = cursor.fetchall()  # 读取所有

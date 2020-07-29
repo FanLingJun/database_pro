@@ -55,7 +55,7 @@
           <h3 class="tile-tile">已选课程</h3>
             <div class="tile-body">
               <div class="table-responsive">
-                      <table class="table table-hover table-bordered">
+                      <table class="table table-hover table-bordered" id="sampleTable">
                         <thead>
                           <tr>
                             <th>课号</th>
@@ -98,8 +98,7 @@
     <!-- Data table plugin-->
     <script type="text/javascript" src="{% static "js/plugins/jquery.dataTables.min.js" %}"></script>
     <script type="text/javascript" src="{% static "js/plugins/dataTables.bootstrap.min.js" %}"></script>
-    <script type="text/javascript">$('#sampleTable1').DataTable();</script>
-    <script type="text/javascript">$('#sampleTable2').DataTable();</script>
+    <script type="text/javascript">$('#sampleTable').DataTable();</script>
     <!-- Google analytics script-->
     <script type="text/javascript">
       if(document.location.hostname == 'pratikborsadiya.in') {
