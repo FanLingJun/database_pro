@@ -334,9 +334,9 @@ def teacher_edit_score(request):
   cursor = connection.cursor()
   # 查询这个老师教的学生的成绩
   cursor.execute(
-    "select distinct kh,km,xh,xm,pscj,kscj,zpcj,xq from system_course,system_e_table,system_student "
+    "select distinct kh,km,xh,xm,pscj,kscj,zpcj,system_term_status.name from system_course,system_e_table,system_student,system_term_status "
     "where system_e_table.kh_id = system_course.kh and system_student.xh = system_e_table.xh_id "
-    "and system_e_table.gh_id = %s", [number])
+    "and system_e_table.gh_id = %s and system_e_table.xq_id = system_term_status.id", [number])
   all_info = cursor.fetchall()  # 读取所有
   teacher_student_data = []
   for item in all_info:
@@ -511,10 +511,11 @@ def admin_mod_teacher(request):
 def admin_edit_course(request):
   gh = request.session.get('number')
   cursor = connection.cursor()
-  cursor.execute("select distinct xq,km,xf,kh_id,xm,gh,sksj,xq "
-                 "from system_open_course,system_teacher,system_course "
+  cursor.execute("select distinct system_term_status.name,km,xf,kh_id,xm,gh,sksj "
+                 "from system_open_course,system_teacher,system_course,system_term_status "
                  "where system_open_course.gh_id = system_teacher.gh "
-                 "and system_open_course.kh_id = system_course.kh")
+                 "and system_open_course.kh_id = system_course.kh "
+                 "and system_open_course.xq_id = system_term_status.id")
   open_course = cursor.fetchall()
   print(open_course)
   all = []
@@ -527,7 +528,6 @@ def admin_edit_course(request):
     course['xm'] = item[4]
     course['gh'] = item[5]
     course['sksj'] = item[6]
-    course['xq'] = item[7]
     all.append(course)
   if request.method == 'POST':
     kh = request.POST.get('kh')
