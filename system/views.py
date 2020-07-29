@@ -339,12 +339,11 @@ def teacher_edit_score(request):
     course_name = request.GET.get('course_name')
     number = request.session.get('number')
     cursor = connection.cursor()
-
     # 查询这个老师教的学生的成绩
     cursor.execute(
-        "select distinct kh,km,xh,xm,pscj,kscj,zpcj,xq from system_course,system_e_table,system_student "
+        "select distinct kh,km,xh,xm,pscj,kscj,zpcj,system_term_status.name from system_course,system_e_table,system_student,system_term_status "
         "where system_e_table.kh_id = system_course.kh and system_student.xh = system_e_table.xh_id "
-        "and system_e_table.gh_id = %s", [number])
+        "and system_e_table.xq_id=system_term_status.id and system_e_table.gh_id = %s", [number])
     all_info = cursor.fetchall()  # 读取所有
     print(all_info)
     teacher_student_data = []
@@ -366,8 +365,11 @@ def teacher_edit_score(request):
     print(courses_data)
 
     if course_name:
+        print("course_name",course_name)
+        course_name = course_name.replace(' ', '+')
         teacher_student_data = []
         print("before_teacher_student_data:\n", teacher_student_data)
+        print("all_info",all_info)
         for item in all_info:
             if item[1] == course_name:
                 temp3 = dict()
