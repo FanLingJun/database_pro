@@ -50,6 +50,23 @@
     <main class="app-content">
 <!--      内容显示-->
      <div class="clearfix"></div>
+
+            <div class="col-lg-12">
+            <div class="bs-component">
+              <ul class="nav nav-pills">
+                <li class="nav-item"><a class="nav-link disabled">选择课程 Select Course</a></li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">——{{course_name}}——</a>
+                  <div class="dropdown-menu">
+                    {% for item in courses_data %}
+                    <a class="dropdown-item" href="/teacher_edit_score/?course_name={{item}}">{{ item}}</a>
+                    {% endfor %}
+                  </div>
+                </li>
+              </ul>
+            </div>
+        </div>
+
           <div class="col-md-12">
           <div class="tile">
               <h3 class="tile-title">我的学生</h3>
@@ -96,6 +113,9 @@
             </div>
           </div>
         </div>
+
+
+
       </div>
     </main>
     <!-- Essential javascripts for application to work-->
@@ -107,8 +127,10 @@
     <script src="{% static "js/plugins/pace.min.js"%}"></script>
    <script type="text/javascript" src="{% static "js/highcharts.js" %}"></script>
     <!-- Page specific javascripts-->%}
-      <script type="text/javascript" src="{% static "js/plugins/chart.js" %}"></script>
-   <script type="text/javascript">
+    <script type="text/javascript" src="{% static "js/plugins/chart.js" %}"></script>
+
+
+    <script type="text/javascript">
 $(document).ready(function() {
    var chart = {
        plotBackgroundColor: null,
