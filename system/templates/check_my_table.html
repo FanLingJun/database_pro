@@ -52,12 +52,13 @@
         <div class="row">
         <div class="col-md-12">
           <div class="tile">
-          <h3 class="tile-tile">课表信息</h3>
+          <h3 class="tile-tile">课程信息</h3>
             <div class="tile-body">
               <div class="table-responsive">
-                      <table class="table table-hover table-bordered">
+                      <table class="table table-hover table-bordered" id="table">
                         <thead>
                           <tr>
+                            <th>序号</th>
                             <th>课号</th>
                             <th>课名</th>
                             <th>学分</th>
@@ -70,6 +71,7 @@
                         <tbody>
                          {% for item in all_course %}
                           <tr>
+                            <td>{{ item.xuhao }}</td>
                             <td>{{ item.kh }}</td>
                             <td>{{ item.km }}</td>
                             <td>{{ item.xf }}</td>
@@ -85,6 +87,19 @@
           </div>
         </div>
       </div>
+
+         <div class="col-md-12">
+          <div class="tile">
+          <h3 class="tile-tile">课表信息</h3>
+            <div class="tile-body">
+              <div class="table-responsive">
+                      <table class="table table-hover table-bordered" id="table2">
+                      </table>
+                    </div>
+          </div>
+        </div>
+      </div>
+
       </div>
     </main>
     <!-- Essential javascripts for application to work-->
@@ -110,5 +125,220 @@
       	ga('send', 'pageview');
       }
     </script>
+    <script>
+      (function () {
+          var tableNode=document.getElementById("table2");    //获取table对像
+          var rows = 14;
+          var cols = 6;
+          for(var x=0;x<rows;x++){
+              var trNode=tableNode.insertRow();
+              for(var y=0;y<cols;y++){
+                  var tdNode=trNode.insertCell();
+                  if(x==0){
+                      if(y==1)
+                          tdNode.innerHTML="星期一";
+                      if(y==2)
+                          tdNode.innerHTML="星期二";
+                      if(y==3)
+                          tdNode.innerHTML="星期三";
+                      if(y==4)
+                          tdNode.innerHTML="星期四";
+                      if(y==5)
+                          tdNode.innerHTML="星期五";
+                  }
+                  if(y==0 && x!=0){
+                      tdNode.innerHTML = x;
+                  }
+                }
+
+            }
+      })();
+  </script>
+  <script>
+
+
+       (function () {
+          var xuhao = [];
+          var time = [];
+          var tb=document.getElementById("table");    //获取table对像
+          var rows = tb.rows;
+          for (var i = 1; i < rows.length; i++) {    //--循环所有的行
+              var cells = rows[i].cells;　　// cells 集合返回表格中所有 <td> 或 <th> 元素。
+                for (var j = 0; j < cells.length; j++) {   //--循环所有的列，从第一列取数据，因为一般第一列都是标识，数据毫无意义。
+                    if (j==0){
+                        xuhao.push(cells[j].innerHTML)
+                    }
+                    if (j==4){
+                        time.push(cells[j].innerHTML)
+                    }
+                }
+        }
+          console.log(xuhao);
+          console.log(time);
+          var temp=time.length;
+          var count1=0,count2=0;
+          var s1,s2;
+          for(var i=0;i<temp;i++){
+              var value=time[i];
+              if(value[2]=='一'){
+                   count1=0;
+                   for(var j=3;value[j]!='-';j++) {
+                       count1++;
+                   }
+                   console.log(i+':yes');
+                   console.log("count1="+count1);
+                   if(count1==1){
+                       s1 = parseInt(time[i][3]);
+                       count2=0;
+                      if(value.length==6){
+                           s2= parseInt(time[i][5]);
+
+                      }
+                      if(value.length==7){
+                            s2 = parseInt(time[i][5])*10+parseInt(time[i][6]);
+
+                      }
+                  }
+                   if(count1==2){
+                      s1 = parseInt(time[i][3])*10+parseInt(time[i][4]);
+                      s2 = parseInt(time[i][6])*10+parseInt(time[i][7]);
+                  }
+                   console.log("s1="+s1);
+                   console.log("s2="+s2);
+                   for(var t=s1;t<=s2;t++)
+                       document.all("table2").rows[t].cells[1].innerText = xuhao[i];
+          }
+              if(value[2]=='二'){
+                   count1=0;
+                   for(var j=3;value[j]!='-';j++) {
+                       count1++;
+                   }
+                   console.log(i+':yes');
+                   console.log("count1="+count1);
+                   if(count1==1){
+                       s1 = parseInt(time[i][3]);
+                       count2=0;
+                      if(value.length==6){
+                           s2= parseInt(time[i][5]);
+
+                      }
+                      if(value.length==7){
+                            s2 = parseInt(time[i][5])*10+parseInt(time[i][6]);
+
+                      }
+                  }
+                   if(count1==2){
+                      s1 = parseInt(time[i][3])*10+parseInt(time[i][4]);
+                      s2 = parseInt(time[i][6])*10+parseInt(time[i][7]);
+                  }
+                   console.log("s1="+s1);
+                   console.log("s2="+s2);
+                   for(var t=s1;t<=s2;t++)
+                       document.all("table2").rows[t].cells[2].innerText = xuhao[i];
+          }
+              if(value[2]=='三'){
+                   count1=0;
+                   for(var j=3;value[j]!='-';j++) {
+                       count1++;
+                   }
+                   console.log(i+':yes');
+                   console.log("count1="+count1);
+                   if(count1==1){
+                       s1 = parseInt(time[i][3]);
+                       count2=0;
+                      if(value.length==6){
+                           s2= parseInt(time[i][5]);
+
+                      }
+                      if(value.length==7){
+                            s2 = parseInt(time[i][5])*10+parseInt(time[i][6]);
+
+                      }
+                  }
+                   if(count1==2){
+                      s1 = parseInt(time[i][3])*10+parseInt(time[i][4]);
+                      s2 = parseInt(time[i][6])*10+parseInt(time[i][7]);
+                  }
+                   console.log("s1="+s1);
+                   console.log("s2="+s2);
+                   for(var t=s1;t<=s2;t++)
+                       document.all("table2").rows[t].cells[3].innerText = xuhao[i];
+          }
+              if(value[2]=='四'){
+                   count1=0;
+                   for(var j=3;value[j]!='-';j++) {
+                       count1++;
+                   }
+                   console.log(i+':yes');
+                   console.log("count1="+count1);
+                   if(count1==1){
+                       s1 = parseInt(time[i][3]);
+                       count2=0;
+                      if(value.length==6){
+                           s2= parseInt(time[i][5]);
+
+                      }
+                      if(value.length==7){
+                            s2 = parseInt(time[i][5])*10+parseInt(time[i][6]);
+
+                      }
+                  }
+                   if(count1==2){
+                      s1 = parseInt(time[i][3])*10+parseInt(time[i][4]);
+                      s2 = parseInt(time[i][6])*10+parseInt(time[i][7]);
+                  }
+                   console.log("s1="+s1);
+                   console.log("s2="+s2);
+                   for(var t=s1;t<=s2;t++)
+                       document.all("table2").rows[t].cells[4].innerText = xuhao[i];
+          }
+              if(value[2]=='五'){
+                   count1=0;
+                   for(var j=3;value[j]!='-';j++) {
+                       count1++;
+                   }
+                   console.log(i+':yes');
+                   console.log("count1="+count1);
+                   if(count1==1){
+                       s1 = parseInt(time[i][3]);
+                       count2=0;
+                      if(value.length==6){
+                           s2= parseInt(time[i][5]);
+
+                      }
+                      if(value.length==7){
+                            s2 = parseInt(time[i][5])*10+parseInt(time[i][6]);
+
+                      }
+                  }
+                   if(count1==2){
+                      s1 = parseInt(time[i][3])*10+parseInt(time[i][4]);
+                      s2 = parseInt(time[i][6])*10+parseInt(time[i][7]);
+                  }
+                   console.log("s1="+s1);
+                   console.log("s2="+s2);
+                   for(var t=s1;t<=s2;t++)
+                       document.all("table2").rows[t].cells[5].innerText = xuhao[i];
+          }
+
+
+
+
+
+
+
+
+
+          }
+
+
+
+
+
+
+
+
+      })();
+  </script>
   </body>
 </html>

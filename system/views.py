@@ -198,8 +198,12 @@ def check_my_table(request):
                  "and zpcj is null and system_open_course.gh_id = system_e_table.gh_id",[number])
   info = cursor.fetchall()
   all = []
+  alphabet = 'ABCDEFGHIJKLMNOPQrsTUVWXYZ'
+  i=0
   for item in info:
     temp = dict()  # 注意这里一定要放在循环之内！！！！！！！！！！！！
+    temp['xuhao'] = alphabet[i]
+    i=i+1
     temp['kh'] = item[0]
     temp['km'] = item[1]
     temp['xf'] = item[2]
@@ -209,6 +213,7 @@ def check_my_table(request):
     temp['xs'] = item[6]
     temp['xm'] = item[7]
     all.append(temp)
+  print(all)
   return render(request, 'check_my_table.html', context={'xh': number, 'all_course':all})
 
 
@@ -243,6 +248,7 @@ def select_course(request):
     print(course_id)
     teacher_id = request.POST.get('teacher_id')
     print(teacher_id)
+    all_data = []
     if km:
 
       # 搜索课程
@@ -255,7 +261,7 @@ def select_course(request):
                      "and system_term_status.status='next'", [km])
       course_data = cursor.fetchall()
       print(course_data)
-      all_data = []
+
       for item in course_data:
         course = dict()  # 注意这里一定要放在循环之内！！！！！！！！！！！！
         course['kh'] = item[0]
@@ -267,15 +273,27 @@ def select_course(request):
         all_data.append(course)
       return render(request, 'select_course.html', context={'xh':number,'course_data': all_data, 'open_course': all})
     if course_id and teacher_id:
+
+      course_obj = models.open_course.objects.filter(kh_id=course_id).first()
+      sksj = course_obj.sksj
+      print("当前选课的上课时间是：",sksj)
+      print(sksj[0:-2])
+      for every_course in all:
+        if every_course['sksj'] == sksj:
+          course_id = every_course['kh_id']
+          teacher_id = every_course['gh']
+          print("发现存在冲突！")
+
       if models.e_table.objects.filter(xh_id=number, kh_id=course_id, gh_id=teacher_id, xq_id='9'):  #xq_id插入值
-        messages.success(request, '选课失败啦！已经选过这门课了~~~')
+        messages.success(request, '选课失败啦！已经选过这门课了或上课时间冲突！')
         return redirect('/select_course/')
+
       try:
         models.e_table.objects.create(xh_id=number, kh_id=course_id, gh_id=teacher_id, xq_id='9')
-        messages.success(request, '选课成功啦~~~~~~')
+        messages.success(request, '选课成功！')
         return redirect('/select_course/')
       except:
-        messages.success(request, '选课失败啦！可能没有这门课或者这个老师哦~~~')
+        messages.success(request, '选课失败啦！可能没有这门课或者这个老师！')
         return redirect('/select_course/')
   else:
     return render(request, 'select_course.html', context={'xh':number,'open_course': all})
@@ -318,7 +336,7 @@ def teacher_course(request):
   cursor.execute(
     "select distinct kh,km,xf from system_course,system_e_table "
     "where system_e_table.kh_id = system_course.kh"
-    " and zpcj is null and system_e_table.gh_id = %s",[number])
+    " and xq_id = '9' and system_e_table.gh_id = %s",[number])
   all_info = cursor.fetchall()  # 读取所有
   courses_data = []
   for item in all_info:
@@ -329,31 +347,65 @@ def teacher_course(request):
     courses_data.append(temp)
   return render(request, 'teacher_course.html',context={'gh':number,'courses_data':courses_data})
 
+
 def teacher_edit_score(request):
-  number = request.session.get('number')
-  cursor = connection.cursor()
-  # 查询这个老师教的学生的成绩
-  cursor.execute(
-    "select distinct kh,km,xh,xm,pscj,kscj,zpcj,system_term_status.name from system_course,system_e_table,system_student,system_term_status "
-    "where system_e_table.kh_id = system_course.kh and system_student.xh = system_e_table.xh_id "
-    "and system_e_table.gh_id = %s and system_e_table.xq_id = system_term_status.id", [number])
-  all_info = cursor.fetchall()  # 读取所有
-  teacher_student_data = []
-  for item in all_info:
-    temp = dict()  # 注意这里一定要放在循环之内！！！！！！！！！！！！
-    temp['kh'] = item[0]
-    temp['km'] = item[1]
-    temp['xh'] = item[2]
-    temp['xm'] = item[3]
-    temp['pscj'] = item[4]
-    temp['kscj'] = item[5]
-    temp['zpcj'] = item[6]
-    temp['xq'] = item[7]
-    teacher_student_data.append(temp)
-  print(teacher_student_data)
+    course_name = request.GET.get('course_name')
+    number = request.session.get('number')
+    cursor = connection.cursor()
+    # 查询这个老师教的学生的成绩
+    cursor.execute(
+        "select distinct kh,km,xh,xm,pscj,kscj,zpcj,system_term_status.name from system_course,system_e_table,system_student,system_term_status "
+        "where system_e_table.kh_id = system_course.kh and system_student.xh = system_e_table.xh_id "
+        "and system_e_table.xq_id=system_term_status.id and system_e_table.gh_id = %s and xq_id = '9'", [number])
+    all_info = cursor.fetchall()  # 读取所有
+    print(all_info)
+    teacher_student_data = []
+    temp2 = []
+    for item in all_info:
+        temp = dict()  # 注意这里一定要放在循环之内！！！！！！！！！！！！
+        temp['kh'] = item[0]
+        temp['km'] = item[1]
+        temp['xh'] = item[2]
+        temp['xm'] = item[3]
+        temp['pscj'] = item[4]
+        temp['kscj'] = item[5]
+        temp['zpcj'] = item[6]
+        temp['xq'] = item[7]
+        teacher_student_data.append(temp)
+        temp2.append(item[1])
+    print("teacher_student_data:", teacher_student_data)
+    courses_data = sorted(set(temp2), key=temp2.index)
+    print(courses_data)
 
+    if course_name:
+        print("course_name",course_name)
+        course_name = course_name.replace(' ', '+')
+        teacher_student_data = []
+        print("before_teacher_student_data:\n", teacher_student_data)
+        print("all_info",all_info)
+        for item in all_info:
+            if item[1] == course_name:
+                temp3 = dict()
+                temp3['kh'] = item[0]
+                temp3['km'] = item[1]
+                temp3['xh'] = item[2]
+                temp3['xm'] = item[3]
+                temp3['pscj'] = item[4]
+                temp3['kscj'] = item[5]
+                temp3['zpcj'] = item[6]
+                temp3['xq'] = item[7]
+                teacher_student_data.append(temp3)
+        print("new_teacher_student_data:\n", teacher_student_data)
 
-  return render(request, 'teacher_edit_score.html',context={'gh':number,'student_data':teacher_student_data})
+        return render(request, 'teacher_edit_score.html',
+                      context={'gh': number, 'student_data': teacher_student_data,
+                               'course_name': course_name, 'courses_data': courses_data})
+    else:  # 下拉框已选课程
+        course_name = '未选择课程'
+        return render(request, 'teacher_edit_score.html',
+                      context={'gh': number, 'student_data': teacher_student_data,
+                               'course_name': course_name, 'courses_data': courses_data})
+
 
 def teacher_mod_score(request):
   # 教师提交学生成绩
