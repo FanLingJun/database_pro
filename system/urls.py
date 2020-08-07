@@ -28,6 +28,9 @@ urlpatterns = [
     path('admin_edit_course/', views.admin_edit_course),
     path('admin_mod_course/', views.admin_mod_course),
     path('admin_daily_post/', views.admin_daily_post),
+    path('admin_export_student/', views.admin_export_student),
+    path('admin_upload_student/', views.admin_upload_student),
+
 ]
 
 # handler404 = views.page_not_found

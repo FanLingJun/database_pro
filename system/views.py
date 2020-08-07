@@ -1,8 +1,12 @@
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from system import models # 引入对象模型
 from django.db import connection
-import sqlite3
+import pandas as pd
+import datetime
+import xlwt,xlrd
+from io import BytesIO
 
 def page_not_found(request, **kwargs):
   return redirect('/login/')
@@ -706,3 +710,68 @@ def admin_daily_post(request):
     return render(request,'admin_daily_post.html',context={'gh':gh,'all_student':all_student,'all_teacher':all_teacher})
 
 
+def admin_export_student(request):
+  # 设置HTTPResponse的类型
+  response = HttpResponse(content_type='application/vnd.ms-excel')
+  response['Content-Disposition'] = 'attachment;filename=student.xls'
+  # 创建一个文件对象
+  wb = xlwt.Workbook(encoding='utf8')
+  # 创建一个sheet对象
+  sheet = wb.add_sheet('sheet')
+
+  # 写入文件标题
+  sheet.write(0, 0, '学号')
+  sheet.write(0, 1, '姓名')
+  sheet.write(0, 2, '学院')
+  sheet.write(0, 3, '性别')
+  sheet.write(0, 4, '出生日期')
+  sheet.write(0, 5, '籍贯')
+  sheet.write(0, 6, '手机号')
+
+  # 写入数据
+  data_row = 1
+  # UserTable.objects.all()这个是查询条件,可以根据自己的实际需求做调整.
+  for i in models.student.objects.all():
+    sheet.write(data_row, 0, i.xh)
+    sheet.write(data_row, 1, i.xm)
+    sheet.write(data_row, 2, i.yxh.mc)
+    sheet.write(data_row, 3, i.xb)
+    birthday = i.csrq.strftime('%Y-%m-%d')
+    sheet.write(data_row, 4, birthday)
+    sheet.write(data_row, 5, i.jg)
+    sheet.write(data_row, 6, i.sjhm)
+    data_row = data_row + 1
+
+  # 写出到IO
+  output = BytesIO()
+  wb.save(output)
+  # 重新定位到开始
+  output.seek(0)
+  response.write(output.getvalue())
+  return response
+
+def admin_upload_student(request):
+    print('iii')
+
+    if request.method == "POST":
+      csv_file = request.FILES["my_file"]
+      print('hiii')
+      if csv_file.name.endswith('.csv') or csv_file.name.endswith('.CSV') or csv_file.name.endswith('.txt'):
+        print('hhhhiii')
+        file_data = csv_file.read().decode("utf-8")
+        lines = file_data.split("\n")
+        for line in lines:
+          fields = line.split(",")
+          print(line)
+          mc = models.department.objects.get(mc=fields[2])
+          print(mc)
+          models.student.objects.create(xh=str(fields[0]), xm=fields[1],yxh=mc,
+                                                        xb=fields[3],csrq=fields[4],jg=fields[5],sjhm=str(fields[6]))
+        messages.success(request, '成功！')
+        return redirect('/admin_edit_student/')
+
+      messages.success(request, '上传文件格式不是csv')
+      return redirect('/admin_edit_student/')
+
+    messages.success(request, '不是post请求')
+    return redirect('/admin_edit_student/')
