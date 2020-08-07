@@ -751,13 +751,10 @@ def admin_export_student(request):
   return response
 
 def admin_upload_student(request):
-    print('iii')
 
     if request.method == "POST":
       csv_file = request.FILES["my_file"]
-      print('hiii')
       if csv_file.name.endswith('.csv') or csv_file.name.endswith('.CSV') or csv_file.name.endswith('.txt'):
-        print('hhhhiii')
         file_data = csv_file.read().decode("utf-8")
         lines = file_data.split("\n")
         for line in lines:
@@ -770,7 +767,7 @@ def admin_upload_student(request):
         messages.success(request, '成功！')
         return redirect('/admin_edit_student/')
 
-      messages.success(request, '上传文件格式不是csv')
+      messages.success(request, '上传文件格式不是txt')
       return redirect('/admin_edit_student/')
 
     messages.success(request, '不是post请求')
