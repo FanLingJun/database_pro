@@ -597,7 +597,9 @@ def admin_edit_course(request):
     if (models.course.objects.filter(kh=kh)):
       # 有这门课了
       try:
-        models.open_course.objects.create(xq=xq, kh_id=kh, gh_id=gh, sksj=sksj)
+        print(xq)
+        xq_id=models.term_status.objects.filter(name=xq).first().id
+        models.open_course.objects.create(xq_id=xq_id, kh_id=kh, gh_id=gh, sksj=sksj)
         messages.success(request, '已存在此课程，开课成功！')
         return redirect('/admin_edit_course/')
       except:
