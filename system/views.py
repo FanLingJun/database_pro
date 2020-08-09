@@ -98,7 +98,8 @@ def check_my_score(request):
     print(all_terms, type(all_terms))
     all_t = []
     for item in all_terms:
-        terms = dict()  # 注意这里一定要放在循环之内！！！！！！！！！！！！
+        terms = dict()  # 注意这里一定要放在循环之内！！！！！！！！
+        # ！！！！
         terms['xq'] = item[0]
         all_t.append(terms)
     print(terms)
@@ -594,11 +595,11 @@ def admin_edit_course(request):
     xq = request.POST.get('xq')
     xs = request.POST.get('xs')
     yxh = request.POST.get('mc')
+    xq_id = models.term_status.objects.filter(name=xq).first().id
+    print(xq)
     if (models.course.objects.filter(kh=kh)):
       # 有这门课了
       try:
-        print(xq)
-        xq_id=models.term_status.objects.filter(name=xq).first().id
         models.open_course.objects.create(xq_id=xq_id, kh_id=kh, gh_id=gh, sksj=sksj)
         messages.success(request, '已存在此课程，开课成功！')
         return redirect('/admin_edit_course/')
@@ -608,7 +609,7 @@ def admin_edit_course(request):
     else:
       try:
         models.course.objects.create(kh=kh, km=km, xf=xf, xs=xs, yxh_id=yxh)
-        models.open_course.objects.create(xq=xq, kh_id=kh, gh_id=gh, sksj=sksj)
+        models.open_course.objects.create(xq_id=xq_id, kh_id=kh, gh_id=gh, sksj=sksj)
         print('创建新课程成功，开课成功！')
         messages.success(request, '创建新课程成功，开课成功！')
         return redirect('/admin_edit_course/')
