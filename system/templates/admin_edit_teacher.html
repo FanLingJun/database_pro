@@ -90,6 +90,19 @@
           </div>
         </div>
         <div class="col-md-12">
+          <a href="/admin_export_teacher/"><button  type="button" class="btn btn-primary " >导出excel</button></a>
+           <br>
+          <form action="/admin_upload_teacher/" method="POST" enctype="multipart/form-data">
+             {% csrf_token %}
+              <input type="file" name="my_file">
+              <input class="btn btn-primary " type="submit">
+           </form>
+        </div>
+        <br>
+
+
+
+        <div class="col-md-12">
           <div class="tile">
             <h3 class="tile-title">新增教师</h3>
             <div class="table-responsive">

@@ -30,6 +30,8 @@ urlpatterns = [
     path('admin_daily_post/', views.admin_daily_post),
     path('admin_export_student/', views.admin_export_student),
     path('admin_upload_student/', views.admin_upload_student),
+    path('admin_export_teacher/', views.admin_export_teacher),
+    path('admin_upload_teacher/', views.admin_upload_teacher)
 
 ]
 

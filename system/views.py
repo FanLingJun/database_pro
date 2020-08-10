@@ -775,3 +775,55 @@ def admin_upload_student(request):
 
     messages.success(request, '不是post请求')
     return redirect('/admin_edit_student/')
+
+def admin_export_teacher(request):
+  response = HttpResponse(content_type='application/vnd.ms-excel')
+  response['Content-Disposition'] = 'attachment;filename=teacher.xls'
+  wb = xlwt.Workbook(encoding='utf8')
+  sheet = wb.add_sheet('sheet')
+  sheet.write(0, 0, '工号')
+  sheet.write(0, 1, '姓名')
+  sheet.write(0, 2, '学院')
+  sheet.write(0, 3, '性别')
+  sheet.write(0, 4, '出生日期')
+  sheet.write(0, 5, '学历')
+  sheet.write(0, 6, '基本工资')
+  data_row = 1
+  for i in models.teacher.objects.all():
+    sheet.write(data_row, 0, i.gh)
+    sheet.write(data_row, 1, i.xm)
+    sheet.write(data_row, 2, i.yxh.mc)
+    sheet.write(data_row, 3, i.xb)
+    birthday = i.csrq.strftime('%Y-%m-%d')
+    sheet.write(data_row, 4, birthday)
+    sheet.write(data_row, 5, i.xl)
+    sheet.write(data_row, 6, i.jbgz)
+    data_row = data_row + 1
+  output = BytesIO()
+  wb.save(output)
+  output.seek(0)
+  response.write(output.getvalue())
+  return response
+
+def admin_upload_teacher(request):
+
+    if request.method == "POST":
+      csv_file = request.FILES["my_file"]
+      if csv_file.name.endswith('.csv') or csv_file.name.endswith('.CSV') or csv_file.name.endswith('.txt'):
+        file_data = csv_file.read().decode("utf-8")
+        lines = file_data.split("\n")
+        for line in lines:
+          fields = line.split(",")
+          print(line)
+          mc = models.department.objects.get(mc=fields[2])
+          print(mc)
+          models.teacher.objects.create(gh=str(fields[0]), xm=fields[1],yxh=mc,
+                                                     xb=fields[3],csrq=fields[4],xl=fields[5],jbgz=str(fields[6]))
+        messages.success(request, '成功！')
+        return redirect('/admin_edit_teacher/')
+      messages.success(request, '上传文件格式不是txt')
+      return redirect('/admin_edit_teacher/')
+    messages.success(request, '不是post请求')
+    return redirect('/admin_edit_teacher/')
+
+
